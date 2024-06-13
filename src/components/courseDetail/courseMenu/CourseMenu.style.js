@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { color } from "../../../styles/palette";
 export const CourseMenuBlock = styled.div`
   display: flex;
+  width: 100%;
   gap: 2rem;
 `;
 
