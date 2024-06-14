@@ -1,10 +1,7 @@
 import { Navigate } from "./NavBar.style";
 import Button from "@components/common/button/Button";
 import { PATH } from "@router/Constants";
-import {
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const NavBar = () => {
   const location = useLocation();
   return (

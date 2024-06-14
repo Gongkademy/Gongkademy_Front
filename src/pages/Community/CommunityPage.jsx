@@ -1,14 +1,8 @@
 import SearchBar from "@components/common/searchbar/SearchBar";
 import NavBar from "@pages/Community/NavBar";
 import Button from "@components/common/button/Button";
-import {
-  Container,
-  ContentContainer,
-} from "./CommunityPage.style";
-import {
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Container, ContentContainer } from "./CommunityPage.style";
+import { Link, useLocation } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import CommunityBoardPage from "../CommunityBoard/CommunityBoardPage";
 const CommunityPage = () => {
@@ -38,10 +32,7 @@ const CommunityPage = () => {
               zIndex: 1000, // 다른 요소들 위에 렌더링되도록 설정
             }}
           >
-            ✍️{" "}
-            {type === "Q&A"
-              ? "질문하기"
-              : "고민 나누기"}
+            ✍️ {type === "Q&A" ? "질문하기" : "고민 나누기"}
           </Button>
         </Link>
       </ContentContainer>
