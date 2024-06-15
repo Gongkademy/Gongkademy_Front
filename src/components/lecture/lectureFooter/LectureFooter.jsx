@@ -1,5 +1,5 @@
 import { FooterBlock } from "./LectureFooter.style";
-import { ArrowLeft, ArrowRight } from "@/assets/svg/icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/svg/icons";
 import { Flex } from "../../common/flex/Flex";
 import Text from "../../common/text/Text";
 import { useSearchParams } from "react-router-dom";
@@ -22,7 +22,7 @@ const LectureFooter = ({ lecture }) => {
           })
         }
       >
-        <ArrowLeft width={16} height={16} />
+        <ArrowLeftIcon width={16} height={16} />
         <Text typo="bodyRg400">이전 수업</Text>
       </Flex>
 

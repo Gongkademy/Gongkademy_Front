@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgArrowLeft = (props: SVGProps<SVGSVGElement>) => (
+const SvgArrowLeftIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -10,4 +10,4 @@ const SvgArrowLeft = (props: SVGProps<SVGSVGElement>) => (
     <path stroke="#000" d="M13 8H2m0 0 4 4M2 8l4-4" />
   </svg>
 );
-export default SvgArrowLeft;
+export default SvgArrowLeftIcon;
