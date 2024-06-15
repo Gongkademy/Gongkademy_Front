@@ -1,9 +1,6 @@
 import { CourseCard } from "@components/course/CourseCard";
 import { CourseContianer } from "@components/course/CourseCard.style";
-import {
-  QuestionMark,
-  Teacher,
-} from "@assets/svg/titles";
+import { QuestionMark, Teacher } from "@assets/svg/titles";
 import { PageTitle } from "@components/common/page/PageTitle";
 import { ConcernCard } from "@components/concern/ConcernCard";
 import { CONCERN_LIST } from "@dummy/Concern";
@@ -22,10 +19,7 @@ const HomePage = () => {
         </PageTitle>
         <CourseContianer>
           {COURSES.map((course) => (
-            <CourseCard
-              course={course}
-              key={course.url}
-            />
+            <CourseCard course={course} key={course.url} />
           ))}
         </CourseContianer>
       </PageLayout>
