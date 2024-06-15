@@ -1,13 +1,13 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgTrashCanIcon = (props: SVGProps<SVGSVGElement>) => (
+const SvgArrowRight = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 16 16"
     {...props}
   >
-    <path stroke="#000" d="M8 1.5V4M3 4h10M4 6l1 8h6l1.5-8" />
+    <path stroke="#000" d="M2 8h11M9 4l4 4-4 4" />
   </svg>
 );
-export default SvgTrashCanIcon;
+export default SvgArrowRight;
