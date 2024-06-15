@@ -13,7 +13,7 @@ import { PwdInputGroup } from "@components/common/input/PwdInputGroup";
 import jsonLocalStorage from "@utils/jsonLocalStorage";
 import { useLocation } from "react-router-dom";
 import { LoginContext } from "@contexts/LoginContext";
-import { Cancel } from "@assets/svg/icons";
+import { CancelIcon } from "@assets/svg/icons";
 import { PATH } from "@router/Constants";
 const EMAIL = LOGIN_CONSTATNT.email;
 const PWD = LOGIN_CONSTATNT.password;
@@ -62,7 +62,7 @@ export const LoginModal = ({ setIsModalOpen }) => {
             setIsModalOpen(false);
           }}
         >
-          <Cancel />
+          <CancelIcon />
         </CancelIconBox>
 
         <Logo isLink={false} />

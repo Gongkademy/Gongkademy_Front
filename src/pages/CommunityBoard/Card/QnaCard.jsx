@@ -9,10 +9,9 @@ import {
 } from "./QnaCard.style.js";
 import {
   BookMarkIcon,
-  Like,
-  LikeActive,
-  Visible,
-  Chat,
+  LikeIcon,
+  VisibleIcon,
+  ChatIcon,
 } from "@assets/svg/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -71,15 +70,21 @@ const QnaCard = ({ qna }) => {
         </ContentContainer>
         <ContentContainer>
           <Content>
-            <Chat width="16" height="16" />
+            <ChatIcon width="16" height="16" />
             12
           </Content>
           <Content>
             <Pointer>
               {likeActive ? (
-                <LikeActive width="16" height="16" onClick={handleClickLike} />
+                <LikeIcon
+                  fill={color.pinkRed}
+                  stroke="none"
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
               ) : (
-                <Like width="16" height="12" onClick={handleClickLike} />
+                <LikeIcon width="16" height="12" onClick={handleClickLike} />
               )}
               {initialQna.like}
             </Pointer>

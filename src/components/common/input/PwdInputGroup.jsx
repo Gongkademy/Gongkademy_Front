@@ -3,7 +3,7 @@ import {
   InputGroupContainer,
   StyledInput,
 } from "@components/common/input/InputGroup.style";
-import { Invisible, Visible } from "@assets/svg/icons";
+import { InvisibleIcon, VisibleIcon } from "@assets/svg/icons";
 import { useVisible } from "@hooks/useVisible";
 import { ValidMessage } from "@components/common/input/ValidMessage";
 
@@ -20,7 +20,7 @@ export const PwdInputGroup = ({ auth, state, field, onChange }) => {
         type={isPwdVisible ? "text" : "password"}
       />
       <Icon onClick={handlePwdVisibleClick}>
-        {isPwdVisible ? <Visible /> : <Invisible />}
+        {isPwdVisible ? <VisibleIcon /> : <InvisibleIcon />}
       </Icon>
       {auth === "signup" && <ValidMessage field={field} state={state} />}
     </InputGroupContainer>

@@ -7,14 +7,12 @@ import {
   Pointer,
 } from "./ConcernCard.style";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "@/assets/svg/icons";
+import { ArrowRightIcon } from "@/assets/svg/icons";
 import { PATH } from "@router/Constants";
 const ConcernCard = ({ concern }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(
-      PATH.COMMUNITY_DETAIL("concern", concern.id)
-    );
+    navigate(PATH.COMMUNITY_DETAIL("concern", concern.id));
   };
 
   return (
@@ -22,7 +20,7 @@ const ConcernCard = ({ concern }) => {
       <TitleContainer>
         <Title>{concern.title}</Title>
         <Pointer>
-          <ArrowRight
+          <ArrowRightIcon
             width="16"
             height="16"
             onClick={handleClickConcernCard}
