@@ -8,14 +8,8 @@ import {
 } from "@components/common/searchbar/Searchbar.style";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  Container,
-  SelectContainer,
-} from "./Regist.style";
-import {
-  ChevronUp,
-  ChevronDown,
-} from "@/assets/svg/icons";
+import { Container, SelectContainer } from "./Regist.style";
+import { ChevronUpIcon, ChevronDownIcon } from "@/assets/svg/icons";
 import Button from "@components/common/button/Button";
 const Regist = () => {
   const location = useLocation();
@@ -28,11 +22,8 @@ const Regist = () => {
     "Q&A": "🙋Q&A",
     concern: "🤔고민",
   };
-  const [selected, setSelected] = useState(
-    typeMap[type]
-  );
-  const [showOptions, setShowOptions] =
-    useState(false);
+  const [selected, setSelected] = useState(typeMap[type]);
+  const [showOptions, setShowOptions] = useState(false);
   const handleClickOptions = () => {
     setShowOptions(!showOptions);
   };
@@ -45,18 +36,16 @@ const Regist = () => {
       <SelectContainer>
         <StyledSelect>
           <Selected onClick={handleClickOptions}>
-            <SelectedValue>
-              {selected}
-            </SelectedValue>
+            <SelectedValue>{selected}</SelectedValue>
             <Arrow>
               {showOptions ? (
-                <ChevronUp
+                <ChevronUpIcon
                   width="16"
                   height="12"
                   class="bi bi-chevron-up"
                 />
               ) : (
-                <ChevronDown
+                <ChevronDownIcon
                   width="16"
                   height="12"
                   class="bi bi-chevron-down"
@@ -65,20 +54,8 @@ const Regist = () => {
             </Arrow>
           </Selected>
           <Options active={showOptions}>
-            <Option
-              onClick={() =>
-                handleOptionClick("🙋Q&A")
-              }
-            >
-              🙋Q&A
-            </Option>
-            <Option
-              onClick={() =>
-                handleOptionClick("🤔고민")
-              }
-            >
-              🤔고민
-            </Option>
+            <Option onClick={() => handleOptionClick("🙋Q&A")}>🙋Q&A</Option>
+            <Option onClick={() => handleOptionClick("🤔고민")}>🤔고민</Option>
           </Options>
         </StyledSelect>
         <Button fill bold>
