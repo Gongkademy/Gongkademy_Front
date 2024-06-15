@@ -21,9 +21,15 @@ import {
   CourseName,
 } from "./CommunityDetail.style";
 import Button from "@components/common/button/Button";
+import { useState } from "react";
+import CommunityReview from "./CommunityReview";
 const Detail = () => {
   const location = useLocation();
-
+  const [viewReview, setViewReview] =
+    useState(false);
+  const handleClickViewReview = () => {
+    setViewReview(!viewReview);
+  };
   return (
     <DetailBlock>
       <Container>
@@ -67,11 +73,21 @@ const Detail = () => {
             </ContainerCol>
           </ContainerRow>
           <ContainerRow>
-            <Button text>
-              <ChevronDown
-                width="16"
-                height="16"
-              />{" "}
+            <Button
+              text
+              onClick={handleClickViewReview}
+            >
+              {!viewReview ? (
+                <ChevronDown
+                  width="16"
+                  height="16"
+                />
+              ) : (
+                <ChevronUp
+                  width="16"
+                  height="16"
+                />
+              )}{" "}
               1개 댓글 보기
             </Button>
             <Button text>
@@ -80,6 +96,7 @@ const Detail = () => {
             </Button>
           </ContainerRow>
         </ContentContainer>
+        {viewReview && <CommunityReview />}
       </Container>
     </DetailBlock>
   );
