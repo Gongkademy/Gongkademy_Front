@@ -5,28 +5,43 @@ import {
   Content,
   Pointer,
 } from "./NoticeCard.style.js";
-import { VisibleIcon, LikeIcon } from "@assets/svg/icons";
+import {
+  Visible,
+  Like,
+  LikeActive,
+} from "@assets/svg/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 const Notice = ({ notice }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(PATH.COMMUNITY_DETAIL("notice", initialNotice.id));
+    navigate(
+      PATH.COMMUNITY_DETAIL(
+        "notice",
+        initialNotice.id
+      )
+    );
   };
-  const [initialNotice, setInitialNotice] = useState(notice);
-  const [likeActive, setLikeActive] = useState(false);
+  const [initialNotice, setInitialNotice] =
+    useState(notice);
+  const [likeActive, setLikeActive] =
+    useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
     setInitialNotice((prevNotice) => ({
       ...prevNotice,
-      like: likeActive ? prevNotice.like - 1 : prevNotice.like + 1,
+      like: likeActive
+        ? prevNotice.like - 1
+        : prevNotice.like + 1,
     }));
   };
   return (
     <NoticeContainer>
       <Pointer>
-        <NoticeTitle onClick={handleClickConcernCard}>
+        <NoticeTitle
+          onClick={handleClickConcernCard}
+        >
           {initialNotice.title}
         </NoticeTitle>
       </Pointer>
@@ -35,21 +50,23 @@ const Notice = ({ notice }) => {
         <Content>
           <Pointer>
             {likeActive ? (
-              <LikeIcon
-                fill={color.pinkred}
-                stroke="none"
+              <LikeActive
                 width="16"
                 height="16"
                 onClick={handleClickLike}
               />
             ) : (
-              <LikeIcon width="16" height="12" onClick={handleClickLike} />
+              <Like
+                width="16"
+                height="12"
+                onClick={handleClickLike}
+              />
             )}
             {initialNotice.like}
           </Pointer>
         </Content>
         <Content>
-          <VisibleIcon width="16" height="16" />
+          <Visible width="16" height="16" />
           {initialNotice.viewCnt}
         </Content>
       </ContentContainer>

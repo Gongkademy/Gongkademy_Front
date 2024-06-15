@@ -8,27 +8,34 @@ import {
   Pointer,
 } from "./QnaCard.style.js";
 import {
-  BookMarkIcon,
-  LikeIcon,
-  VisibleIcon,
-  ChatIcon,
+  BookMark,
+  BookMarkFill,
+  Like,
+  LikeActive,
+  Visible,
+  Chat,
 } from "@assets/svg/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
-import { color } from "@styles/palette";
 const QnaCard = ({ qna }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(PATH.COMMUNITY_DETAIL("Q&A", initialQna.id));
+    navigate(
+      PATH.COMMUNITY_DETAIL("Q&A", initialQna.id)
+    );
   };
-  const [initialQna, setInitialQna] = useState(qna);
-  const [likeActive, setLikeActive] = useState(false);
+  const [initialQna, setInitialQna] =
+    useState(qna);
+  const [likeActive, setLikeActive] =
+    useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
     setInitialQna((prevQna) => ({
       ...prevQna,
-      like: likeActive ? prevQna.like - 1 : prevQna.like + 1,
+      like: likeActive
+        ? prevQna.like - 1
+        : prevQna.like + 1,
     }));
   };
 
@@ -42,18 +49,19 @@ const QnaCard = ({ qna }) => {
     <CardContainer>
       <TitleContainer>
         <Pointer>
-          <Title onClick={handleClickConcernCard}>{qna.title}</Title>
+          <Title onClick={handleClickConcernCard}>
+            {qna.title}
+          </Title>
         </Pointer>
         <Pointer>
           {initialQna.scrap ? (
-            <BookMarkIcon
+            <BookMarkFill
               width="16"
               height="16"
-              fill={color.yellow}
               onClick={handleClickBookMark}
             />
           ) : (
-            <BookMarkIcon
+            <BookMark
               width="16"
               height="16"
               onClick={handleClickBookMark}
@@ -70,21 +78,23 @@ const QnaCard = ({ qna }) => {
         </ContentContainer>
         <ContentContainer>
           <Content>
-            <ChatIcon width="16" height="16" />
+            <Chat width="16" height="16" />
             12
           </Content>
           <Content>
             <Pointer>
               {likeActive ? (
-                <LikeIcon
-                  fill={color.pinkRed}
-                  stroke="none"
+                <LikeActive
                   width="16"
                   height="16"
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon width="16" height="12" onClick={handleClickLike} />
+                <Like
+                  width="16"
+                  height="12"
+                  onClick={handleClickLike}
+                />
               )}
               {initialQna.like}
             </Pointer>

@@ -1,6 +1,8 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgChevronUpIcon = (props: SVGProps<SVGSVGElement>) => (
+const SvgChevronUp = (
+  props: SVGProps<SVGSVGElement>
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -10,4 +12,4 @@ const SvgChevronUpIcon = (props: SVGProps<SVGSVGElement>) => (
     <path stroke="#000" d="M14 11 8 5l-6 6" />
   </svg>
 );
-export default SvgChevronUpIcon;
+export default SvgChevronUp;
