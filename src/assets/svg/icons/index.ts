@@ -1,7 +1,6 @@
 export { default as ArrowLeftIcon } from "./ArrowLeftIcon";
 export { default as ArrowRightIcon } from "./ArrowRightIcon";
 export { default as BookIcon } from "./BookIcon";
-export { default as BookMark } from "./BookMark";
 export { default as BookMarkIcon } from "./BookMarkIcon";
 export { default as Cancel } from "./Cancel";
 export { default as Check } from "./Check";
