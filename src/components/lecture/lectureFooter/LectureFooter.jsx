@@ -38,7 +38,7 @@ const LectureFooter = ({ lecture }) => {
         }
       >
         <Text typo="bodyRg400">다음 수업</Text>
-        <ArrowRight width={16} height={16} />
+        <ArrowRightIcon width={16} height={16} />
       </Flex>
     </FooterBlock>
   );
