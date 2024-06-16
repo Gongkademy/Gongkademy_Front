@@ -3,9 +3,12 @@ import Text from "@components/common/text/Text";
 import { color } from "../../../styles/palette";
 import { Flex } from "../../common/flex/Flex";
 import { Link } from "react-router-dom";
+import { PATH } from "../../../router/Constants";
+import { COURSE_ID, LECTURE_ID } from "../../../pages/Lecture/constants";
 const CurriculumItem = ({ isCompleted }) => {
+  const lectureQueryString = `?${LECTURE_ID}=${1}&${COURSE_ID}=${1}`;
   return (
-    <Link to="">
+    <Link to={PATH.LECTURE + lectureQueryString}>
       <Flex
         as="li"
         align="center"
