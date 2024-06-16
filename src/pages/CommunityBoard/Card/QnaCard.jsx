@@ -90,7 +90,7 @@ const QnaCard = ({ qna }) => {
             </Pointer>
           </Content>
           <Content>
-            <Visible width="16" height="16" />
+            <VisibleIcon width="16" height="16" />
             {initialQna.viewCnt}
           </Content>
         </ContentContainer>
