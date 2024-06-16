@@ -16,16 +16,16 @@ const color = {
 };
 
 const typo = {
-  titleRg700: "font-size:36px; line-height:44px; font-weight:700",
-  titleSm700: "font-size:24px; line-height:32px;font-weight:700",
-  subtitleRg500: "font-size:18px;  line-height:26px;font-weight:500",
-  bodyLg400: "font-size:18px; line-height:26px; font-weight:400",
-  bodyLg700: "font-size:18px; line-height:26px; font-weight:700",
-  bodyRg400: "font-size:16px; line-height:24px; font-weight:400",
-  bodyRg700: "font-size:16px; line-height:24px;font-weight:700",
-  bodySm400: "font-size:14px; line-height:22px; font-weight:400",
-  bodySm700: "font-size:14px; line-height:22px; font-weight:700",
-  captionRg400: "font-size:12px; line-height:20px; font-weight:400",
+  titleRg700: "font-size:2.25rem; line-height:2.75rem; font-weight:700",
+  titleSm700: "font-size:1.5rem; line-height:2rem; font-weight:700",
+  subtitleRg500: "font-size:1.125rem;  line-height:1.625rem; font-weight:500",
+  bodyLg400: "font-size:1.125rem; line-height:1.625rem; font-weight:400",
+  bodyLg700: "font-size:1.125rem; line-height:1.625rem; font-weight:700",
+  bodyRg400: "font-size:1rem; line-height:1.5rem; font-weight:400",
+  bodyRg700: "font-size:1rem; line-height:1.5rem; font-weight:700",
+  bodySm400: "font-size:0.875rem; line-height:1.375rem; font-weight:400",
+  bodySm700: "font-size:0.875rem; line-height:1.375rem; font-weight:700",
+  captionRg400: "font-size:0.75rem; line-height:1.25rem; font-weight:400",
 };
 
 const theme = { color, typo };

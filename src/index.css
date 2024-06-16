@@ -23,3 +23,7 @@ a {
   margin: 0;
   padding: 0;
 }
+
+svg {
+  height: fit-content;
+}

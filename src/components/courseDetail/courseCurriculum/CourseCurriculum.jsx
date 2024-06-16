@@ -1,5 +1,18 @@
+import CurriculumItem from "./CurriculumItem";
+
 const CourseCurriculum = () => {
-  return <div>커리큘럼</div>;
+  return (
+    <div>
+      <CurriculumItem isCompleted={true} />
+      <CurriculumItem isCompleted={false} />
+      <CurriculumItem isCompleted={true} />
+      <CurriculumItem isCompleted={false} />
+      <CurriculumItem isCompleted={true} />
+      <CurriculumItem isCompleted={false} />
+      <CurriculumItem isCompleted={true} />
+      <CurriculumItem isCompleted={false} />
+    </div>
+  );
 };
 
 export default CourseCurriculum;
