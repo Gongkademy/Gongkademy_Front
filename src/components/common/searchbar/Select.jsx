@@ -50,7 +50,10 @@ const Select = ({
           )}
         </Arrow>
       </Selected>
-      <Options active={showOptions}>
+      <Options
+        active={showOptions}
+        style={{ width }}
+      >
         {options.map((option, index) => (
           <Option
             key={index}

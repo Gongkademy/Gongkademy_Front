@@ -25,3 +25,7 @@ export const StyledInput = styled.input`
   border-radius: 8px;
   border: 1px solid rgb(143, 143, 143);
 `;
+export const CourseContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

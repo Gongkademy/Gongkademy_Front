@@ -47,7 +47,7 @@ export const Arrow = styled.div`
 export const Options = styled.ul`
   list-style-type: none;
   margin-top: 10px;
-  width: 6rem;
+  width: 100%;
   //   height: 48px;
   border: none;
   outline: none;
