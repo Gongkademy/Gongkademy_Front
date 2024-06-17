@@ -13,6 +13,7 @@ import { ReviewContainer } from "./CommunityReview.style";
 import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunitySubReview from "./CommunitySubReview";
+import { color } from "@styles/palette";
 const Review = () => {
   const [likeActive, setLikeActive] =
     useState(false);
@@ -34,14 +35,21 @@ const Review = () => {
         </ContainerRow>
         <Content type="black">리뷰내용</Content>
         <ContainerRow type="center">
-          <LikeIcon
-            width="16"
-            height="16"
-            fill={
-              likeActive ? "pinkred" : "current"
-            }
-            onCLick={handleClickLike}
-          />
+          {likeActive ? (
+            <LikeIcon
+              fill={color.pinkRed}
+              stroke="none"
+              width="16"
+              height="16"
+              onClick={handleClickLike}
+            />
+          ) : (
+            <LikeIcon
+              width="16"
+              height="16"
+              onClick={handleClickLike}
+            />
+          )}
           <Content>0</Content>
         </ContainerRow>
         <ContainerRow>

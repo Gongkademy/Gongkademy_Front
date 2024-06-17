@@ -23,6 +23,7 @@ import {
 import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunityReview from "./CommunityReview";
+import { color } from "@styles/palette";
 const Detail = () => {
   const location = useLocation();
   const [viewReview, setViewReview] =
@@ -49,16 +50,21 @@ const Detail = () => {
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
-              <LikeIcon
-                width="16"
-                height="16"
-                fill={
-                  likeActive
-                    ? "pinkred"
-                    : "current"
-                }
-                onCLick={handleClickLike}
-              />
+              {likeActive ? (
+                <LikeIcon
+                  fill={color.pinkRed}
+                  stroke="none"
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
+              ) : (
+                <LikeIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
+              )}
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">

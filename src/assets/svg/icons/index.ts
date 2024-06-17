@@ -16,3 +16,4 @@ export { default as StarIcon } from "./StarIcon";
 export { default as TrashCanIcon } from "./TrashCanIcon";
 export { default as TrophyIcon } from "./TrophyIcon";
 export { default as VisibleIcon } from "./VisibleIcon";
+export { default as MeetballIcon } from "./MeetballIcon";
