@@ -20,6 +20,7 @@ const SearchBar = () => {
         options={searchOptions}
         selectedValue={selected}
         setSelectedValue={setSelected}
+        width={"6rem"}
       />
     </SearchBarContainer>
   );

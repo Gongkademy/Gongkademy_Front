@@ -20,7 +20,7 @@ export const StyledSearchBar = styled.input`
 `;
 export const StyledSelect = styled.div`
   width: 6rem;
-  height: 3rem;
+  width: ${(props) => props.width || "100%"};
   border: none;
   outline: none;
   background-color: ${({ theme }) =>

@@ -17,6 +17,7 @@ const Select = ({
   options,
   selectedValue,
   setSelectedValue,
+  width,
 }) => {
   const [showOptions, setShowOptions] =
     useState(false);
@@ -28,7 +29,7 @@ const Select = ({
     setShowOptions(false);
   };
   return (
-    <StyledSelect>
+    <StyledSelect style={{ width }}>
       <Selected onClick={handleClickOptions}>
         <SelectedValue>
           {selectedValue}
