@@ -4,18 +4,21 @@ import {
   Content,
 } from "./CommunityDetail.style";
 import {
-  BookMarkIcon,
-  Like,
-  Meetball,
-  Chat,
-  ChevronDown,
-  ChevronUp,
+  LikeIcon,
+  ChatIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from "@/assets/svg/icons";
 import { ReviewContainer } from "./CommunityReview.style";
 import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunitySubReview from "./CommunitySubReview";
 const Review = () => {
+  const [likeActive, setLikeActive] =
+    useState(false);
+  const handleClickLike = () => {
+    setLikeActive(!likeActive);
+  };
   const [viewReview, setViewReview] =
     useState(false);
   const handleClickViewReview = () => {
@@ -31,7 +34,14 @@ const Review = () => {
         </ContainerRow>
         <Content type="black">리뷰내용</Content>
         <ContainerRow type="center">
-          <Like width="16" height="16" />
+          <LikeIcon
+            width="16"
+            height="16"
+            fill={
+              likeActive ? "pinkred" : "current"
+            }
+            onCLick={handleClickLike}
+          />
           <Content>0</Content>
         </ContainerRow>
         <ContainerRow>
@@ -40,18 +50,21 @@ const Review = () => {
             onClick={handleClickViewReview}
           >
             {!viewReview ? (
-              <ChevronDown
+              <ChevronDownIcon
                 width="16"
                 height="16"
               />
             ) : (
-              <ChevronUp width="16" height="16" />
+              <ChevronUpIcon
+                width="16"
+                height="16"
+              />
             )}{" "}
             1개 댓글 보기
           </Button>
           <Button text>
-            <Chat width="16" height="16" /> 댓글
-            작성하기
+            <ChatIcon width="16" height="16" />{" "}
+            댓글 작성하기
           </Button>
         </ContainerRow>
       </ReviewContainer>

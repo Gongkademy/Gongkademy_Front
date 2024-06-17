@@ -1,11 +1,11 @@
 import { useLocation } from "react-router-dom";
 import {
   BookMarkIcon,
-  Like,
-  Meetball,
-  Chat,
-  ChevronDown,
-  ChevronUp,
+  LikeIcon,
+  MeetballIcon,
+  ChatIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from "@/assets/svg/icons";
 import {
   DetailBlock,
@@ -30,6 +30,11 @@ const Detail = () => {
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
+  const [likeActive, setLikeActive] =
+    useState(false);
+  const handleClickLike = () => {
+    setLikeActive(!likeActive);
+  };
   return (
     <DetailBlock>
       <Container>
@@ -44,11 +49,23 @@ const Detail = () => {
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
-              <Like width="16" height="16" />
+              <LikeIcon
+                width="16"
+                height="16"
+                fill={
+                  likeActive
+                    ? "pinkred"
+                    : "current"
+                }
+                onCLick={handleClickLike}
+              />
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
-              <Meetball width="16" height="16" />
+              <MeetballIcon
+                width="16"
+                height="16"
+              />
             </ContainerCol>
           </ContainerRow>
         </TitleContainer>
@@ -78,12 +95,12 @@ const Detail = () => {
               onClick={handleClickViewReview}
             >
               {!viewReview ? (
-                <ChevronDown
+                <ChevronDownIcon
                   width="16"
                   height="16"
                 />
               ) : (
-                <ChevronUp
+                <ChevronUpIcon
                   width="16"
                   height="16"
                 />
@@ -91,8 +108,8 @@ const Detail = () => {
               1개 댓글 보기
             </Button>
             <Button text>
-              <Chat width="16" height="16" /> 댓글
-              작성하기
+              <ChatIcon width="16" height="16" />{" "}
+              댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>
