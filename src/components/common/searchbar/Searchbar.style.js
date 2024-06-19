@@ -59,6 +59,7 @@ export const Options = styled.ul`
   cursor: pointer;
   display: ${(props) =>
     props.active ? "initial" : "none"};
+  z-index: 1000;
 `;
 export const Option = styled.li`
   line-height: 3rem;

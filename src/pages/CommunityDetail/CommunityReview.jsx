@@ -14,9 +14,15 @@ import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunitySubReview from "./CommunitySubReview";
 import { color } from "@styles/palette";
+import RegistReview from "../CommunityBoard/Regist/RegistReview";
 const Review = () => {
   const [likeActive, setLikeActive] =
     useState(false);
+  const [writeReview, setWriteReview] =
+    useState(false);
+  const handleClickGoWriteReview = () => {
+    setWriteReview(!writeReview);
+  };
   const handleClickLike = () => {
     setLikeActive(!likeActive);
   };
@@ -70,12 +76,16 @@ const Review = () => {
             )}{" "}
             1개 댓글 보기
           </Button>
-          <Button text>
+          <Button
+            text
+            onClick={handleClickGoWriteReview}
+          >
             <ChatIcon width="16" height="16" />{" "}
             댓글 작성하기
           </Button>
         </ContainerRow>
       </ReviewContainer>
+      {writeReview && <RegistReview />}
       {viewReview && <CommunitySubReview />}
     </>
   );

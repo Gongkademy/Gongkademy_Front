@@ -24,9 +24,12 @@ import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunityReview from "./CommunityReview";
 import { color } from "@styles/palette";
+import RegistReview from "@pages/CommunityBoard/Regist/RegistReview";
 const Detail = () => {
   const location = useLocation();
   const [viewReview, setViewReview] =
+    useState(false);
+  const [writeReview, setWriteReview] =
     useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
@@ -35,6 +38,9 @@ const Detail = () => {
     useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
+  };
+  const handleClickGoWriteReview = () => {
+    setWriteReview(!writeReview);
   };
   return (
     <DetailBlock>
@@ -113,12 +119,16 @@ const Detail = () => {
               )}{" "}
               1개 댓글 보기
             </Button>
-            <Button text>
+            <Button
+              text
+              onClick={handleClickGoWriteReview}
+            >
               <ChatIcon width="16" height="16" />{" "}
               댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>
+        {writeReview && <RegistReview />}
         {viewReview && <CommunityReview />}
       </Container>
     </DetailBlock>

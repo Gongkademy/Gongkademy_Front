@@ -6,6 +6,8 @@ import {
 } from "./Regist.style";
 import RegistNav from "./RegistNav";
 import RegistCourse from "./RegistCourse";
+import ToastConcern from "./ToastConcern";
+import ToastQna from "./ToastQna";
 const Regist = () => {
   const location = useLocation();
   console.log(location);
@@ -18,6 +20,7 @@ const Regist = () => {
       <RegistNav type={type} />
       <StyledInput placeholder="핵심 내용을 요약해주세요." />
       <RegistCourse />
+      <ToastQna />
     </Container>
   );
 };
