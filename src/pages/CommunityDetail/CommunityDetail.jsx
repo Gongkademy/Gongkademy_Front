@@ -27,15 +27,12 @@ import { color } from "@styles/palette";
 import RegistReview from "@components/community/Regist/RegistReview";
 const Detail = () => {
   const location = useLocation();
-  const [viewReview, setViewReview] =
-    useState(false);
-  const [writeReview, setWriteReview] =
-    useState(false);
+  const [viewReview, setViewReview] = useState(false);
+  const [writeReview, setWriteReview] = useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
-  const [likeActive, setLikeActive] =
-    useState(false);
+  const [likeActive, setLikeActive] = useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
   };
@@ -49,10 +46,7 @@ const Detail = () => {
           <Title>제목</Title>
           <ContainerRow>
             <ContainerCol type="icon">
-              <BookMarkIcon
-                width="16"
-                height="16"
-              />
+              <BookMarkIcon width="16" height="16" />
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
@@ -65,19 +59,12 @@ const Detail = () => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
+                <LikeIcon width="16" height="16" onClick={handleClickLike} />
               )}
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
-              <MeetballIcon
-                width="16"
-                height="16"
-              />
+              <MeetballIcon width="16" height="16" />
             </ContainerCol>
           </ContainerRow>
         </TitleContainer>
@@ -90,8 +77,7 @@ const Detail = () => {
           <Content type="black">
             4:15 {"\n"}
             혹시 T/G*Ip 어떻게 나온건가요? {"\n"}
-            어떤영상에서 설명해주셨는지 알려주실수
-            있을까요?{"\n"}
+            어떤영상에서 설명해주셨는지 알려주실수 있을까요?{"\n"}
             영상 다봤는데 처음 보는거 같아서요
           </Content>
           <ContainerRow type="center">
@@ -102,29 +88,16 @@ const Detail = () => {
             </ContainerCol>
           </ContainerRow>
           <ContainerRow>
-            <Button
-              text
-              onClick={handleClickViewReview}
-            >
+            <Button text onClick={handleClickViewReview}>
               {!viewReview ? (
-                <ChevronDownIcon
-                  width="16"
-                  height="16"
-                />
+                <ChevronDownIcon width="16" height="16" />
               ) : (
-                <ChevronUpIcon
-                  width="16"
-                  height="16"
-                />
+                <ChevronUpIcon width="16" height="16" />
               )}{" "}
               1개 댓글 보기
             </Button>
-            <Button
-              text
-              onClick={handleClickGoWriteReview}
-            >
-              <ChatIcon width="16" height="16" />{" "}
-              댓글 작성하기
+            <Button text onClick={handleClickGoWriteReview}>
+              <ChatIcon width="16" height="16" /> 댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>

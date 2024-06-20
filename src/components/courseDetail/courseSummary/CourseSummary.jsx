@@ -1,7 +1,7 @@
 import { Flex } from "../../common/flex/Flex";
 import Text from "@components/common/text/Text";
 import Button from "../../common/button/Button";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 import { BookIcon, BookMarkIcon, StarIcon } from "@/assets/svg/icons";
 const CourseSummary = () => {
   return (

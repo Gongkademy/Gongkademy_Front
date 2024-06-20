@@ -16,25 +16,19 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
-import { color } from "@styles/palette";
+import { color } from "@styles/style";
 const QnaCard = ({ qna }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(
-      PATH.COMMUNITY_DETAIL("Q&A", initialQna.id)
-    );
+    navigate(PATH.COMMUNITY_DETAIL("Q&A", initialQna.id));
   };
-  const [initialQna, setInitialQna] =
-    useState(qna);
-  const [likeActive, setLikeActive] =
-    useState(false);
+  const [initialQna, setInitialQna] = useState(qna);
+  const [likeActive, setLikeActive] = useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
     setInitialQna((prevQna) => ({
       ...prevQna,
-      like: likeActive
-        ? prevQna.like - 1
-        : prevQna.like + 1,
+      like: likeActive ? prevQna.like - 1 : prevQna.like + 1,
     }));
   };
 
@@ -48,9 +42,7 @@ const QnaCard = ({ qna }) => {
     <CardContainer>
       <TitleContainer>
         <Pointer>
-          <Title onClick={handleClickConcernCard}>
-            {qna.title}
-          </Title>
+          <Title onClick={handleClickConcernCard}>{qna.title}</Title>
         </Pointer>
         <Pointer>
           {initialQna.scrap ? (
@@ -92,11 +84,7 @@ const QnaCard = ({ qna }) => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
+                <LikeIcon width="16" height="16" onClick={handleClickLike} />
               )}
               {initialQna.like}
             </Pointer>

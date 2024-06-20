@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 export const CourseMenuBlock = styled.div`
   display: flex;
   width: 100%;

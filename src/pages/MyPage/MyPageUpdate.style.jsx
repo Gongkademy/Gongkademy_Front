@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import palette from "../../styles/palette";
+import { color } from "../../styles/style";
 
 export const MyPageContainer = styled.form`
   display: flex;
@@ -35,7 +35,7 @@ export const InputGroup = styled.div`
     border: none;
     border-radius: 8px;
     padding: 16px 12px;
-    background: ${palette.inputGray};
+    background: ${color.inputGray};
   }
 
   .inputContainer {

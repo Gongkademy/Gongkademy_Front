@@ -5,43 +5,29 @@ import {
   Content,
   Pointer,
 } from "./NoticeCard.style.js";
-import {
-  VisibleIcon,
-  LikeIcon,
-} from "@assets/svg/icons";
+import { VisibleIcon, LikeIcon } from "@assets/svg/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
-import { color } from "@styles/palette";
+import { color } from "@styles/style";
 const Notice = ({ notice }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(
-      PATH.COMMUNITY_DETAIL(
-        "notice",
-        initialNotice.id
-      )
-    );
+    navigate(PATH.COMMUNITY_DETAIL("notice", initialNotice.id));
   };
-  const [initialNotice, setInitialNotice] =
-    useState(notice);
-  const [likeActive, setLikeActive] =
-    useState(false);
+  const [initialNotice, setInitialNotice] = useState(notice);
+  const [likeActive, setLikeActive] = useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
     setInitialNotice((prevNotice) => ({
       ...prevNotice,
-      like: likeActive
-        ? prevNotice.like - 1
-        : prevNotice.like + 1,
+      like: likeActive ? prevNotice.like - 1 : prevNotice.like + 1,
     }));
   };
   return (
     <NoticeContainer>
       <Pointer>
-        <NoticeTitle
-          onClick={handleClickConcernCard}
-        >
+        <NoticeTitle onClick={handleClickConcernCard}>
           {initialNotice.title}
         </NoticeTitle>
       </Pointer>
@@ -58,11 +44,7 @@ const Notice = ({ notice }) => {
                 onClick={handleClickLike}
               />
             ) : (
-              <LikeIcon
-                width="16"
-                height="16"
-                onClick={handleClickLike}
-              />
+              <LikeIcon width="16" height="16" onClick={handleClickLike} />
             )}
             {initialNotice.like}
           </Pointer>

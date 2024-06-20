@@ -1,15 +1,10 @@
-import {
-  ContainerRow,
-  Profile,
-  Content,
-} from "./CommunityDetail.style";
+import { ContainerRow, Profile, Content } from "./CommunityDetail.style";
 import { LikeIcon } from "@/assets/svg/icons";
 import { SubReviewContainer } from "./CommunityReview.style";
 import { useState } from "react";
-import { color } from "@styles/palette";
+import { color } from "@styles/style";
 const SubReview = () => {
-  const [likeActive, setLikeActive] =
-    useState(false);
+  const [likeActive, setLikeActive] = useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
   };
@@ -32,11 +27,7 @@ const SubReview = () => {
               onClick={handleClickLike}
             />
           ) : (
-            <LikeIcon
-              width="16"
-              height="16"
-              onClick={handleClickLike}
-            />
+            <LikeIcon width="16" height="16" onClick={handleClickLike} />
           )}
           <Content>0</Content>
         </ContainerRow>

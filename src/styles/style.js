@@ -1,0 +1,30 @@
+export const color = {
+  pinkRed: "#F7385A",
+  blue: "#4EA5FC",
+  green: "#58E992",
+  yellow: "#FFD600",
+  black: "#111113",
+  white: "#FFFFFF",
+  gray900: "#222325",
+  gray800: "#3A3C40",
+  gray700: "#52555B",
+  gray600: "#6B6E76",
+  gray500: "#848890",
+  gray400: "#9FA2A8",
+  gray300: "#B9BCC0",
+  gray200: "#D4D6D8",
+  gray100: "#EFEFF0",
+};
+
+export const typo = {
+  titleRg700: "700 2.25rem/2.75rem pretendard",
+  titleSm700: "700 1.5rem/2rem pretendard",
+  subtitleRg500: "500 1.125rem/1.625rem pretendard",
+  bodyLg400: "400 1.125rem/1.625rem pretendard",
+  bodyLg700: "700 1.125rem/1.625rem pretendard",
+  bodyRg400: "400 1rem/1.5rem pretendard",
+  bodyRg700: "700 1rem/1.5rem pretendard",
+  bodySm400: "400 0.875rem/1.375rem pretendard",
+  bodySm700: "700 0.875rem/1.375rem pretendard",
+  captionRg400: "400 0.75rem/1.25rem pretendard",
+};

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 
 export const StyledButton = styled.button`
   height: 3rem;

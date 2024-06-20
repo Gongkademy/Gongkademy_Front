@@ -4,7 +4,7 @@ import { Flex } from "../../common/flex/Flex";
 import { PATH } from "../../../router/Constants";
 import { COURSE_ID, LECTURE_ID } from "../../../pages/Lecture/constants";
 import { CurriculumItemBlock } from "./CurriculumItem.style";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 const CurriculumItem = ({ isCompleted }) => {
   const lectureQueryString = `?${LECTURE_ID}=${1}&${COURSE_ID}=${1}`;
   return (

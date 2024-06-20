@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 
 export const CurriculumItemBlock = styled(Link)`
   display: flex;

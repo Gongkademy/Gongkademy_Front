@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../../../styles/palette";
+import { color } from "../../../styles/style";
 
 export const CourseThumbnailBlock = styled.div`
   width: 28.125rem;
