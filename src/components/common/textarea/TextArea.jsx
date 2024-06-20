@@ -4,7 +4,7 @@ const TextArea = ({ onChange, placeholder }) => {
     <TextAreaBlock
       rows={3}
       placeholder={placeholder}
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
     ></TextAreaBlock>
   );
 };
