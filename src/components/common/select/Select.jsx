@@ -27,6 +27,7 @@ const Select = ({ options, selectedValue, setSelectedValue, width }) => {
           <ChevronDownIcon width="16" height="12" class="bi bi-chevron-down" />
         )}
       </Selected>
+      {}
       <Options active={isShowOptions} style={{ width }}>
         {options.map((option, index) => (
           <Option key={index} onClick={() => handleOptionClick(option)}>

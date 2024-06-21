@@ -3,9 +3,11 @@ import TextArea from "../../common/textarea/TextArea";
 import { Flex } from "@components/common/flex/Flex";
 import Rating from "../../common/rating/Rating";
 import Text from "@components/common/text/Text";
+import Select from "@components/common/select/Select";
 const CourseReview = () => {
   const [content, setContent] = useState();
   const [rating, setRating] = useState(0);
+  const [order, setOrder] = useState("최신순");
   useEffect(() => {
     console.log(content);
     console.log(rating);
@@ -18,6 +20,13 @@ const CourseReview = () => {
         <Text typo="bodyLg700">({rating})</Text>
       </Flex>
       <TextArea placeholder={"수강평을 작성해주세요"} onChange={setContent} />
+
+      <Select
+        options={["최신순", "좋아요순", "높은 평점순", "낮은 평점순"]}
+        selectedValue={order}
+        setSelectedValue={setOrder}
+        width={"12rem"}
+      />
     </Flex>
   );
 };
