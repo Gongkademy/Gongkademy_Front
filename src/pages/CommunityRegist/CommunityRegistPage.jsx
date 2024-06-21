@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  Container,
-  StyledInput,
-} from "./CommunityRegistPage.style";
+import { Container, StyledInput } from "./CommunityRegistPage.style";
 import RegistNav from "@components/community/Regist/RegistNav";
 import RegistCourse from "@components/community/Regist/RegistCourse";
 import ToastConcern from "@components/community/Regist/ToastConcern";

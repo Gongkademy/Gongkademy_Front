@@ -7,9 +7,7 @@ const RegistNav = ({ type }) => {
     "Q&A": "🙋Q&A",
     concern: "🤔고민",
   };
-  const [selected, setSelected] = useState(
-    typeMap[type]
-  );
+  const [selected, setSelected] = useState(typeMap[type]);
   const options = ["🙋Q&A", "🤔고민"];
   return (
     <SelectContainer>
