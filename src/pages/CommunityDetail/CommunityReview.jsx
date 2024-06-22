@@ -14,7 +14,7 @@ import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunitySubReview from "./CommunitySubReview";
 import { color } from "@styles/palette";
-import RegistReview from "../CommunityBoard/Regist/RegistReview";
+import RegistReview from "@components/community/Regist/RegistReview";
 const Review = () => {
   const [likeActive, setLikeActive] =
     useState(false);

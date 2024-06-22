@@ -1,12 +1,15 @@
 import { PATH } from "@router/Constants";
 import App from "../App";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import HomePage from "@pages/Home/HomePage";
 import NotFoundPage from "@pages/NotFound/NotFoundPage";
 
 import CommunityPage from "@pages/Community/CommunityPage";
-import Regist from "@pages/CommunityBoard/Regist/Regist";
+import CommunityRegistPage from "@pages/CommunityRegist/CommunityRegistPage";
 import CommunityDetail from "@pages/CommunityDetail/CommunityDetail";
 
 import CourseIntroduction from "@components/courseDetail/courseIntroduction/CourseIntroduction";
@@ -40,12 +43,17 @@ const AppRouter = () => {
           element: <CommunityPage />,
         },
         {
-          path: PATH.COMMUNITY_DETAIL(`:communityType`, `:id`),
+          path: PATH.COMMUNITY_DETAIL(
+            `:communityType`,
+            `:id`
+          ),
           element: <CommunityDetail />,
         },
         {
-          path: PATH.COMMUNITY_REGIST(`:communityType`),
-          element: <Regist />,
+          path: PATH.COMMUNITY_REGIST(
+            `:communityType`
+          ),
+          element: <CommunityRegistPage />,
         },
 
         // 강의 관련 Route
@@ -58,11 +66,15 @@ const AppRouter = () => {
           element: <CourseDetailPage />,
           children: [
             {
-              path: PATH.COURSE_INTRODUCTION(`:courseId`),
+              path: PATH.COURSE_INTRODUCTION(
+                `:courseId`
+              ),
               element: <CourseIntroduction />,
             },
             {
-              path: PATH.COURSE_CURRICULUM(`:courseId`),
+              path: PATH.COURSE_CURRICULUM(
+                `:courseId`
+              ),
               element: <CourseCurriculum />,
             },
             {
@@ -70,11 +82,15 @@ const AppRouter = () => {
               element: <CourseQnA />,
             },
             {
-              path: PATH.COURSE_REVIEW(`:courseId`),
+              path: PATH.COURSE_REVIEW(
+                `:courseId`
+              ),
               element: <CourseReview />,
             },
             {
-              path: PATH.COURSE_NOTICE(`:courseId`),
+              path: PATH.COURSE_NOTICE(
+                `:courseId`
+              ),
               element: <CourseNotice />,
             },
           ],

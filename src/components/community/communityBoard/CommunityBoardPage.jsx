@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import NoticeCard from "./Card/NoticeCard";
+import NoticeCard from "@components/community/Card/NoticeCard";
 import { NOTICE_LIST } from "@dummy/Notice";
 import { QNA_LIST } from "@dummy/Qna";
-import QnaCard from "@pages/CommunityBoard/Card/QnaCard";
-import ConcernCard from "@pages/CommunityBoard/Card/ConcernCard";
+import QnaCard from "@components/community/Card/QnaCard";
+import ConcernCard from "@components/community/Card/ConcernCard";
 import { CONCERN_LIST } from "@dummy/Concern";
 const CONCERNS = CONCERN_LIST;
 const notices = NOTICE_LIST;

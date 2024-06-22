@@ -1,21 +1,5 @@
-import {
-  StyledSelect,
-  Selected,
-  SelectedValue,
-  Arrow,
-  Options,
-  Option,
-} from "@components/common/searchbar/Searchbar.style";
 import { useState } from "react";
-import {
-  Container,
-  SelectContainer,
-} from "./Regist.style";
-import {
-  ChevronUpIcon,
-  ChevronDownIcon,
-} from "@/assets/svg/icons";
-import Button from "@components/common/button/Button";
+import { SelectContainer } from "./communityRegist.style";
 import Select from "@components/common/searchbar/Select";
 const RegistCourse = () => {
   const courseOptions = [

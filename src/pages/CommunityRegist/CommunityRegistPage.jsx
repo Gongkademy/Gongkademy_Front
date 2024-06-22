@@ -3,12 +3,12 @@ import { useLocation } from "react-router-dom";
 import {
   Container,
   StyledInput,
-} from "./Regist.style";
-import RegistNav from "./RegistNav";
-import RegistCourse from "./RegistCourse";
-import ToastConcern from "./ToastConcern";
-import ToastQna from "./ToastQna";
-const Regist = () => {
+} from "./CommunityRegistPage.style";
+import RegistNav from "@components/community/Regist/RegistNav";
+import RegistCourse from "@components/community/Regist/RegistCourse";
+import ToastConcern from "@components/community/Regist/ToastConcern";
+import ToastQna from "@components/community/Regist/ToastQna";
+const CommunityRegistPage = () => {
   const location = useLocation();
   console.log(location);
   console.log(location.state);
@@ -24,4 +24,4 @@ const Regist = () => {
     </Container>
   );
 };
-export default Regist;
+export default CommunityRegistPage;

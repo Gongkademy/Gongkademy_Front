@@ -24,7 +24,7 @@ import Button from "@components/common/button/Button";
 import { useState } from "react";
 import CommunityReview from "./CommunityReview";
 import { color } from "@styles/palette";
-import RegistReview from "@pages/CommunityBoard/Regist/RegistReview";
+import RegistReview from "@components/community/Regist/RegistReview";
 const Detail = () => {
   const location = useLocation();
   const [viewReview, setViewReview] =
