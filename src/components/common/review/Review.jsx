@@ -13,10 +13,10 @@ import { ReviewContainer } from "./Review.style";
 import Button from "@components/common/button/Button";
 import { useState } from "react";
 import { color } from "@styles/style";
-import RegistReview from "../../../pages/CommunityBoard/Regist/RegistReview";
 import Rating from "../rating/Rating";
 import { Flex } from "@components/common/flex/Flex";
 import Text from "@components/common/text/Text";
+import RegistReview from "../../community/Regist/RegistReview";
 
 const Review = ({ content }) => {
   const [isLikeActive, setIsLikeActive] = useState(false);

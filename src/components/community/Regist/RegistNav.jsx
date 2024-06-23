@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SelectContainer } from "./communityRegist.style";
 import Button from "@components/common/button/Button";
-import Select from "@components/common/searchbar/Select";
+import Select from "@components/common/select/Select";
 const RegistNav = ({ type }) => {
   const typeMap = {
     "Q&A": "🙋Q&A",

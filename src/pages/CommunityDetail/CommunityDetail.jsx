@@ -26,7 +26,7 @@ import Button from "@components/common/button/Button";
 import { useState } from "react";
 import Review from "@components/common/review/Review";
 import { color } from "@styles/style";
-import RegistReview from "@pages/CommunityBoard/Regist/RegistReview";
+import RegistReview from "@components/community/Regist/RegistReview";
 import { review } from "@dummy/Review";
 
 const CommunityDetail = () => {
