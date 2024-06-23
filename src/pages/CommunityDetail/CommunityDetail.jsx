@@ -7,6 +7,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@/assets/svg/icons";
+
 import {
   DetailBlock,
   Container,
@@ -20,12 +21,15 @@ import {
   QnaImg,
   CourseName,
 } from "./CommunityDetail.style";
+
 import Button from "@components/common/button/Button";
 import { useState } from "react";
-import CommunityReview from "./CommunityReview";
-import { color } from "@styles/palette";
-import RegistReview from "@components/community/Regist/RegistReview";
-const Detail = () => {
+import Review from "@components/common/review/Review";
+import { color } from "@styles/style";
+import RegistReview from "@pages/CommunityBoard/Regist/RegistReview";
+import { review } from "@dummy/Review";
+
+const CommunityDetail = () => {
   const location = useLocation();
   const [viewReview, setViewReview] = useState(false);
   const [writeReview, setWriteReview] = useState(false);
@@ -102,9 +106,9 @@ const Detail = () => {
           </ContainerRow>
         </ContentContainer>
         {writeReview && <RegistReview />}
-        {viewReview && <CommunityReview />}
+        {viewReview && <Review content={review[0]} />}
       </Container>
     </DetailBlock>
   );
 };
-export default Detail;
+export default CommunityDetail;
