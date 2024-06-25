@@ -6,7 +6,7 @@ import {
   TitleContainer,
   InfoContainer,
   Pointer,
-} from "./QnaCard.style.js";
+} from "./CommunityCard.style.js";
 import {
   BookMarkIcon,
   LikeIcon,
@@ -17,35 +17,43 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
-const QnaCard = ({ qna }) => {
+const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(PATH.COMMUNITY_DETAIL("Q&A", initialQna.id));
+    navigate(
+      PATH.COMMUNITY_DETAIL(type, initialBoard.id)
+    );
   };
-  const [initialQna, setInitialQna] = useState(qna);
-  const [likeActive, setLikeActive] = useState(false);
+  const [initialBoard, setInitialBoard] =
+    useState(board);
+  const [likeActive, setLikeActive] =
+    useState(false);
   const handleClickLike = () => {
     setLikeActive(!likeActive);
-    setInitialQna((prevQna) => ({
-      ...prevQna,
-      like: likeActive ? prevQna.like - 1 : prevQna.like + 1,
+    setInitialBoard((prevBoard) => ({
+      ...prevBoard,
+      like: likeActive
+        ? prevBoard.like - 1
+        : prevBoard.like + 1,
     }));
   };
 
   const handleClickBookMark = () => {
-    setInitialQna((prevQna) => ({
-      ...prevQna,
-      scrap: !prevQna.scrap,
+    setInitialBoard((prevBoard) => ({
+      ...prevBoard,
+      scrap: !prevBoard.scrap,
     }));
   };
   return (
     <CardContainer>
       <TitleContainer>
         <Pointer>
-          <Title onClick={handleClickConcernCard}>{qna.title}</Title>
+          <Title onClick={handleClickConcernCard}>
+            {board.title}
+          </Title>
         </Pointer>
         <Pointer>
-          {initialQna.scrap ? (
+          {initialBoard.scrap ? (
             <BookMarkIcon
               width="16"
               height="16"
@@ -61,12 +69,12 @@ const QnaCard = ({ qna }) => {
           )}
         </Pointer>
       </TitleContainer>
-      <Content>{initialQna.content}</Content>
+      <Content>{initialBoard.content}</Content>
       <InfoContainer>
         <ContentContainer>
-          <Content>{initialQna.writer}</Content>
+          <Content>{initialBoard.writer}</Content>
           <Content>3분전</Content>
-          <Content>{initialQna.course}</Content>
+          <Content>{initialBoard.course}</Content>
         </ContentContainer>
         <ContentContainer>
           <Content>
@@ -84,18 +92,22 @@ const QnaCard = ({ qna }) => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon width="16" height="16" onClick={handleClickLike} />
+                <LikeIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
               )}
-              {initialQna.like}
+              {initialBoard.like}
             </Pointer>
           </Content>
           <Content>
             <VisibleIcon width="16" height="16" />
-            {initialQna.viewCnt}
+            {initialBoard.viewCnt}
           </Content>
         </ContentContainer>
       </InfoContainer>
     </CardContainer>
   );
 };
-export default QnaCard;
+export default CommunityCard;
