@@ -16,9 +16,10 @@ export const ContentContainer = styled.div`
 `;
 export const StyledButton = styled(Button)`
   width: 38rem;
-  justifycontent: center;
+  justify-content: center;
   position: fixed;
   bottom: 3rem;
-  left: 28.5%;
-  zindex: 1000; // 다른 요소들 위에 렌더링되도록 설정
+  // left: 50%;
+  // transform: translateX(-50%);
+  z-index: 1000;
 `;
