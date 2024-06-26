@@ -11,6 +11,7 @@ import NotFoundPage from "@pages/NotFound/NotFoundPage";
 import CommunityPage from "@pages/Community/CommunityPage";
 import CommunityRegistPage from "@pages/CommunityRegist/CommunityRegistPage";
 import CommunityDetail from "@pages/CommunityDetail/CommunityDetail";
+import CommunityUpdatePage from "@pages/CommunityUpdate/CommunityUpdatePage";
 
 import CourseIntroduction from "@components/courseDetail/courseIntroduction/CourseIntroduction";
 import CourseCurriculum from "@components/courseDetail/courseCurriculum/CourseCurriculum";
@@ -54,6 +55,10 @@ const AppRouter = () => {
             `:communityType`
           ),
           element: <CommunityRegistPage />,
+        },
+        {
+          path: PATH.COMMUNITY_UPDATE(`:id`),
+          element: <CommunityUpdatePage />,
         },
 
         // 강의 관련 Route

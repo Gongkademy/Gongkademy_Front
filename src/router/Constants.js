@@ -28,6 +28,8 @@ export const PATH = {
     `/community/regist/` + communityType,
   COMMUNITY_DETAIL: (communityType, id) =>
     `/community/${communityType}/${id}`,
+  COMMUNITY_UPDATE: (id) =>
+    `/community/update/id`,
   MY_PAGE: "/mypage",
 
   SIGN_UP: "/signup",
