@@ -7,11 +7,17 @@ import CommunityCard from "@components/community/Card/CommunityCard";
 import { CONCERN_LIST } from "@dummy/Concern";
 import { StyledButton } from "@pages/Community/CommunityPage.style";
 import { useEffect, useState } from "react";
+import useNoticeStore from "@/stores/Community/NoticeStore";
 const CONCERNS = CONCERN_LIST;
 const notices = NOTICE_LIST;
 const qnas = QNA_LIST;
 const CommunityBoardPage = ({ type }) => {
   const [boardList, setBoardList] = useState([]);
+  const { noticeList, fetchNoticeList } =
+    useNoticeStore();
+  useEffect(() => {
+    fetchNoticeList();
+  }, [noticeList]);
   useEffect(() => {
     if (type === "Q&A") {
       setBoardList(qnas);
@@ -21,9 +27,15 @@ const CommunityBoardPage = ({ type }) => {
   }, [type]);
   return (
     <>
-      <NoticeCard notice={notices[0]} />
+      {noticeList.map((notice) => (
+        <NoticeCard
+          notice={notice}
+          key={notice.id}
+        />
+      ))}
+      {/* <NoticeCard notice={notices[0]} />
       <NoticeCard notice={notices[1]} />
-      <NoticeCard notice={notices[2]} />
+      <NoticeCard notice={notices[2]} /> */}
       <br />
       {boardList.map((board) => (
         <CommunityCard

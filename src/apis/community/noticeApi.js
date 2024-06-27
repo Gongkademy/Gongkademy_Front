@@ -1,8 +1,9 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
-export const getNoticeList = axiosInstance.get(
-  END_POINT.COMMUNITY_NOTICE + "/top_latest"
-);
+export const getNoticeList = () =>
+  axiosInstance.get(
+    END_POINT.COMMUNITY_NOTICE + "/top_latest"
+  );
 export const getNoticeDetail = (articleId) => {
   axiosInstance.get(
     END_POINT.COMMUNITY_NOTICE_ARTICLE(articleId)
@@ -22,9 +23,11 @@ export const scrapNotice = (articleId) => {
     ) + "/scrap"
   );
 };
-export const noticeLiked = axiosInstance.get(
-  END_POINT.COMMUNITY_NOTICE + "/liked"
-);
-export const noticeScrapped = axiosInstance.get(
-  END_POINT.COMMUNITY_NOTICE + "/scrapped"
-);
+export const noticeLiked = () =>
+  axiosInstance.get(
+    END_POINT.COMMUNITY_NOTICE + "/liked"
+  );
+export const noticeScrapped = () =>
+  axiosInstance.get(
+    END_POINT.COMMUNITY_NOTICE + "/scrapped"
+  );
