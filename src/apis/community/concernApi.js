@@ -1,11 +1,13 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 //고민 리스트
-export const getConcernList = (keyword) => {
+export const getConcernList = (
+  keyword,
+  criteria,
+  pageNo
+) => {
   axiosInstance.get(END_POINT.COMMUNITY_CONCERN, {
-    params: {
-      keyword: keyword,
-    },
+    params: { keyword, criteria, pageNo },
   });
 };
 //고민 상세보기

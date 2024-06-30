@@ -1,11 +1,15 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 //질문 리스트
-export const getQuestionList = (keyword) => {
+export const getQuestionList = (
+  keyword,
+  criteria,
+  pageNo
+) => {
   axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION,
     {
-      params: { keyword: keyword },
+      params: { keyword, criteria, pageNo },
     }
   );
 };
