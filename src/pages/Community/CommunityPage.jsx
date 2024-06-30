@@ -1,6 +1,6 @@
 import SearchBar from "@components/common/searchbar/SearchBar";
 import NavBar from "@components/community/NavBar/NavBar";
-
+import Pagination from "@components/common/pagination/Pagination";
 import {
   Container,
   ContentContainer,
@@ -17,6 +17,12 @@ const CommunityPage = () => {
       <ContentContainer>
         <SearchBar />
         <CommunityBoardPage type={type} />
+        <Pagination
+          totalItems={51}
+          itemCountPerPage={5}
+          pageCount={5}
+          currentPage={1}
+        />
       </ContentContainer>
     </Container>
   );
