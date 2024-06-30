@@ -8,6 +8,8 @@ import { CONCERN_LIST } from "@dummy/Concern";
 import { StyledButton } from "@pages/Community/CommunityPage.style";
 import { useEffect, useState } from "react";
 import useNoticeStore from "@/stores/Community/NoticeStore";
+import useQnaStore from "@/stores/Community/QnaStore";
+import useConcernStore from "@/stores/Community/ConcernStore";
 const CONCERNS = CONCERN_LIST;
 const notices = NOTICE_LIST;
 const qnas = QNA_LIST;
@@ -15,14 +17,19 @@ const CommunityBoardPage = ({ type }) => {
   const [boardList, setBoardList] = useState([]);
   const { noticeList, fetchNoticeList } =
     useNoticeStore();
+  const { qnaList, fetchQnaList } = useQnaStore();
+  const { concernList, fetchConcernList } =
+    useConcernStore();
   useEffect(() => {
     fetchNoticeList();
   }, [noticeList]);
   useEffect(() => {
     if (type === "Q&A") {
-      setBoardList(qnas);
+      fetchQnaList("");
+      setBoardList(qnaList);
     } else {
-      setBoardList(CONCERNS);
+      fetchConcernList("");
+      setBoardList(concernList);
     }
   }, [type]);
   return (

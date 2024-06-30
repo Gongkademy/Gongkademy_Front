@@ -49,7 +49,6 @@ const useNoticeStore = create((set, get) => ({
   likeNotice: async (articleId) => {
     try {
       await likeNotice(articleId);
-      // 추가로 좋아요 여부를 다시 확인하거나 상태를 업데이트할 수 있습니다.
       get().fetchNoticeLiked();
     } catch (error) {
       console.error("좋아요 실패! :", error);
@@ -60,7 +59,6 @@ const useNoticeStore = create((set, get) => ({
   scrapNotice: async (articleId) => {
     try {
       await scrapNotice(articleId);
-      // 추가로 스크랩 여부를 다시 확인하거나 상태를 업데이트할 수 있습니다.
       get().fetchNoticeScrapped();
     } catch (error) {
       console.error("스크랩 실패! :", error);

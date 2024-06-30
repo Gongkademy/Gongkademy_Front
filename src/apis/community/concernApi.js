@@ -1,19 +1,19 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 //고민 리스트
-export const getConcernList = axiosInstance.get(
-  END_POINT.COMMUNITY_CONCERN
-);
+export const getConcernList = (keyword) => {
+  axiosInstance.get(END_POINT.COMMUNITY_CONCERN, {
+    params: {
+      keyword: keyword,
+    },
+  });
+};
 //고민 상세보기
 export const getConcernDetail = (articleId) => {
   axiosInstance.get(
     END_POINT.COMMUNITY_CONCERN_ARTICLE(articleId)
   );
 };
-//보류
-export const searchConcern = axiosInstance.get(
-  END_POINT.COMMUNITY_CONCERN + "/search"
-);
 //고민 작성
 export const writeConcern = (article) =>
   axiosInstance.post(
@@ -39,14 +39,18 @@ export const deleteConcern = (articleId) => {
   );
 };
 //고민 좋아요한 것들 가져오기
-export const concernLiked = axiosInstance.get(
-  END_POINT.COMMUNITY_CONCERN + "/liked"
-);
+export const concernLiked = () => {
+  axiosInstance.get(
+    END_POINT.COMMUNITY_CONCERN + "/liked"
+  );
+};
 
 //고민 스크랩한 것들 가져오기
-export const concernScrapped = axiosInstance.get(
-  END_POINT.COMMUNITY_CONCERN + "/scrapped"
-);
+export const concernScrapped = () => {
+  axiosInstance.get(
+    END_POINT.COMMUNITY_CONCERN + "/scrapped"
+  );
+};
 //고민 좋아요
 export const likeConcern = (articleId) => {
   axiosInstance.post(
