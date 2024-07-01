@@ -2,13 +2,17 @@ import {
   SearchBarContainer,
   StyledSearchBar,
 } from "./Searchbar.style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "@components/common/select/Select";
 import useCommonStore from "@/stores/common/CommonStore";
 import { useNavigate } from "react-router-dom";
 const SearchBar = ({ link }) => {
   const [selected, setSelected] =
     useState("최신순");
+  const [
+    pendingNavigation,
+    setPendingNavigation,
+  ] = useState(false);
   const navigate = useNavigate();
   const searchOptions = [
     "최신순",
@@ -24,9 +28,16 @@ const SearchBar = ({ link }) => {
       e.nativeEvent.isComposing === false
     ) {
       setKeyword(e.target.value);
-      navigate(link);
+      setPendingNavigation(true);
+      e.preventDefault();
     }
   };
+  useEffect(() => {
+    if (pendingNavigation) {
+      navigate(link);
+      setPendingNavigation(false);
+    }
+  }, [pendingNavigation, navigate, link]);
   return (
     <SearchBarContainer>
       <StyledSearchBar
@@ -38,6 +49,7 @@ const SearchBar = ({ link }) => {
         selectedValue={selected}
         setSelectedValue={setSelected}
         width={"6rem"}
+        link={link}
       />
     </SearchBarContainer>
   );

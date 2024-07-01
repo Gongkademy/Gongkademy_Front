@@ -43,7 +43,7 @@ const Header = () => {
           <Link
             to={
               PATH.COMMUNITY("concern") +
-              "?keyword=&criteria=date&pageNo=1"
+              "?keyword=&criteria=최신순&pageNo=1"
             }
           >
             <Button text>커뮤니티</Button>

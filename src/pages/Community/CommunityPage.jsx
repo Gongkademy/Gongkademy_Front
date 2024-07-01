@@ -10,8 +10,7 @@ import CommunityBoardPage from "@components/community/communityBoard/CommunityBo
 import { PATH } from "@router/Constants";
 import useCommonStore from "@/stores/common/CommonStore";
 const CommunityPage = () => {
-  const { keyword, setKeyword } =
-    useCommonStore();
+  const { keyword, criteria } = useCommonStore();
   const location = useLocation();
   const type = location.pathname.split("/")[2];
   const params = new URLSearchParams(
@@ -26,7 +25,7 @@ const CommunityPage = () => {
         <SearchBar
           link={
             PATH.COMMUNITY(type) +
-            `?keyword=${keyword}&criteria=date&pageNo=${pageNo}`
+            `?keyword=${keyword}&criteria=${criteria}&pageNo=1`
           }
         />
         <CommunityBoardPage type={type} />
@@ -38,7 +37,7 @@ const CommunityPage = () => {
           type={type}
           link={
             PATH.COMMUNITY(type) +
-            `?keyword=${keyword}&criteria=date`
+            `?keyword=${keyword}&criteria=${criteria}`
           }
         />
       </ContentContainer>
