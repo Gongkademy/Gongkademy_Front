@@ -1,30 +1,21 @@
 import { Logo } from "@components/common/logo/Logo";
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
-import {
-  HeaderBlock,
-  BtnContainer,
-  SearchBar,
-} from "@components/header/Header.style";
+import { Link, useNavigate } from "react-router-dom";
+import { HeaderBlock, SearchBar } from "@components/header/Header.style";
 import { useContext, useState } from "react";
 import { LoginModal } from "../login/LoginModal";
 import Button from "@components/common/button/Button";
 import { LoginContext } from "@contexts/LoginContext";
 import { PATH } from "@router/Constants";
 import { Flex } from "../common/flex/Flex";
+import { Google } from "@assets/svg/logo";
 
+// const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
+const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] =
-    useState(false);
-  const { state, actions } =
-    useContext(LoginContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { state, actions } = useContext(LoginContext);
   const navigate = useNavigate();
-  const handleLoginBtnClick = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
+
   const handleLogoutClick = (e) => {
     e.preventDefault();
     actions.setIsLogin(false);
@@ -32,6 +23,7 @@ const Header = () => {
     localStorage.removeItem("refreshToken");
     navigate("/");
   };
+
   return (
     <>
       <HeaderBlock>
@@ -58,36 +50,23 @@ const Header = () => {
               <Link to={PATH.MY_PAGE}>
                 <Button fill>마이페이지</Button>
               </Link>
-              <Button
-                text
-                onClick={handleLogoutClick}
-              >
+              <Button text onClick={handleLogoutClick}>
                 로그아웃
               </Button>
             </>
           ) : (
             <>
-              {" "}
-              <Button
-                outline
-                onClick={handleLoginBtnClick}
-              >
-                로그인
-              </Button>
-              <Link to={PATH.SIGN_UP}>
-                <Button fill bold>
-                  회원가입
+              <Link to={GOOGLE_LOGIN_URL}>
+                <Button outline>
+                  <Google width="1rem" />
+                  Google로 시작하기
                 </Button>
               </Link>
             </>
           )}
         </Flex>
       </HeaderBlock>
-      {isModalOpen && (
-        <LoginModal
-          setIsModalOpen={setIsModalOpen}
-        />
-      )}
+      {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
     </>
   );
 };
