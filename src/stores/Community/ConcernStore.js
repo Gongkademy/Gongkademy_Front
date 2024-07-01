@@ -17,10 +17,16 @@ const useConcernStore = create((set) => ({
   scrappedConcerns: [],
 
   //고민 목록 가져오기
-  fetchConcernList: async (keyword) => {
+  fetchConcernList: async (
+    keyword,
+    criteria,
+    pageNo
+  ) => {
     try {
       const response = await getConcernList(
-        keyword
+        keyword,
+        criteria,
+        pageNo
       );
       set({ concernList: response.data });
     } catch (e) {

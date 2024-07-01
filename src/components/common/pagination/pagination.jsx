@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Flex } from "@components/common/flex/Flex";
 import Button from "@components/common/button/Button";
+import { Link } from "react-router-dom";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@assets/svg/icons";
+import { PATH } from "@router/Constants";
 import {
   PageList,
   ActiveButton,
@@ -14,13 +16,16 @@ const Pagination = ({
   itemCountPerPage,
   pageCount,
   currentPage,
+  type,
+  link,
 }) => {
   const totalPages = Math.ceil(
     totalItems / itemCountPerPage
   );
   const [start, setStart] = useState(1);
   const noPrev = start === 1;
-  const noNext = start + pageCount >= totalPages;
+  const noNext =
+    start + pageCount - 1 >= totalPages;
   useEffect(() => {
     if (currentPage === start + pageCount) {
       setStart((prev) => prev + pageCount);
@@ -37,41 +42,56 @@ const Pagination = ({
     >
       <PageList>
         {!noPrev && (
-          <li>
-            <Button text>
-              <ChevronLeftIcon
-                width="16"
-                height="16"
-              />
-            </Button>
-          </li>
+          <Link
+            to={link + `&pageNo=${start - 1}`}
+          >
+            <li>
+              <Button text>
+                <ChevronLeftIcon
+                  width="16"
+                  height="16"
+                />
+              </Button>
+            </li>
+          </Link>
         )}
         {[...Array(pageCount)].map((a, idx) => (
           <>
-            {start + idx <= totalPages && (
-              <li key={idx}>
-                {currentPage === start + idx ? (
-                  <ActiveButton text>
-                    {start + idx}
-                  </ActiveButton>
-                ) : (
-                  <Button text>
-                    {start + idx}
-                  </Button>
-                )}
-              </li>
-            )}
+            <Link
+              to={link + `&pageNo=${start + idx}`}
+            >
+              {start + idx <= totalPages && (
+                <li key={idx}>
+                  {currentPage === start + idx ? (
+                    <ActiveButton text>
+                      {start + idx}
+                    </ActiveButton>
+                  ) : (
+                    <Button text>
+                      {start + idx}
+                    </Button>
+                  )}
+                </li>
+              )}
+            </Link>
           </>
         ))}
         {!noNext && (
-          <li>
-            <Button text>
-              <ChevronRightIcon
-                width="16"
-                height="16"
-              />
-            </Button>
-          </li>
+          <Link
+            to={
+              link +
+              `&pageNo=${start + pageCount}`
+            }
+          >
+            <li>
+              <Button text>
+                <ChevronRightIcon
+                  width="16"
+                  height="16"
+                />
+              </Button>
+            </li>
+          </Link>
         )}
       </PageList>
     </Flex>

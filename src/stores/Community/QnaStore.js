@@ -17,10 +17,16 @@ const useQnaStore = create((set, get) => ({
   scrappedQnas: [],
 
   //질문 목록 가져오기
-  fetchQnaList: async (keyword) => {
+  fetchQnaList: async (
+    keyword,
+    criteria,
+    pageNo
+  ) => {
     try {
       const response = await getQuestionList(
-        keyword
+        keyword,
+        criteria,
+        pageNo
       );
       set({ qnaList: response.data });
     } catch (e) {

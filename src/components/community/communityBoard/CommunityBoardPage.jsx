@@ -1,18 +1,13 @@
 import { Link } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import NoticeCard from "@components/community/Card/NoticeCard";
-import { NOTICE_LIST } from "@dummy/Notice";
-import { QNA_LIST } from "@dummy/Qna";
 import CommunityCard from "@components/community/Card/CommunityCard";
-import { CONCERN_LIST } from "@dummy/Concern";
 import { StyledButton } from "@pages/Community/CommunityPage.style";
 import { useEffect, useState } from "react";
 import useNoticeStore from "@/stores/Community/NoticeStore";
 import useQnaStore from "@/stores/Community/QnaStore";
 import useConcernStore from "@/stores/Community/ConcernStore";
-const CONCERNS = CONCERN_LIST;
-const notices = NOTICE_LIST;
-const qnas = QNA_LIST;
+
 const CommunityBoardPage = ({ type }) => {
   const [boardList, setBoardList] = useState([]);
   const { noticeList, fetchNoticeList } =
@@ -25,10 +20,10 @@ const CommunityBoardPage = ({ type }) => {
   }, [noticeList]);
   useEffect(() => {
     if (type === "Q&A") {
-      fetchQnaList("");
+      fetchQnaList("", "", 1);
       setBoardList(qnaList);
     } else {
-      fetchConcernList("");
+      fetchConcernList("", "", 1);
       setBoardList(concernList);
     }
   }, [type]);
@@ -40,9 +35,6 @@ const CommunityBoardPage = ({ type }) => {
           key={notice.id}
         />
       ))}
-      {/* <NoticeCard notice={notices[0]} />
-      <NoticeCard notice={notices[1]} />
-      <NoticeCard notice={notices[2]} /> */}
       <br />
       {boardList.map((board) => (
         <CommunityCard

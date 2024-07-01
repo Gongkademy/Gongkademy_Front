@@ -40,7 +40,12 @@ const Header = () => {
           <Link to={PATH.COURSES}>
             <Button text>강의</Button>
           </Link>
-          <Link to={PATH.COMMUNITY("concern")}>
+          <Link
+            to={
+              PATH.COMMUNITY("concern") +
+              "?keyword=&criteria=date&pageNo=1"
+            }
+          >
             <Button text>커뮤니티</Button>
           </Link>
         </Flex>

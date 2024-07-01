@@ -15,7 +15,7 @@ export const END_POINT = {
   COMMUNITY_CONCERN_ARTICLE: (articleId) =>
     `consulting/${articleId}`,
 
-  COMMUNITY_QUENTION: "question",
+  COMMUNITY_QUESTION: "question",
   COMMUNITY_QUESTION_ARTICLE: (articleId) =>
     `question/${articleId}`,
 
