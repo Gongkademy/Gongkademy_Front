@@ -8,19 +8,19 @@ import Text from "@components/common/text/Text";
 import validate from "@utils/validate";
 import Checkbox from "../common/checkbox/Checkbox";
 import { useState } from "react";
+import { join } from "../../apis/members/membersApi";
 const SignUpForm = () => {
   //message랑 에러를 다뤄야겠다
   const { values, errors, submitting, handleChange, handleSubmit } = useForm({
-    initialValues: { nickname: "" },
-    onSubmit: () => {
-      console.log("성공");
+    initialValues: {
+      nickname: "",
+      agreeService: false,
+      agreePrivacy: false,
+      agreeMarketing: false,
     },
+    onSubmit: join,
     validate,
   });
-
-  const [isCheckService, setIsCheckService] = useState(false);
-  const [isCheckPersonal, setIsCheckPersonal] = useState(false);
-  const [isCheckMarketing, setIsCheckMarketing] = useState(false);
 
   return (
     <SignUpFormBlock onSubmit={handleSubmit}>
@@ -32,23 +32,36 @@ const SignUpForm = () => {
         type="text"
         onChange={handleChange}
       />
-
       <Text color={color.pinkRed} typo={typo.captionRg400}>
         {errors.nickname}
       </Text>
 
-      {/* <Checkbox>이용약관 동의 (필수)</Checkbox> */}
-      <Checkbox checked={isCheckService} onChange={setIsCheckService}>
+      {/* 체크박스 */}
+      <Checkbox
+        checked={values.agreeService}
+        onChange={handleChange}
+        name="agreeService"
+      >
         <Text typo="bodySm400">이용약관 동의 (필수)</Text>
       </Checkbox>
-      <Checkbox checked={isCheckPersonal} onChange={setIsCheckPersonal}>
+
+      <Checkbox
+        checked={values.agreePrivacy}
+        onChange={handleChange}
+        name="agreePrivacy"
+      >
         <Text typo="bodySm400">개인정보 처리 방침 (필수)</Text>
       </Checkbox>
-      <Checkbox checked={isCheckMarketing} onChange={setIsCheckMarketing}>
+
+      <Checkbox
+        checked={values.agreeMarketing}
+        onChange={handleChange}
+        name="agreeMarketing"
+      >
         <Text typo="bodySm400">광고성 정보 수신 동의 (선택)</Text>
       </Checkbox>
 
-      <Button fill disabled={!(isCheckService && isCheckPersonal)}>
+      <Button fill disabled={!(values.agreeService && values.agreePrivacy)}>
         가입하기
       </Button>
     </SignUpFormBlock>

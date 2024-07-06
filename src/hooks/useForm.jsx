@@ -9,13 +9,18 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const name = event.target.name;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
     setValues({ ...values, [name]: value });
     setErrors(validate(values));
   };
 
   const handleSubmit = async (event) => {
     setSubmitting(true);
+    onSubmit(values);
     event.preventDefault();
     await new Promise((r) => setTimeout(r, 1000));
   };

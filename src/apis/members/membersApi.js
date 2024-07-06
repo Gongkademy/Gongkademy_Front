@@ -39,13 +39,22 @@ export const deleteMember = (memberId) => {
   return axiosInstance.delete(END_POINT.MEMBER(memberId));
 };
 
-export const join = (email, nickname, password, birthday) => {
-  return axiosInstance.post(END_POINT.MEMBERS, {
-    email: email,
-    nickname: nickname,
-    password: password,
-    birthday: birthday,
-  });
+export const join = async (data) => {
+  console.log(data);
+  //header에서 accessToken 가져오기
+  try {
+    const response = await await axiosInstance.post(END_POINT.MEMBERS, data, {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjAyNjg1MzgsImV4cCI6MTcyMDI3MDMzOCwicGsiOjF9.ciYURsWBoJOF-Lcj01K23DMtDY-lCb3elEyvWfmcKB4",
+      },
+    });
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 
 export const updateNickname = (memberId, newNickname) => {
