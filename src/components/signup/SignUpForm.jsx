@@ -6,7 +6,8 @@ import Button from "@components/common/button/Button";
 import { color, typo } from "@styles/style";
 import Text from "@components/common/text/Text";
 import validate from "@utils/validate";
-import axios from "axios";
+import Checkbox from "../common/checkbox/Checkbox";
+import { useState } from "react";
 const SignUpForm = () => {
   //message랑 에러를 다뤄야겠다
   const { values, errors, submitting, handleChange, handleSubmit } = useForm({
@@ -17,8 +18,12 @@ const SignUpForm = () => {
     validate,
   });
 
+  const [isCheckService, setIsCheckService] = useState(false);
+  const [isCheckPersonal, setIsCheckPersonal] = useState(false);
+  const [isCheckMarketing, setIsCheckMarketing] = useState(false);
+
   return (
-    <SignUpFormBlock>
+    <SignUpFormBlock onSubmit={handleSubmit}>
       {/* 닉네임 */}
       <Input
         label="닉네임"
@@ -31,7 +36,21 @@ const SignUpForm = () => {
       <Text color={color.pinkRed} typo={typo.captionRg400}>
         {errors.nickname}
       </Text>
-      <Button fill>가입하기</Button>
+
+      {/* <Checkbox>이용약관 동의 (필수)</Checkbox> */}
+      <Checkbox checked={isCheckService} onChange={setIsCheckService}>
+        <Text typo="bodySm400">이용약관 동의 (필수)</Text>
+      </Checkbox>
+      <Checkbox checked={isCheckPersonal} onChange={setIsCheckPersonal}>
+        <Text typo="bodySm400">개인정보 처리 방침 (필수)</Text>
+      </Checkbox>
+      <Checkbox checked={isCheckMarketing} onChange={setIsCheckMarketing}>
+        <Text typo="bodySm400">광고성 정보 수신 동의 (선택)</Text>
+      </Checkbox>
+
+      <Button fill disabled={!(isCheckService && isCheckPersonal)}>
+        가입하기
+      </Button>
     </SignUpFormBlock>
   );
 };

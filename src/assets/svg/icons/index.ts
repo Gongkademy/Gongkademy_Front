@@ -9,6 +9,7 @@ export { default as ChevronDownIcon } from "./ChevronDownIcon";
 export { default as ChevronLeftIcon } from "./ChevronLeftIcon";
 export { default as ChevronRightIcon } from "./ChevronRightIcon";
 export { default as ChevronUpIcon } from "./ChevronUpIcon";
+
 export { default as InvisibleIcon } from "./InvisibleIcon";
 export { default as LikeIcon } from "./LikeIcon";
 export { default as MagnifierIcon } from "./MagnifierIcon";
@@ -16,4 +17,5 @@ export { default as StarIcon } from "./StarIcon";
 export { default as TrashCanIcon } from "./TrashCanIcon";
 export { default as TrophyIcon } from "./TrophyIcon";
 export { default as VisibleIcon } from "./VisibleIcon";
+export { default as CheckboxIcon } from "./CheckboxIcon";
 export { default as MeetballIcon } from "./MeetballIcon";
