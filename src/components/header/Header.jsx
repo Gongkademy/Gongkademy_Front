@@ -2,7 +2,6 @@ import { Logo } from "@components/common/logo/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import { HeaderBlock, SearchBar } from "@components/header/Header.style";
 import { useContext, useState } from "react";
-import { LoginModal } from "../login/LoginModal";
 import Button from "@components/common/button/Button";
 import { LoginContext } from "@contexts/LoginContext";
 import { PATH } from "@router/Constants";
@@ -12,7 +11,6 @@ import { Google } from "@assets/svg/logo";
 // const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { state, actions } = useContext(LoginContext);
   const navigate = useNavigate();
 
@@ -66,7 +64,6 @@ const Header = () => {
           )}
         </Flex>
       </HeaderBlock>
-      {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
     </>
   );
 };
