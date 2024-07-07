@@ -1,5 +1,6 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
+import { PATH } from "@router/Constants";
 
 export const validateDuplicateNickname = (nickname) => {
   return axiosInstance.get(`/check-nickname?nickname=${nickname}`);
@@ -40,20 +41,14 @@ export const deleteMember = (memberId) => {
 };
 
 export const join = async (data) => {
-  console.log(data);
-  //header에서 accessToken 가져오기
   try {
-    const response = await await axiosInstance.post(END_POINT.MEMBERS, data, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjAyNjg1MzgsImV4cCI6MTcyMDI3MDMzOCwicGsiOjF9.ciYURsWBoJOF-Lcj01K23DMtDY-lCb3elEyvWfmcKB4",
-      },
-    });
-    console.log(response);
-    return response;
+    const response = await await axiosInstance.post(END_POINT.MEMBERS, data);
+    console.log(response.status);
+    if (response.status === 201) {
+      location.href = PATH.ROOT;
+    }
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
