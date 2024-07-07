@@ -23,7 +23,7 @@ const validate = ({ nickname, birthday }) => {
   if (!birthday) {
     messages.birthday = "";
     states.birthday = "default";
-  } else if (checkBirthday(birthday)) {
+  } else if (!checkBirthday(birthday)) {
     messages.birthday = "유효한 날짜가 아닙니다.";
     states.birthday = "error";
   } else {

@@ -67,14 +67,14 @@ const SignUpForm = () => {
 
         {/* 체크박스 */}
         <Flex direction="column" gap="1rem">
-          <Text type={typo.bodySm700}>이용약관 동의</Text>
+          <Text typo={typo.bodySm700}>이용약관 동의</Text>
           <Flex direction="column" gap="2rem">
             <Checkbox
               checked={values.agreeService}
               onChange={handleChange}
               name="agreeService"
             >
-              <Text typo="bodySm400">이용약관 동의 (필수)</Text>
+              <Text typo={typo.bodySm400}>이용약관 동의 (필수)</Text>
             </Checkbox>
 
             <Checkbox
@@ -82,7 +82,7 @@ const SignUpForm = () => {
               onChange={handleChange}
               name="agreePrivacy"
             >
-              <Text typo="bodySm400">개인정보 처리 방침 (필수)</Text>
+              <Text typo={typo.bodySm400}>개인정보 처리 방침 (필수)</Text>
             </Checkbox>
 
             <Checkbox
@@ -90,7 +90,7 @@ const SignUpForm = () => {
               onChange={handleChange}
               name="agreeMarketing"
             >
-              <Text typo="bodySm400">광고성 정보 수신 동의 (선택)</Text>
+              <Text typo={typo.bodySm400}>광고성 정보 수신 동의 (선택)</Text>
             </Checkbox>
           </Flex>
         </Flex>
