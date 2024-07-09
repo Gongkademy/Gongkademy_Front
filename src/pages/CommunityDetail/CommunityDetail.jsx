@@ -23,24 +23,82 @@ import {
 } from "./CommunityDetail.style";
 
 import Button from "@components/common/button/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Review from "@components/common/review/Review";
 import { color } from "@styles/style";
 import RegistReview from "@components/community/Regist/RegistReview";
 import { review } from "@dummy/Review";
 import MeetballSelect from "@components/common/select/MeetballSelect";
 import { PATH } from "@router/Constants";
+import useQnaStore from "@/stores/Community/QnaStore";
+import useNoticeStore from "@/stores/Community/NoticeStore";
+import useConcernStore from "@/stores/Community/ConcernStore";
 const CommunityDetail = () => {
   const location = useLocation();
-  const [viewReview, setViewReview] = useState(false);
-  const [writeReview, setWriteReview] = useState(false);
-  const [isMeetballClick, setIsMeetballClick] = useState(false);
+  const splitPath = location.pathname.split("/");
+  const type = splitPath[2];
+  const boardId = splitPath[3];
+  const [board, setBoard] = useState({});
+  const {
+    notice,
+    fetchNoticeDetail,
+    likeNotice,
+    scrapNotice,
+  } = useNoticeStore();
+  const {
+    concern,
+    fetchConcernDetail,
+    likeConcern,
+    scrapConcern,
+  } = useConcernStore();
+  const {
+    qna,
+    fetchQnaDetail,
+    likeQna,
+    scrapQna,
+  } = useQnaStore();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (type === "notice") {
+        await fetchNoticeDetail(boardId);
+        setBoard(notice);
+      } else if (type === "concern") {
+        await fetchConcernDetail(boardId);
+        setBoard(concern);
+      } else {
+        await fetchQnaDetail(boardId);
+        setBoard(qna);
+      }
+    };
+    fetchData();
+  }, [type, boardId, notice, concern, qna]);
+
+  const [viewReview, setViewReview] =
+    useState(false);
+  const [writeReview, setWriteReview] =
+    useState(false);
+  const [isMeetballClick, setIsMeetballClick] =
+    useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
-  const [likeActive, setLikeActive] = useState(false);
-  const handleClickLike = () => {
-    setLikeActive(!likeActive);
+  const handleClickLike = (articleId) => {
+    if (type === "notice") {
+      likeNotice(articleId);
+    } else if (type === "qna") {
+      likeQna(articleId);
+    } else {
+      likeConcern(articleId);
+    }
+  };
+  const handleClickBookMark = (articleId) => {
+    if (type === "notice") {
+      scrapNotice(articleId);
+    } else if (type === "qna") {
+      scrapQna(articleId);
+    } else {
+      scrapConcern(articleId);
+    }
   };
   const handleClickGoWriteReview = () => {
     setWriteReview(!writeReview);
@@ -53,14 +111,27 @@ const CommunityDetail = () => {
     <DetailBlock>
       <Container>
         <TitleContainer>
-          <Title>제목</Title>
+          <Title>{board.title}</Title>
           <ContainerRow>
             <ContainerCol type="icon">
-              <BookMarkIcon width="16" height="16" />
+              {board.isScrapped ? (
+                <BookMarkIcon
+                  width="16"
+                  height="16"
+                  fill={color.yellow}
+                  onClick={handleClickBookMark}
+                />
+              ) : (
+                <BookMarkIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickBookMark}
+                />
+              )}
               <Content>0</Content>
             </ContainerCol>
             <ContainerCol type="icon">
-              {likeActive ? (
+              {board.iLiked ? (
                 <LikeIcon
                   fill={color.pinkRed}
                   stroke="none"
@@ -69,11 +140,18 @@ const CommunityDetail = () => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon width="16" height="16" onClick={handleClickLike} />
+                <LikeIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
               )}
               <Content>0</Content>
             </ContainerCol>
-            <ContainerCol type="icon" style={{ position: "relative" }}>
+            <ContainerCol
+              type="icon"
+              style={{ position: "relative" }}
+            >
               <MeetballIcon
                 width="16"
                 height="16"
@@ -81,46 +159,69 @@ const CommunityDetail = () => {
               />
               <br />
               {isMeetballClick && (
-                <MeetballSelect path={PATH.COMMUNITY_UPDATE(1)} />
+                <MeetballSelect
+                  path={PATH.COMMUNITY_UPDATE(
+                    board.ariticleId
+                  )}
+                />
               )}
             </ContainerCol>
           </ContainerRow>
         </TitleContainer>
         <ContainerRow type="center">
           <Profile />
-          <Content>mung5079</Content>
+          <Content>{board.memberId}</Content>
         </ContainerRow>
-        <Content>2024.06.15 21:35 작성</Content>
+        <Content>{board.createTime} 작성</Content>
         <ContentContainer>
           <Content type="black">
-            4:15 {"\n"}
-            혹시 T/G*Ip 어떻게 나온건가요? {"\n"}
-            어떤영상에서 설명해주셨는지 알려주실수 있을까요?{"\n"}
-            영상 다봤는데 처음 보는거 같아서요
+            {board.content}
           </Content>
-          <ContainerRow type="center">
-            <QnaImg />
-            <ContainerCol>
-              <CourseName>강좌명</CourseName>
-              <Content>강의명</Content>
-            </ContainerCol>
-          </ContainerRow>
+          {type === "qna" && (
+            <ContainerRow type="center">
+              <QnaImg />
+              <ContainerCol>
+                <CourseName>
+                  {board.lectureTitle}
+                </CourseName>
+                <Content>
+                  {board.courseTitle}
+                </Content>
+              </ContainerCol>
+            </ContainerRow>
+          )}
           <ContainerRow>
-            <Button text onClick={handleClickViewReview}>
+            <Button
+              text
+              onClick={handleClickViewReview}
+            >
               {!viewReview ? (
-                <ChevronDownIcon width="16" height="16" />
+                <ChevronDownIcon
+                  width="16"
+                  height="16"
+                />
               ) : (
-                <ChevronUpIcon width="16" height="16" />
+                <ChevronUpIcon
+                  width="16"
+                  height="16"
+                />
               )}{" "}
-              1개 댓글 보기
+              {board.commentCount}개 댓글 보기
             </Button>
-            <Button text onClick={handleClickGoWriteReview}>
-              <ChatIcon width="16" height="16" /> 댓글 작성하기
+            <Button
+              text
+              onClick={handleClickGoWriteReview}
+            >
+              <ChatIcon width="16" height="16" />{" "}
+              댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>
         {writeReview && <RegistReview />}
-        {viewReview && <Review content={review[0]} />}
+        {viewReview &&
+          board.comments.map((review) => (
+            <Review content={review.content} />
+          ))}
       </Container>
     </DetailBlock>
   );

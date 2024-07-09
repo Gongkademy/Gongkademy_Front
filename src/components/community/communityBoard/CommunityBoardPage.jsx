@@ -32,14 +32,14 @@ const CommunityBoardPage = ({ type }) => {
       {noticeList.map((notice) => (
         <NoticeCard
           notice={notice}
-          key={notice.id}
+          key={notice.articleId}
         />
       ))}
       <br />
       {boardList.map((board) => (
         <CommunityCard
           board={board}
-          key={board.id}
+          key={board.articleId}
           type={type}
         />
       ))}

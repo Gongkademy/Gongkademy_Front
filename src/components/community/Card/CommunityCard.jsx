@@ -13,35 +13,53 @@ import {
   VisibleIcon,
   ChatIcon,
 } from "@assets/svg/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
+import { useQnaStore } from "@/stores/Community/QnaStore";
+import { useConcernStore } from "@/stores/Community/ConcernStore";
 const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
     navigate(
-      PATH.COMMUNITY_DETAIL(type, initialBoard.id)
+      PATH.COMMUNITY_DETAIL(
+        type,
+        initialBoard.articleId
+      )
     );
   };
+  const { likeQna, scrapQna } = useQnaStore();
+  const { likeConcern, scrapConcern } =
+    useConcernStore();
   const [initialBoard, setInitialBoard] =
     useState(board);
-  const [likeActive, setLikeActive] =
-    useState(false);
   const handleClickLike = () => {
-    setLikeActive(!likeActive);
+    if (type === "Q&A") {
+      likeQna(initialBoard.articleId);
+    } else {
+      likeConcern(initialBoard.articleId);
+    }
     setInitialBoard((prevBoard) => ({
       ...prevBoard,
-      like: likeActive
-        ? prevBoard.like - 1
-        : prevBoard.like + 1,
+      isLiked: !prevBoard.isLiked,
+      likeCount: prevBoard.isLiked
+        ? prevBoard.likeCount - 1
+        : prevBoard.likeCount + 1,
     }));
   };
-
   const handleClickBookMark = () => {
+    if (type === "Q&A") {
+      scrapQna(initialBoard.articleId);
+    } else {
+      scrapConcern(initialBoard.articleId);
+    }
     setInitialBoard((prevBoard) => ({
       ...prevBoard,
-      scrap: !prevBoard.scrap,
+      isScrapped: !prevBoard.isScrapped,
+      scrapCount: prevBoard.isScrapped
+        ? prevBoard.scrapCount - 1
+        : prevBoard.scrapCount + 1,
     }));
   };
   return (
@@ -53,7 +71,7 @@ const CommunityCard = ({ board, type }) => {
           </Title>
         </Pointer>
         <Pointer>
-          {initialBoard.scrap ? (
+          {initialBoard.isScrapped ? (
             <BookMarkIcon
               width="16"
               height="16"
@@ -72,18 +90,24 @@ const CommunityCard = ({ board, type }) => {
       <Content>{initialBoard.content}</Content>
       <InfoContainer>
         <ContentContainer>
-          <Content>{initialBoard.writer}</Content>
+          <Content>
+            {initialBoard.memberId}
+          </Content>
           <Content>3분전</Content>
-          <Content>{initialBoard.course}</Content>
+          {type === "Q&A" && (
+            <Content>
+              {initialBoard.lectureTitle}
+            </Content>
+          )}
         </ContentContainer>
         <ContentContainer>
           <Content>
             <ChatIcon width="16" height="16" />
-            12
+            {initialBoard.commentCount}
           </Content>
           <Content>
             <Pointer>
-              {likeActive ? (
+              {initialBoard.isLiked ? (
                 <LikeIcon
                   fill={color.pinkRed}
                   stroke="none"
@@ -98,12 +122,12 @@ const CommunityCard = ({ board, type }) => {
                   onClick={handleClickLike}
                 />
               )}
-              {initialBoard.like}
+              {initialBoard.likeCount}
             </Pointer>
           </Content>
           <Content>
             <VisibleIcon width="16" height="16" />
-            {initialBoard.viewCnt}
+            {initialBoard.hit}
           </Content>
         </ContentContainer>
       </InfoContainer>
