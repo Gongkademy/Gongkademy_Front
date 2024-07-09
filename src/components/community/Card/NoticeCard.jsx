@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
-import { useNoticeStore } from "@/stores/Community/NoticeStore";
+import useNoticeStore from "@/stores/Community/NoticeStore";
 const Notice = ({ notice }) => {
   const navigate = useNavigate();
   const { likeNotice } = useNoticeStore();

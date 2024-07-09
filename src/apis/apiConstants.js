@@ -7,19 +7,19 @@ export const END_POINT = {
 
   LOGIN: "members/login",
 
-  COMMUNITY_NOTICE: "notice",
+  COMMUNITY_NOTICE: "community/notice",
   COMMUNITY_NOTICE_ARTICLE: (articleId) =>
-    `notice/${articleId}`,
+    `community/notice/${articleId}`,
 
-  COMMUNITY_CONCERN: "consulting",
+  COMMUNITY_CONCERN: "community/consulting",
   COMMUNITY_CONCERN_ARTICLE: (articleId) =>
-    `consulting/${articleId}`,
+    `community/consulting/${articleId}`,
 
-  COMMUNITY_QUESTION: "question",
+  COMMUNITY_QUESTION: "community/question",
   COMMUNITY_QUESTION_ARTICLE: (articleId) =>
-    `question/${articleId}`,
+    `community/question/${articleId}`,
 
-  COMMUNITY_REVIEW: "comment",
+  COMMUNITY_REVIEW: "community/comment",
   COMMUNITY_REVIEW_COMMENT: (commentId) =>
-    `comment/${commentId}`,
+    `community/comment/${commentId}`,
 };

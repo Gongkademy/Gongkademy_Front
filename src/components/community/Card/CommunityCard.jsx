@@ -17,8 +17,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
-import { useQnaStore } from "@/stores/Community/QnaStore";
-import { useConcernStore } from "@/stores/Community/ConcernStore";
+import useQnaStore from "@/stores/Community/QnaStore";
+import useConcernStore from "@/stores/Community/ConcernStore";
 const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
