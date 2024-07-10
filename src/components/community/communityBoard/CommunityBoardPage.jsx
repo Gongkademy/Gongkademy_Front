@@ -15,7 +15,7 @@ const CommunityBoardPage = ({ type }) => {
   const { concernList, fetchConcernList } = useConcernStore();
   useEffect(() => {
     fetchNoticeList();
-  }, [noticeList]);
+  }, []);
   useEffect(() => {
     if (type === "Q&A") {
       fetchQnaList("", "", 1);
