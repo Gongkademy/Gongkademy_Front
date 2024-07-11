@@ -1,7 +1,7 @@
 import { PageTitle } from "@components/common/page/PageTitle";
 import { MyPageContainer, Tab } from "./MyPage.style";
 import { Link } from "react-router-dom";
-import PageLayout from "../../components/common/page/PageLayout";
+import PageLayout from "@components/common/page/PageLayout";
 
 const MyPage = () => {
   return (

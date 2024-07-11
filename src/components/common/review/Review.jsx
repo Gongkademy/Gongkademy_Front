@@ -2,7 +2,7 @@ import {
   ContainerRow,
   Profile,
   Content,
-} from "../../../pages/CommunityDetail/CommunityDetail.style";
+} from "@pages/Service/CommunityDetail/CommunityDetail.style";
 import {
   LikeIcon,
   ChatIcon,

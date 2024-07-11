@@ -2,7 +2,7 @@ import { CheckIcon } from "@assets/svg/icons";
 import Text from "@components/common/text/Text";
 import { Flex } from "../../common/flex/Flex";
 import { PATH } from "../../../router/Constants";
-import { COURSE_ID, LECTURE_ID } from "../../../pages/Lecture/constants";
+import { COURSE_ID, LECTURE_ID } from "@pages/Service/Lecture/constants";
 import { CurriculumItemBlock } from "./CurriculumItem.style";
 import { color } from "../../../styles/style";
 const CurriculumItem = ({ isCompleted }) => {

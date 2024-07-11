@@ -3,7 +3,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/svg/icons";
 import { Flex } from "../../common/flex/Flex";
 import Text from "../../common/text/Text";
 import { useSearchParams } from "react-router-dom";
-import { COURSE_ID, LECTURE_ID } from "../../../pages/Lecture/constants";
+import { COURSE_ID, LECTURE_ID } from "@pages/Service/Lecture/constants";
 
 const LectureFooter = ({ lecture }) => {
   const [searchParams, setSearchParams] = useSearchParams();
