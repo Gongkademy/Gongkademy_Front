@@ -29,14 +29,19 @@ export const PATH = {
 
 export const ADMIN_PATH = {
   ROOT: `${ADMIN_PREFIX}`,
+
   COMMUNITY: `${ADMIN_PREFIX}/community`,
-  NOTEICE: `${ADMIN_PREFIX}/notice`,
-  QNA: `${ADMIN_PREFIX}/qna`,
-  CONCERN: `${ADMIN_PREFIX}/concern`,
+  COMMUNITY_NOTEICE: `${ADMIN_PREFIX}/community/notice`,
+  COMMUNITY_QNA: `${ADMIN_PREFIX}/community/qna`,
+  COMMUNITY_CONCERN: `${ADMIN_PREFIX}/community/concern`,
+
   MEMBER: `${ADMIN_PREFIX}/member`,
+
   LECTURE: `${ADMIN_PREFIX}/lecture`,
-  INTRODUCE: `${ADMIN_PREFIX}/introduce`,
-  ORDER: `${ADMIN_PREFIX}/order`,
-  COURSE_REVIEW: `${ADMIN_PREFIX}/course-review`,
-  LECTURE: `${ADMIN_PREFIX}/lecture/regist`,
+  LECTURE_INTRODUCE: `${ADMIN_PREFIX}/lecture/introduce`,
+  LECTURE_QNA: `${ADMIN_PREFIX}/lecture/qna`,
+  LECTURE_NOTICE: `${ADMIN_PREFIX}/lecture/notice`,
+  LECTURE_ORDER: `${ADMIN_PREFIX}/lecture/order`,
+  COURSE_REVIEW: `${ADMIN_PREFIX}/lecture/course-review`,
+  LECTURE_REGIST: `${ADMIN_PREFIX}/lecture/regist`,
 };
