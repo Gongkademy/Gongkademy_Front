@@ -1,9 +1,7 @@
 import { PATH } from "@router/Constants";
+
 import App from "../App";
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import HomePage from "@pages/Home/HomePage";
 import NotFoundPage from "@pages/NotFound/NotFoundPage";
@@ -44,16 +42,11 @@ const AppRouter = () => {
           element: <CommunityPage />,
         },
         {
-          path: PATH.COMMUNITY_DETAIL(
-            `:communityType`,
-            `:id`
-          ),
+          path: PATH.COMMUNITY_DETAIL(`:communityType`, `:id`),
           element: <CommunityDetail />,
         },
         {
-          path: PATH.COMMUNITY_REGIST(
-            `:communityType`
-          ),
+          path: PATH.COMMUNITY_REGIST(`:communityType`),
           element: <CommunityRegistPage />,
         },
         {
@@ -71,15 +64,11 @@ const AppRouter = () => {
           element: <CourseDetailPage />,
           children: [
             {
-              path: PATH.COURSE_INTRODUCTION(
-                `:courseId`
-              ),
+              path: PATH.COURSE_INTRODUCTION(`:courseId`),
               element: <CourseIntroduction />,
             },
             {
-              path: PATH.COURSE_CURRICULUM(
-                `:courseId`
-              ),
+              path: PATH.COURSE_CURRICULUM(`:courseId`),
               element: <CourseCurriculum />,
             },
             {
@@ -87,15 +76,11 @@ const AppRouter = () => {
               element: <CourseQnA />,
             },
             {
-              path: PATH.COURSE_REVIEW(
-                `:courseId`
-              ),
+              path: PATH.COURSE_REVIEW(`:courseId`),
               element: <CourseReview />,
             },
             {
-              path: PATH.COURSE_NOTICE(
-                `:courseId`
-              ),
+              path: PATH.COURSE_NOTICE(`:courseId`),
               element: <CourseNotice />,
             },
           ],
@@ -119,6 +104,7 @@ const AppRouter = () => {
       element: <LecturePage />,
     },
   ];
+
   const router = createBrowserRouter([...routes]);
   return <RouterProvider router={router} />;
 };
