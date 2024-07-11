@@ -1,6 +1,6 @@
 import { CourseCard } from "@components/course/CourseCard";
 import { PageTitle } from "@components/common/page/PageTitle";
-import COURSE_LIST from "../../dummy/Course";
+import COURSE_LIST from "../../../dummy/Course";
 const CoursesPage = () => {
   const COURSES = COURSE_LIST;
   return (

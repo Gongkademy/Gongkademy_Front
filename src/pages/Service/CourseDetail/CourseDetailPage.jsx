@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import PageLayout from "../../components/common/page/PageLayout";
-import CourseDetailTop from "../../components/courseDetail/courseDetailTop/CourseDetailTop";
+import PageLayout from "../../../components/common/page/PageLayout";
+import CourseDetailTop from "../../../components/courseDetail/courseDetailTop/CourseDetailTop";
 import CourseMenu from "@components/courseDetail/courseMenu/CourseMenu";
 
 import { Flex } from "@components/common/flex/Flex";

@@ -5,8 +5,8 @@ import { lectures } from "@dummy/lecture/lectures";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { COURSE_ID, LECTURE_ID } from "./constants";
-import { Flex } from "../../components/common/flex/Flex";
-import LectureSidebar from "../../components/lecture/lectureSideBar/LectureSidebar";
+import { Flex } from "../../../components/common/flex/Flex";
+import LectureSidebar from "../../../components/lecture/lectureSideBar/LectureSidebar";
 import { PageBlock } from "./LecturePage.style";
 
 const LecturePage = () => {

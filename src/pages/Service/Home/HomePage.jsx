@@ -6,7 +6,7 @@ import { ConcernCard } from "@components/concern/ConcernCard";
 import { CONCERN_LIST } from "@dummy/Concern";
 import { ConcernContianer } from "@components/concern/ConcernCard.style";
 import { COURSE_LIST } from "@dummy/Course";
-import PageLayout from "../../components/common/page/PageLayout";
+import PageLayout from "../../../components/common/page/PageLayout";
 const COURSES = COURSE_LIST;
 const CONCERNS = CONCERN_LIST;
 const HomePage = () => {
