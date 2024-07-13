@@ -10,9 +10,11 @@ import useConcernStore from "@/stores/Community/ConcernStore";
 
 const CommunityBoardPage = ({ type }) => {
   const [boardList, setBoardList] = useState([]);
-  const { noticeList, fetchNoticeList } = useNoticeStore();
+  const { noticeList, fetchNoticeList } =
+    useNoticeStore();
   const { qnaList, fetchQnaList } = useQnaStore();
-  const { concernList, fetchConcernList } = useConcernStore();
+  const { concernList, fetchConcernList } =
+    useConcernStore();
   useEffect(() => {
     fetchNoticeList();
   }, []);
@@ -28,11 +30,18 @@ const CommunityBoardPage = ({ type }) => {
   return (
     <>
       {noticeList.map((notice) => (
-        <NoticeCard notice={notice} key={notice.articleId} />
+        <NoticeCard
+          notice={notice}
+          key={notice.articleId}
+        />
       ))}
       <br />
-      {boardList.map((board) => (
-        <CommunityCard board={board} key={board.articleId} type={type} />
+      {concernList.map((board) => (
+        <CommunityCard
+          board={board}
+          key={board.articleId}
+          type={type}
+        />
       ))}
       <Link
         to={PATH.COMMUNITY_REGIST(type)}
@@ -44,7 +53,10 @@ const CommunityBoardPage = ({ type }) => {
         }}
       >
         <StyledButton fill bold>
-          ✍️ {type === "Q&A" ? "질문하기" : "고민 나누기"}
+          ✍️{" "}
+          {type === "Q&A"
+            ? "질문하기"
+            : "고민 나누기"}
         </StyledButton>
       </Link>
     </>

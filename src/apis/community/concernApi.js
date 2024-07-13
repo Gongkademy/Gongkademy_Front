@@ -4,10 +4,10 @@ import { axiosInstance } from "@apis/axiosInstance";
 export const getConcernList = (
   keyword,
   criteria,
-  pageNo
+  page
 ) => {
   axiosInstance.get(END_POINT.COMMUNITY_CONCERN, {
-    params: { keyword, criteria, pageNo },
+    params: { page, criteria, keyword },
   });
 };
 //고민 상세보기

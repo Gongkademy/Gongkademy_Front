@@ -49,7 +49,11 @@ const useQnaStore = create((set, get) => ({
   },
   //질문글 작성
   writeQna: async (article) => {
-    await writeQuestion(article);
+    await writeQuestion(article).then(
+      (response) => {
+        return response.data;
+      }
+    );
   },
   //질문 수정
   updateQna: async (articleId, article) => {

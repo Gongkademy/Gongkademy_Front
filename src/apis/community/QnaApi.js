@@ -4,12 +4,12 @@ import { axiosInstance } from "@apis/axiosInstance";
 export const getQuestionList = (
   keyword,
   criteria,
-  pageNo
+  page
 ) => {
   axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION,
     {
-      params: { keyword, criteria, pageNo },
+      params: { keyword, criteria, page },
     }
   );
 };

@@ -35,24 +35,17 @@ const CommunityRegistPage = () => {
     if (selected === "🙋Q&A") {
       const board = {
         boardType: "QNA",
-        memberId: "kht",
+        memberId: "1",
         title: title,
         content: "Test 게시물1 내용",
         lectureTitle: selectedLecture,
         courseTitle: selectedCourse,
       };
       console.log(board);
-      writeQna({
-        boardType: "QNA",
-        memberId: "kht",
-        title: title,
-        content: "Test 게시물1 내용",
-        lectureTitle: selectedLecture,
-        courseTitle: selectedCourse,
-      });
+      writeQna(board);
     } else {
       const board = {
-        boardType: "consulting",
+        boardType: "CONSULT",
         memberId: 1,
         title: title,
         content: "Test 게시물1 내용",

@@ -28,6 +28,7 @@ const useConcernStore = create((set) => ({
         criteria,
         pageNo
       );
+      console.log(response);
       set({ concernList: response.data });
     } catch (e) {
       console.error(
@@ -49,7 +50,12 @@ const useConcernStore = create((set) => ({
   },
   //고민글 작성
   writeConcern: async (article) => {
-    await writeConcern(article);
+    await writeConcern(article).then(
+      (response) => {
+        console.log(response);
+        return response.data;
+      }
+    );
   },
   //고민 수정
   updateConcern: async (articleId, article) => {
