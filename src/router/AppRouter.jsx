@@ -38,6 +38,7 @@ import AdminLectureRegistPage from "../pages/Admin/LectureRegist/AdminLectureReg
 import AdminLectureNavbar from "../components/admin/navbar/AdminLectureNavbar";
 import AdminCommunityNavbar from "../components/admin/navbar/AdminCommunityNavbar";
 import AdminApp from "../AdminApp";
+import AdminLecturePage from "../pages/Admin/Lecture/AdminLecturePage";
 
 const AppRouter = () => {
   const routes = [
@@ -149,6 +150,10 @@ const AppRouter = () => {
         {
           path: ADMIN_PATH.MEMBER,
           element: <AdminMemberPage />,
+        },
+        {
+          path: ADMIN_PATH.LECTURE,
+          element: <AdminLecturePage />,
         },
         {
           path: ADMIN_PATH.LECTURE,
