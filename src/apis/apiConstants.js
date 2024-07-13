@@ -7,6 +7,16 @@ export const END_POINT = {
 
   LOGIN: "members/login",
 
+  // 강좌,강의
+  COURSE: "course",
+  COURSE_DETAIL: (courseId) => `course/${courseId}`,
+  COURSE_STATUS: (courseId) => `course/status/${courseId}`,
+  COURSE_NOTICE: "notice",
+  COURSE_NOTICE_DETAIL: (courseId) => `notice/${courseId}`,
+  LECTURE: "lecture",
+  LECTURE_DETAIL: (lectureId) => `lecture/${lectureId}`,
+
+  // 커뮤니티
   COMMUNITY_NOTICE: "community/notice",
   COMMUNITY_NOTICE_ARTICLE: (articleId) => `community/notice/${articleId}`,
 
