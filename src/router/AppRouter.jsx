@@ -182,7 +182,7 @@ const AppRouter = () => {
           ],
         },
         {
-          path: ADMIN_PATH.COURSE_REGIST(":courseId"),
+          path: ADMIN_PATH.COURSE_REGIST,
           element: <AdminCourseRegistPage />,
         },
       ],
