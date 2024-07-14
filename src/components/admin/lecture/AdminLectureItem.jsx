@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ADMIN_PATH, PATH } from "../../../router/Constants";
 import { typo } from "../../../styles/style";
 import Checkbox from "../../common/checkbox/Checkbox";
 import { Flex } from "../../common/flex/Flex";
@@ -12,7 +14,10 @@ const AdminLectureItem = ({ course }) => {
 
   return (
     <Flex align="center" justify="space-between" width="100%">
-      <Text typo={typo.titleRg700}>{course.title}</Text>
+      <Link to={ADMIN_PATH.COURSE_INTRODUCE(course.id)}>
+        <Text typo={typo.titleRg700}>{course.title}</Text>
+      </Link>
+
       <Checkbox
         checked={isOpen}
         onChange={(event) => {
