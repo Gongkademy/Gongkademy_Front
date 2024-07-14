@@ -44,5 +44,5 @@ export const ADMIN_PATH = {
   COURSE_NOTICE: (courseId) => `${ADMIN_PREFIX}/course/notice/${courseId}`,
   COURSE_ORDER: (courseId) => `${ADMIN_PREFIX}/course/order/${courseId}`,
   COURSE_REVIEW: (courseId) => `${ADMIN_PREFIX}/course/review/${courseId}`,
-  COURSE_REGIST: (courseId) => `${ADMIN_PREFIX}/course/regist/${courseId}`,
+  COURSE_REGIST: `${ADMIN_PREFIX}/course/regist`,
 };

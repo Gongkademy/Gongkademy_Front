@@ -23,7 +23,7 @@ const AdminCoursePage = () => {
   }, []);
   return (
     <>
-      <Link to={ADMIN_PATH.LECTURE_REGIST}>
+      <Link to={ADMIN_PATH.COURSE_REGIST}>
         <Button fill>강좌 등록</Button>
       </Link>
       {courses.map((course) => (
