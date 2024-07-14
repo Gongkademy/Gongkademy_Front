@@ -6,7 +6,7 @@ import { getCourses } from "../../../apis/course/adminCourseApi";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const AdminLecturePage = () => {
+const AdminCoursePage = () => {
   const [courses, setCourses] = useState([]);
   const fetchCourses = async () => {
     try {
@@ -32,4 +32,4 @@ const AdminLecturePage = () => {
     </>
   );
 };
-export default AdminLecturePage;
+export default AdminCoursePage;

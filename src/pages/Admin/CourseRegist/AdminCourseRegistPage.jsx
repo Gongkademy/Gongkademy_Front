@@ -9,7 +9,7 @@ import Text from "../../../components/common/text/Text";
 import { typo } from "../../../styles/style";
 import { useState } from "react";
 import { ADMIN_PATH } from "../../../router/Constants";
-const AdminLectureRegistPage = () => {
+const AdminCourseRegistPage = () => {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const navigate = useNavigate();
@@ -41,4 +41,4 @@ const AdminLectureRegistPage = () => {
     </PageLayout>
   );
 };
-export default AdminLectureRegistPage;
+export default AdminCourseRegistPage;

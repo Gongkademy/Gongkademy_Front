@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { StyledNav, StyledDiv } from "./AdminLectureNavbar.Style";
+import { StyledNav, StyledDiv } from "./AdminCourseNavbar.Style";
 import { ADMIN_PATH } from "../../../router/Constants";
-const AdminLectureNavbar = () => {
+const AdminCourseNavbar = () => {
   const location = useLocation();
   return (
     <div>
       <div>
         <StyledNav>
-          <Link to={ADMIN_PATH.LECTURE_INTRODUCE}>
+          <Link to={ADMIN_PATH.COURSE_INTRODUCE}>
             <StyledDiv
               active={
                 location.pathname.includes("introduce") ? "true" : undefined
@@ -17,14 +17,14 @@ const AdminLectureNavbar = () => {
               강의소개
             </StyledDiv>
           </Link>
-          <Link to={ADMIN_PATH.LECTURE_ORDER}>
+          <Link to={ADMIN_PATH.COURSE_ORDER}>
             <StyledDiv
               active={location.pathname.includes("order") ? "true" : undefined}
             >
               목차
             </StyledDiv>
           </Link>
-          <Link to={ADMIN_PATH.LECTURE_QNA}>
+          <Link to={ADMIN_PATH.COURSE_QNA}>
             <StyledDiv
               active={location.pathname.includes("qna") ? "true" : undefined}
             >
@@ -40,7 +40,7 @@ const AdminLectureNavbar = () => {
               수강평
             </StyledDiv>
           </Link>
-          <Link to={ADMIN_PATH.LECTURE_NOTICE}>
+          <Link to={ADMIN_PATH.COURSE_NOTICE}>
             <StyledDiv
               active={location.pathname.includes("notice") ? "true" : undefined}
             >
@@ -53,4 +53,4 @@ const AdminLectureNavbar = () => {
     </div>
   );
 };
-export default AdminLectureNavbar;
+export default AdminCourseNavbar;

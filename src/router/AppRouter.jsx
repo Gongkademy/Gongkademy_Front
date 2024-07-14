@@ -29,16 +29,16 @@ import AdminCommunityNoticePage from "../pages/Admin/CommunityNotice/AdminCommun
 import AdminCommunityQnaPage from "../pages/Admin/CommunityQna/AdminCommunityQnaPage";
 import AdminCommunityConcernPage from "../pages/Admin/CommunityConcern/AdminCommunityConcernPage";
 import AdminMemberPage from "../pages/Admin/Member/AdminMemberPage";
-import AdminLectureIntroducePage from "../pages/Admin/LectureIntro/AdminLectureIntroPage";
-import AdminLectureOrderPage from "../pages/Admin/LectureOrder/AdminLectureOrderPage";
-import AdminLectureQnaPage from "../pages/Admin/LectureQna/AdminLectureQnaPage";
-import AdminLectureCourseReviewPage from "../pages/Admin/LectureCourseReview/AdminLectureCourseReviewPage";
-import AdminLectureNoticePage from "../pages/Admin/LectureNotice/AdminLectureNoticePage";
-import AdminLectureRegistPage from "../pages/Admin/LectureRegist/AdminLectureRegistPage";
-import AdminLectureNavbar from "../components/admin/navbar/AdminLectureNavbar";
 import AdminCommunityNavbar from "../components/admin/navbar/AdminCommunityNavbar";
 import AdminApp from "../AdminApp";
-import AdminLecturePage from "../pages/Admin/Lecture/AdminLecturePage";
+import AdminCoursePage from "../pages/Admin/Course/AdminCoursePage";
+import AdminCourseIntroducePage from "../pages/Admin/CourseIntro/AdminCourseIntroPage";
+import AdminCourseOrderPage from "../pages/Admin/CourseOrder/AdminCourseOrderPage";
+import AdminCourseQnaPage from "../pages/Admin/CourseQna/AdminCourseQnaPage";
+import AdminCourseReviewPage from "../pages/Admin/CourseReview/AdminCourseReviewPage";
+import AdminCourseNoticePage from "../pages/Admin/CourseNotice/AdminCourseNoticePage";
+import AdminCourseRegistPage from "../pages/Admin/CourseRegist/AdminCourseRegistPage";
+import AdminCourseNavbar from "../components/admin/navbar/AdminCourseNavbar";
 
 const AppRouter = () => {
   const routes = [
@@ -152,38 +152,38 @@ const AppRouter = () => {
           element: <AdminMemberPage />,
         },
         {
-          path: ADMIN_PATH.LECTURE,
-          element: <AdminLecturePage />,
+          path: ADMIN_PATH.COURSE,
+          element: <AdminCoursePage />,
         },
         {
-          path: ADMIN_PATH.LECTURE,
-          element: <AdminLectureNavbar />,
+          path: ADMIN_PATH.COURSE,
+          element: <AdminCourseNavbar />,
           children: [
             {
-              path: ADMIN_PATH.LECTURE_INTRODUCE,
-              element: <AdminLectureIntroducePage />,
+              path: ADMIN_PATH.COURSE_INTRODUCE(":courseId"),
+              element: <AdminCourseIntroducePage />,
             },
             {
-              path: ADMIN_PATH.LECTURE_ORDER,
-              element: <AdminLectureOrderPage />,
+              path: ADMIN_PATH.COURSE_ORDER(":courseId"),
+              element: <AdminCourseOrderPage />,
             },
             {
-              path: ADMIN_PATH.LECTURE_QNA,
-              element: <AdminLectureQnaPage />,
+              path: ADMIN_PATH.COURSE_QNA(":courseId"),
+              element: <AdminCourseQnaPage />,
             },
             {
-              path: ADMIN_PATH.COURSE_REVIEW,
-              element: <AdminLectureCourseReviewPage />,
+              path: ADMIN_PATH.COURSE_REVIEW(":courseId"),
+              element: <AdminCourseReviewPage />,
             },
             {
-              path: ADMIN_PATH.LECTURE_NOTICE,
-              element: <AdminLectureNoticePage />,
+              path: ADMIN_PATH.COURSE_NOTICE(":courseId"),
+              element: <AdminCourseNoticePage />,
             },
           ],
         },
         {
-          path: ADMIN_PATH.LECTURE_REGIST,
-          element: <AdminLectureRegistPage />,
+          path: ADMIN_PATH.COURSE_REGIST(":courseId"),
+          element: <AdminCourseRegistPage />,
         },
       ],
     },

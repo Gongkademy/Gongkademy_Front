@@ -37,11 +37,12 @@ export const ADMIN_PATH = {
 
   MEMBER: `${ADMIN_PREFIX}/member`,
 
-  LECTURE: `${ADMIN_PREFIX}/lecture`,
-  LECTURE_INTRODUCE: `${ADMIN_PREFIX}/lecture/introduce`,
-  LECTURE_QNA: `${ADMIN_PREFIX}/lecture/qna`,
-  LECTURE_NOTICE: `${ADMIN_PREFIX}/lecture/notice`,
-  LECTURE_ORDER: `${ADMIN_PREFIX}/lecture/order`,
-  COURSE_REVIEW: `${ADMIN_PREFIX}/lecture/course-review`,
-  LECTURE_REGIST: `${ADMIN_PREFIX}/lecture/regist`,
+  COURSE: `${ADMIN_PREFIX}/course`,
+  COURSE_INTRODUCE: (courseId) =>
+    `${ADMIN_PREFIX}/course/introduce/${courseId}`,
+  COURSE_QNA: (courseId) => `${ADMIN_PREFIX}/course/qna/${courseId}`,
+  COURSE_NOTICE: (courseId) => `${ADMIN_PREFIX}/course/notice/${courseId}`,
+  COURSE_ORDER: (courseId) => `${ADMIN_PREFIX}/course/order/${courseId}`,
+  COURSE_REVIEW: (courseId) => `${ADMIN_PREFIX}/course/review/${courseId}`,
+  COURSE_REGIST: (courseId) => `${ADMIN_PREFIX}/course/regist/${courseId}`,
 };
