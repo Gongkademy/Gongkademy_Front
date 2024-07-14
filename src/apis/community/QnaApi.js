@@ -1,12 +1,12 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 //질문 리스트
-export const getQuestionList = (
+export const getQuestionList = async (
   keyword,
   criteria,
   page
 ) => {
-  axiosInstance.get(
+  return await axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION,
     {
       params: { keyword, criteria, page },
@@ -14,25 +14,28 @@ export const getQuestionList = (
   );
 };
 //질문 상세보기
-export const getQuestionDetail = (articleId) => {
-  axiosInstance.get(
+export const getQuestionDetail = async (
+  articleId
+) => {
+  return await axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION_ARTICLE(
       articleId
     )
   );
 };
 //질문 작성
-export const writeQuestion = (article) =>
-  axiosInstance.post(
+export const writeQuestion = async (article) => {
+  return await axiosInstance.post(
     END_POINT.COMMUNITY_QUESTION,
     article
   );
+};
 //질문수정
-export const updateQuestion = (
+export const updateQuestion = async (
   articleId,
   article
 ) => {
-  axiosInstance.patch(
+  return await axiosInstance.patch(
     END_POINT.COMMUNITY_QUESTION_ARTICLE(
       articleId
     ),
@@ -40,37 +43,41 @@ export const updateQuestion = (
   );
 };
 //질문삭제
-export const deleteQuestion = (articleId) => {
-  axiosInstance.delete(
+export const deleteQuestion = async (
+  articleId
+) => {
+  return await axiosInstance.delete(
     END_POINT.COMMUNITY_QUESTION_ARTICLE(
       articleId
     )
   );
 };
 //질문 좋아요한 것들 가져오기
-export const QuestionLiked = () => {
-  axiosInstance.get(
+export const QuestionLiked = async () => {
+  return await axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION + "/liked"
   );
 };
 
 //질문 스크랩한 것들 가져오기
-export const QuestionScrapped = () => {
-  axiosInstance.get(
+export const QuestionScrapped = async () => {
+  return await axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION + "/scrapped"
   );
 };
 //질문 좋아요
-export const likeQuestion = (articleId) => {
-  axiosInstance.post(
+export const likeQuestion = async (articleId) => {
+  return await axiosInstance.post(
     END_POINT.COMMUNITY_QUESTION_ARTICLE(
       articleId
     ) + "/like"
   );
 };
 //질문 스크랩
-export const scrapQuestion = (articleId) => {
-  axiosInstance.post(
+export const scrapQuestion = async (
+  articleId
+) => {
+  return await axiosInstance.post(
     END_POINT.COMMUNITY_QUESTION_ARTICLE(
       articleId
     ) + "/scrap"

@@ -20,10 +20,10 @@ const CommunityBoardPage = ({ type }) => {
   }, []);
   useEffect(() => {
     if (type === "Q&A") {
-      fetchQnaList("", "", 1);
+      fetchQnaList("", "", 0);
       setBoardList(qnaList);
     } else {
-      fetchConcernList("", "", 1);
+      fetchConcernList("", "", 0);
       setBoardList(concernList);
     }
   }, [type]);
