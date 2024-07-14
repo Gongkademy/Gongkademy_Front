@@ -6,9 +6,12 @@ import CurriculumItem from "../../../components/courseDetail/courseCurriculum/Cu
 import Input from "../../../components/common/input/Input";
 import useForm from "../../../hooks/useForm";
 import { HTTP_STATUS_CODE } from "../../../apis/apiConstants";
+import { useEffect, useState } from "react";
+import { getAllCourseContents } from "../../../apis/course/courseApi";
 
 const AdminCourseOrderPage = () => {
   const params = useParams();
+  const [lectures, setLectures] = useState([]);
   const {
     values,
     messages,
@@ -35,6 +38,19 @@ const AdminCourseOrderPage = () => {
     }
     console.log(response);
   };
+
+  const fetchLecture = async () => {
+    try {
+      const response = await getAllCourseContents(params.courseId);
+      setLectures(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchLecture();
+  }, []);
+
   return (
     <>
       <form onSubmit={handleFormSubmit}>
@@ -60,7 +76,9 @@ const AdminCourseOrderPage = () => {
           onChange={handleChange}
         />
       </form>
-      <CurriculumItem />
+      {lectures.map((lecture) => (
+        <CurriculumItem lecture={lecture} type="admin" />
+      ))}
     </>
   );
 };

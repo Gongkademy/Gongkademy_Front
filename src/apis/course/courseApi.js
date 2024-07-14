@@ -5,8 +5,8 @@ export const getAllCourses = async () => {
   return await axiosInstance.get(END_POINT.COURSE);
 };
 
-export const getAllCourseContents = async () => {
-  return await axiosInstance.get(END_POINT.COURSE_LIST);
+export const getAllCourseContents = async (courseId) => {
+  return await axiosInstance.get(END_POINT.COURSE_LIST(courseId));
 };
 
 export const registCourse = async (data) => {

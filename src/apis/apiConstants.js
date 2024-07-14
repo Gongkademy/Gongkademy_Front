@@ -14,7 +14,7 @@ export const END_POINT = {
   COURSE_NOTICE: "/course/notice",
   COURSE_NOTICE_DETAIL: (courseId) => `/course/notice/${courseId}`,
   COURSE_NO_COMPLETE: "/course/nocomplete",
-  COURSE_LIST: "course/list",
+  COURSE_LIST: (courseId) => `course/list/${courseId}`,
   COURSE_COMPLETE: "/course/complete",
   COURSE_DOWNLOAD: "/course/download",
   COURSE_INFO: (courseId) => `/course/info/${courseId}`,
