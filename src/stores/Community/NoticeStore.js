@@ -24,7 +24,6 @@ const useNoticeStore = create((set, get) => ({
     try {
       const response = await getNoticeList();
       set({ noticeList: response.data });
-      console.log(response);
     } catch (error) {
       console.error(
         "공지사항리스트 가져오기 실패 : ",

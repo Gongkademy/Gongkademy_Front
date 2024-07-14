@@ -28,7 +28,6 @@ const useConcernStore = create((set) => ({
         criteria,
         pageNo
       );
-      console.log(response);
       set({ concernList: response.data });
     } catch (e) {
       console.error(
