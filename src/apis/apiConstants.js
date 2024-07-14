@@ -8,13 +8,36 @@ export const END_POINT = {
   LOGIN: "members/login",
 
   // 강좌,강의
-  COURSE: "course",
-  COURSE_DETAIL: (courseId) => `course/${courseId}`,
-  COURSE_STATUS: (courseId) => `course/status/${courseId}`,
-  COURSE_NOTICE: "notice",
-  COURSE_NOTICE_DETAIL: (courseId) => `notice/${courseId}`,
-  LECTURE: "lecture",
-  LECTURE_DETAIL: (lectureId) => `lecture/${lectureId}`,
+  COURSE: "/course",
+  COURSE_DETAIL: (courseId) => `/course/${courseId}`,
+  COURSE_STATUS: (courseId) => `/course/status/${courseId}`,
+  COURSE_NOTICE: "/course/notice",
+  COURSE_NOTICE_DETAIL: (courseId) => `/course/notice/${courseId}`,
+  COURSE_NO_COMPLETE: "/course/nocomplete",
+  COURSE_LIST: "course/list",
+  COURSE_COMPLETE: "/course/complete",
+  COURSE_DOWNLOAD: "/course/download",
+  COURSE_INFO: (courseId) => `/course/info/${courseId}`,
+  COURSE_SCRAP: "/course/scrap",
+  COURSE_LIKE: "/course/like",
+  COURSE_REGIST: "/course/regist",
+
+  COURSE_COMMNET: "/course/comment",
+  COURSE_COMMNET_DETAIL: (courseId) => `/course/comment/${courseId}`,
+  COURSE_COMMNET_CATEG_DETAIL: (category, courseId) =>
+    `/course/comment/${category}/${courseId}`,
+
+  COURSE_REVIEW: "/review",
+  COURSE_REVIEW_DETAIL: (id) => `/review/${id}`,
+
+  PLAYER: "/player",
+  PLAYER_PREV: "/player/prev",
+  PLAYER_NEXT: "/player/next",
+  PLAYER_LECTURE: (lectureId) => `/player/lecture/${lectureId}`,
+  PLAYER_COURSE: (courseId) => `/player/course/${courseId}`,
+
+  LECTURE: "/lecture",
+  LECTURE_DETAIL: (lectureId) => `/lecture/${lectureId}`,
 
   // 커뮤니티
   COMMUNITY_NOTICE: "community/notice",
