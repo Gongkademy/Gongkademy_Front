@@ -12,7 +12,7 @@ const Checkbox = ({ children, disabled, checked, onChange, name }) => {
         type="checkbox"
         disabled={disabled}
         checked={checked}
-        onChange={onChange}
+        onChange={(event) => onChange(event)}
       />
     </Flex>
   );

@@ -24,8 +24,8 @@ export const updateCourse = async (courseId, data) => {
   return await adminInstance.patch(END_POINT.COURSE_DETAIL(courseId), data);
 };
 
-export const updateCourseStatus = async (courseId, data) => {
-  return await adminInstance.patch(END_POINT.COURSE_STATUS(courseId), data);
+export const updateCourseStatus = async (courseId) => {
+  return await adminInstance.patch(END_POINT.COURSE_STATUS(courseId));
 };
 
 export const createCourseNotice = async (data) => {
