@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { ImageLabel, Thumnail } from "./ImageUpload.style";
 
-const ImageUpload = ({ width, height }) => {
-  const [image, setImage] = useState();
+const ImageUpload = ({ width, height, onChange }) => {
   const [preview, setPreview] = useState();
   const handleImageInputChange = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    setImage(e.target.files[0]);
+    onChange(e.target.files[0]);
 
     reader.onload = () => {
       const data = reader.result;

@@ -10,7 +10,14 @@ export const getCourseDetail = async (courseId) => {
 };
 
 export const createCourse = async (data) => {
-  return await adminInstance.post(END_POINT.COURSE, data);
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("courseImg", data.courseImg);
+  return await adminInstance.post(END_POINT.COURSE, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 export const updateCourse = async (courseId, data) => {
