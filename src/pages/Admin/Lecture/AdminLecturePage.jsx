@@ -1,16 +1,34 @@
 import { Link } from "react-router-dom";
 import Button from "../../../components/common/button/Button";
-import PageLayout from "../../../components/common/page/PageLayout";
 import { ADMIN_PATH } from "../../../router/Constants";
 import AdminLectureItem from "../../../components/admin/lecture/AdminLectureItem";
+import { getCourses } from "../../../apis/course/adminCourseApi";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const AdminLecturePage = () => {
+  const [courses, setCourses] = useState([]);
+  const fetchCourses = async () => {
+    try {
+      const response = await getCourses();
+      setCourses(response.data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchCourses();
+    console.log(1);
+  }, []);
   return (
     <>
       <Link to={ADMIN_PATH.LECTURE_REGIST}>
         <Button fill>강좌 등록</Button>
       </Link>
-      <AdminLectureItem>재료역학</AdminLectureItem>
+      {courses.map((course) => (
+        <AdminLectureItem key={course.id} course={course} />
+      ))}
     </>
   );
 };

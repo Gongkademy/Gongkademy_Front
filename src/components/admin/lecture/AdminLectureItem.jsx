@@ -4,12 +4,15 @@ import { Flex } from "../../common/flex/Flex";
 import Text from "../../common/text/Text";
 import { useState } from "react";
 
-const AdminLectureItem = ({ children, title }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const OPEN = "OPEN";
+const WAIT = "WAIT";
+const AdminLectureItem = ({ course }) => {
+  console.log(course);
+  const [isOpen, setIsOpen] = useState(course.staus === OPEN);
 
   return (
     <Flex align="center" justify="space-between" width="100%">
-      <Text typo={typo.titleRg700}>{children}</Text>
+      <Text typo={typo.titleRg700}>{course.title}</Text>
       <Checkbox
         checked={isOpen}
         onChange={(event) => {
