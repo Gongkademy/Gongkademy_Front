@@ -8,6 +8,7 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
   const [messages, setMessages] = useState({});
   const [states, setStates] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [response, setResponse] = useState();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -15,16 +16,22 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
-    const result = validate({ ...values, [name]: value });
+    if (validate) {
+      const result = validate({ ...values, [name]: value });
+      setMessages(result.messages);
+      setStates(result.states);
+    }
     setValues({ ...values, [name]: value });
-    setMessages(result.messages);
-    setStates(result.states);
+
+    console.log({ ...values, [name]: value });
   };
 
   const handleSubmit = async (event) => {
-    setSubmitting(true);
-    onSubmit(values);
     event.preventDefault();
+
+    setSubmitting(true);
+    const newResponse = await onSubmit(values);
+    setResponse(newResponse);
     await new Promise((r) => setTimeout(r, 1000));
   };
 
@@ -37,7 +44,15 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
     }
   }, [messages]);
 
-  return { values, messages, submitting, states, handleChange, handleSubmit };
+  return {
+    values,
+    messages,
+    submitting,
+    states,
+    handleChange,
+    handleSubmit,
+    response,
+  };
 };
 
 export default useForm;
