@@ -48,7 +48,7 @@ export const createLecture = async (data) => {
 };
 
 export const updateLecture = async (lectureId, data) => {
-  return await adminInstance.post(END_POINT.LECTURE_DETAIL(lectureId), data);
+  return await adminInstance.patch(END_POINT.LECTURE_DETAIL(lectureId), data);
 };
 
 export const deleteLecture = async (lectureId) => {

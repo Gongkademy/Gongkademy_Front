@@ -12,15 +12,7 @@ import { getAllCourseContents } from "../../../apis/course/courseApi";
 const AdminCourseOrderPage = () => {
   const params = useParams();
   const [lectures, setLectures] = useState([]);
-  const {
-    values,
-    messages,
-    states,
-    submitting,
-    handleChange,
-    handleSubmit,
-    response,
-  } = useForm({
+  const { handleChange, handleSubmit, response } = useForm({
     initialValues: {
       lectureOrder: "",
       time: "",
