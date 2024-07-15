@@ -92,26 +92,38 @@ const CurriculumItem = ({ lecture, type }) => {
       {isEdit && (
         <Flex direction="column">
           <button onClick={() => setIsEdit(false)}> X </button>
-          <input
-            placeholder="제목"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            placeholder="강의시간"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <input
-            placeholder="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <input
-            placeholder="강의순서"
-            value={order}
-            onChange={(e) => setOrder(e.target.value)}
-          />
+          <label>
+            제목:
+            <input
+              placeholder="제목"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
+          <label>
+            강의시간:
+            <input
+              placeholder="강의시간"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </label>
+          <label>
+            url:
+            <input
+              placeholder="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+          </label>
+          <label>
+            강의순서:
+            <input
+              placeholder="강의순서"
+              value={order}
+              onChange={(e) => setOrder(e.target.value)}
+            />
+          </label>
           <button onClick={handleUpdateLecture}>수정완료</button>
         </Flex>
       )}
