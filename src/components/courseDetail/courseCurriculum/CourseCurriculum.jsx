@@ -11,7 +11,6 @@ const CourseCurriculum = () => {
       const response = await getAllCourseContents(params.courseId);
       setLectures(response.data);
       console.log(response.data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

@@ -15,7 +15,6 @@ import { updateLecture } from "../../../apis/course/adminCourseApi";
 const CurriculumItem = ({ lecture, type }) => {
   const params = useParams();
   const lectureQueryString = `?${LECTURE_ID}=${1}&${COURSE_ID}=${1}`;
-  console.log(lecture);
   const [title, setTitle] = useState(lecture.title);
   const [time, setTime] = useState(lecture.time);
   const [url, setUrl] = useState(lecture.time);
@@ -50,7 +49,6 @@ const CurriculumItem = ({ lecture, type }) => {
         title: title,
         courseId: params.courseId,
       });
-      console.log(response);
       alert("수정에 성공했습니다.");
       setIsEdit(false);
     } catch (error) {
