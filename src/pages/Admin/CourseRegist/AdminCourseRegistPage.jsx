@@ -9,6 +9,10 @@ import Text from "../../../components/common/text/Text";
 import { typo } from "../../../styles/style";
 import { useState } from "react";
 import { ADMIN_PATH } from "../../../router/Constants";
+import {
+  COURSE_THUMBNAIL_HEIGHT,
+  COURSE_THUMBNAIL_WIDTH,
+} from "../../../components/constants";
 const AdminCourseRegistPage = () => {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
@@ -37,7 +41,11 @@ const AdminCourseRegistPage = () => {
         }}
       />
       <Text typo={typo.titleRg700}>대표이미지</Text>
-      <ImageUpload width={"450px"} height={"300px"} onChange={setImage} />
+      <ImageUpload
+        width={COURSE_THUMBNAIL_WIDTH}
+        height={COURSE_THUMBNAIL_HEIGHT}
+        onChange={setImage}
+      />
     </PageLayout>
   );
 };
