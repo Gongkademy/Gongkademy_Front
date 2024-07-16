@@ -3,7 +3,7 @@
     "jsx": "react",
     "baseUrl": "src",
     "paths": {
-      "@/*": ["/*"],
+      "@*": ["*"],
       "@apis/*": ["apis/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
@@ -16,13 +16,5 @@
       "@styles/*": ["styles/*"]
     }
   },
-  "include": [
-    "src",
-    "custom.d.ts",
-    "**/*.js",
-    "**/*.jsx",
-    "tsconfig.json",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["src", "**/*.js", "**/*.jsx"]
 }
