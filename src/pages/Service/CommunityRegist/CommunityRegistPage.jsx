@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  Container,
-  StyledInput,
-} from "./CommunityRegistPage.style";
+import { Container, StyledInput } from "./CommunityRegistPage.style";
 import RegistNav from "@components/community/Regist/RegistNav";
 import RegistCourse from "@components/community/Regist/RegistCourse";
 import ToastQna from "@components/community/Regist/ToastQna";
-import useQnaStore from "@/stores/Community/QnaStore";
-import useConcernStore from "@/stores/Community/ConcernStore";
+import useQnaStore from "@stores/Community/QnaStore";
+import useConcernStore from "@stores/Community/ConcernStore";
 const CommunityRegistPage = () => {
   const { writeConcern } = useConcernStore();
   const { writeQna } = useQnaStore();
@@ -20,12 +17,9 @@ const CommunityRegistPage = () => {
     "Q&A": "🙋Q&A",
     concern: "🤔고민",
   };
-  const [selected, setSelected] = useState(
-    typeMap[type]
-  );
+  const [selected, setSelected] = useState(typeMap[type]);
   const [title, setTitle] = useState("");
-  const [selectedCourse, setSelectedCourse] =
-    useState("강좌를 선택해주세요.");
+  const [selectedCourse, setSelectedCourse] = useState("강좌를 선택해주세요.");
   const [selectedLecture, setSelectedLecture] =
     useState("강의를 선택해주세요.");
   useEffect(() => {

@@ -1,29 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  CourseBlock,
   SubjectContainer,
-  SubjectDesc,
   SubjectTitle,
   Thumbnail,
 } from "@components/course/CourseCard.style";
+import { PATH } from "@router/Constants";
 
 export const CourseCard = ({ course }) => {
-  const navigate = useNavigate();
-  const handleClickCourseCard = () => {
-    navigate(`course/${course.id}`);
-  };
+  console.log(course);
   return (
-    <CourseBlock onClick={handleClickCourseCard}>
+    <Link to={PATH.COURSE_DETAIL(course.courseId)}>
       <Thumbnail>
-        <img
-          src={"https://img.youtube.com/vi/" + course.url + "/mqdefault.jpg"}
-          alt="썸네일"
-        ></img>
+        <img src={course.courseImgAddress} alt="썸네일" />
       </Thumbnail>
       <SubjectContainer>
         <SubjectTitle>{course.title}</SubjectTitle>
-        <SubjectDesc>{course.desc}</SubjectDesc>
       </SubjectContainer>
-    </CourseBlock>
+    </Link>
   );
 };

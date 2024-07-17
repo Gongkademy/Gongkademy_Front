@@ -17,23 +17,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
-import useQnaStore from "@/stores/Community/QnaStore";
-import useConcernStore from "@/stores/Community/ConcernStore";
+import useQnaStore from "@stores/Community/QnaStore";
+import useConcernStore from "@stores/Community/ConcernStore";
 const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
   const handleClickConcernCard = () => {
-    navigate(
-      PATH.COMMUNITY_DETAIL(
-        type,
-        initialBoard.articleId
-      )
-    );
+    navigate(PATH.COMMUNITY_DETAIL(type, initialBoard.articleId));
   };
   const { likeQna, scrapQna } = useQnaStore();
-  const { likeConcern, scrapConcern } =
-    useConcernStore();
-  const [initialBoard, setInitialBoard] =
-    useState(board);
+  const { likeConcern, scrapConcern } = useConcernStore();
+  const [initialBoard, setInitialBoard] = useState(board);
   const handleClickLike = () => {
     if (type === "Q&A") {
       likeQna(initialBoard.articleId);
@@ -66,9 +59,7 @@ const CommunityCard = ({ board, type }) => {
     <CardContainer>
       <TitleContainer>
         <Pointer>
-          <Title onClick={handleClickConcernCard}>
-            {board.title}
-          </Title>
+          <Title onClick={handleClickConcernCard}>{board.title}</Title>
         </Pointer>
         <Pointer>
           {initialBoard.isScrapped ? (
@@ -90,15 +81,9 @@ const CommunityCard = ({ board, type }) => {
       <Content>{initialBoard.content}</Content>
       <InfoContainer>
         <ContentContainer>
-          <Content>
-            {initialBoard.memberId}
-          </Content>
+          <Content>{initialBoard.memberId}</Content>
           <Content>3분전</Content>
-          {type === "Q&A" && (
-            <Content>
-              {initialBoard.lectureTitle}
-            </Content>
-          )}
+          {type === "Q&A" && <Content>{initialBoard.lectureTitle}</Content>}
         </ContentContainer>
         <ContentContainer>
           <Content>
@@ -116,11 +101,7 @@ const CommunityCard = ({ board, type }) => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
+                <LikeIcon width="16" height="16" onClick={handleClickLike} />
               )}
               {initialBoard.likeCount}
             </Pointer>

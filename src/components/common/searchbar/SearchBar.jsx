@@ -1,32 +1,16 @@
-import {
-  SearchBarContainer,
-  StyledSearchBar,
-} from "./Searchbar.style";
+import { SearchBarContainer, StyledSearchBar } from "./Searchbar.style";
 import { useState, useEffect } from "react";
 import Select from "@components/common/select/Select";
-import useCommonStore from "@/stores/common/CommonStore";
+import useCommonStore from "@stores/common/CommonStore";
 import { useNavigate } from "react-router-dom";
 const SearchBar = ({ link }) => {
-  const [selected, setSelected] =
-    useState("최신순");
-  const [
-    pendingNavigation,
-    setPendingNavigation,
-  ] = useState(false);
+  const [selected, setSelected] = useState("최신순");
+  const [pendingNavigation, setPendingNavigation] = useState(false);
   const navigate = useNavigate();
-  const searchOptions = [
-    "최신순",
-    "조회수순",
-    "댓글순",
-    "좋아요순",
-  ];
-  const { keyword, setKeyword } =
-    useCommonStore();
+  const searchOptions = ["최신순", "조회수순", "댓글순", "좋아요순"];
+  const { keyword, setKeyword } = useCommonStore();
   const handleKeyDown = (e) => {
-    if (
-      e.key === "Enter" &&
-      e.nativeEvent.isComposing === false
-    ) {
+    if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
       setKeyword(e.target.value);
       setPendingNavigation(true);
       e.preventDefault();

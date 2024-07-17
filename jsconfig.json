@@ -16,5 +16,5 @@
       "@styles/*": ["styles/*"]
     }
   },
-  "include": ["src", "**/*.js", "**/*.jsx"]
+  "include": ["src", "**/*.js", "**/*.jsx", "vite.config.cjs"]
 }

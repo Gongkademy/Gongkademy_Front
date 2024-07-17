@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { color } from "@styles/style";
-import { StarIcon } from "@/assets/svg/icons";
+import { StarIcon } from "@assets/svg/icons";
 import { RatingBlock } from "./Rating.style";
 const Rating = ({ count, value, onChange, width }) => {
   const stars = useMemo(

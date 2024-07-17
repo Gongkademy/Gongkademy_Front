@@ -9,7 +9,7 @@ import {
   concernScrapped, //고민스크랩목록
   likeConcern, //고민좋아요
   scrapConcern, //고민스크랩
-} from "@/apis/community/concernApi";
+} from "@apis/community/concernApi";
 const useConcernStore = create((set) => ({
   concern: null,
   concernList: [],
@@ -17,31 +17,18 @@ const useConcernStore = create((set) => ({
   scrappedConcerns: [],
 
   //고민 목록 가져오기
-  fetchConcernList: async (
-    keyword,
-    criteria,
-    pageNo
-  ) => {
+  fetchConcernList: async (keyword, criteria, pageNo) => {
     try {
-      const response = await getConcernList(
-        keyword,
-        criteria,
-        pageNo
-      );
+      const response = await getConcernList(keyword, criteria, pageNo);
       set({ concernList: response.data });
     } catch (e) {
-      console.error(
-        "고민 목록 가져오기 실패 : ",
-        e
-      );
+      console.error("고민 목록 가져오기 실패 : ", e);
     }
   },
   //고민 상세보기
   fetchConcernDetail: async (articleId) => {
     try {
-      const response = await getConcernDetail(
-        articleId
-      );
+      const response = await getConcernDetail(articleId);
       set({ concern: response.data });
     } catch (e) {
       console.error("고민 상세보기 실패: ", e);
@@ -49,12 +36,10 @@ const useConcernStore = create((set) => ({
   },
   //고민글 작성
   writeConcern: async (article) => {
-    await writeConcern(article).then(
-      (response) => {
-        console.log(response);
-        return response.data;
-      }
-    );
+    await writeConcern(article).then((response) => {
+      console.log(response);
+      return response.data;
+    });
   },
   //고민 수정
   updateConcern: async (articleId, article) => {
@@ -70,10 +55,7 @@ const useConcernStore = create((set) => ({
       const response = await concernLiked();
       set({ likedConcerns: response.data });
     } catch (e) {
-      console.error(
-        "좋아요한 리스트 가져오기 실패: ",
-        e
-      );
+      console.error("좋아요한 리스트 가져오기 실패: ", e);
     }
   },
   //스크랩 목록 가져오기
@@ -82,10 +64,7 @@ const useConcernStore = create((set) => ({
       const response = await concernScrapped();
       set({ scrappedConcerns: response.data });
     } catch (e) {
-      console.error(
-        "스크랩한 리스트 가져오기 실패: ",
-        e
-      );
+      console.error("스크랩한 리스트 가져오기 실패: ", e);
     }
   },
   //고민 좋아요

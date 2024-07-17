@@ -34,6 +34,7 @@ const AdminCourseOrderPage = () => {
   const fetchLecture = async () => {
     try {
       const response = await getAllCourseContents(params.courseId);
+      console.log(response);
       setLectures(response.data);
     } catch (error) {
       console.log(error);

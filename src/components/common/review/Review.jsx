@@ -8,7 +8,7 @@ import {
   ChatIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-} from "@/assets/svg/icons";
+} from "@assets/svg/icons";
 import { ReviewContainer } from "./Review.style";
 import Button from "@components/common/button/Button";
 import { useState } from "react";

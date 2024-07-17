@@ -2,7 +2,7 @@ import { Flex } from "../../common/flex/Flex";
 import Text from "@components/common/text/Text";
 import Button from "../../common/button/Button";
 import { color } from "../../../styles/style";
-import { BookIcon, BookMarkIcon, StarIcon } from "@/assets/svg/icons";
+import { BookIcon, BookMarkIcon, StarIcon } from "@assets/svg/icons";
 const CourseSummary = () => {
   return (
     <Flex direction="column" padding="1rem 0" justify="space-between">

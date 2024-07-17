@@ -1,5 +1,5 @@
 import { FooterBlock } from "./LectureFooter.style";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/svg/icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@assets/svg/icons";
 import { Flex } from "../../common/flex/Flex";
 import Text from "../../common/text/Text";
 import { useSearchParams } from "react-router-dom";

@@ -6,7 +6,7 @@ import {
   ChatIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-} from "@/assets/svg/icons";
+} from "@assets/svg/icons";
 
 import {
   DetailBlock,
@@ -30,33 +30,20 @@ import RegistReview from "@components/community/Regist/RegistReview";
 import { review } from "@dummy/Review";
 import MeetballSelect from "@components/common/select/MeetballSelect";
 import { PATH } from "@router/Constants";
-import useQnaStore from "@/stores/Community/QnaStore";
-import useNoticeStore from "@/stores/Community/NoticeStore";
-import useConcernStore from "@/stores/Community/ConcernStore";
+import useQnaStore from "@stores/Community/QnaStore";
+import useNoticeStore from "@stores/Community/NoticeStore";
+import useConcernStore from "@stores/Community/ConcernStore";
 const CommunityDetail = () => {
   const location = useLocation();
   const splitPath = location.pathname.split("/");
   const type = splitPath[2];
   const boardId = splitPath[3];
   const [board, setBoard] = useState({});
-  const {
-    notice,
-    fetchNoticeDetail,
-    likeNotice,
-    scrapNotice,
-  } = useNoticeStore();
-  const {
-    concern,
-    fetchConcernDetail,
-    likeConcern,
-    scrapConcern,
-  } = useConcernStore();
-  const {
-    qna,
-    fetchQnaDetail,
-    likeQna,
-    scrapQna,
-  } = useQnaStore();
+  const { notice, fetchNoticeDetail, likeNotice, scrapNotice } =
+    useNoticeStore();
+  const { concern, fetchConcernDetail, likeConcern, scrapConcern } =
+    useConcernStore();
+  const { qna, fetchQnaDetail, likeQna, scrapQna } = useQnaStore();
   useEffect(() => {
     const fetchData = async () => {
       if (type === "notice") {
@@ -73,12 +60,9 @@ const CommunityDetail = () => {
     fetchData();
   }, [type, boardId, notice, concern, qna]);
 
-  const [viewReview, setViewReview] =
-    useState(false);
-  const [writeReview, setWriteReview] =
-    useState(false);
-  const [isMeetballClick, setIsMeetballClick] =
-    useState(false);
+  const [viewReview, setViewReview] = useState(false);
+  const [writeReview, setWriteReview] = useState(false);
+  const [isMeetballClick, setIsMeetballClick] = useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
@@ -140,18 +124,11 @@ const CommunityDetail = () => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
+                <LikeIcon width="16" height="16" onClick={handleClickLike} />
               )}
               <Content>0</Content>
             </ContainerCol>
-            <ContainerCol
-              type="icon"
-              style={{ position: "relative" }}
-            >
+            <ContainerCol type="icon" style={{ position: "relative" }}>
               <MeetballIcon
                 width="16"
                 height="16"
@@ -160,9 +137,7 @@ const CommunityDetail = () => {
               <br />
               {isMeetballClick && (
                 <MeetballSelect
-                  path={PATH.COMMUNITY_UPDATE(
-                    board.ariticleId
-                  )}
+                  path={PATH.COMMUNITY_UPDATE(board.ariticleId)}
                 />
               )}
             </ContainerCol>
@@ -174,54 +149,33 @@ const CommunityDetail = () => {
         </ContainerRow>
         <Content>{board.createTime} 작성</Content>
         <ContentContainer>
-          <Content type="black">
-            {board.content}
-          </Content>
+          <Content type="black">{board.content}</Content>
           {type === "qna" && (
             <ContainerRow type="center">
               <QnaImg />
               <ContainerCol>
-                <CourseName>
-                  {board.lectureTitle}
-                </CourseName>
-                <Content>
-                  {board.courseTitle}
-                </Content>
+                <CourseName>{board.lectureTitle}</CourseName>
+                <Content>{board.courseTitle}</Content>
               </ContainerCol>
             </ContainerRow>
           )}
           <ContainerRow>
-            <Button
-              text
-              onClick={handleClickViewReview}
-            >
+            <Button text onClick={handleClickViewReview}>
               {!viewReview ? (
-                <ChevronDownIcon
-                  width="16"
-                  height="16"
-                />
+                <ChevronDownIcon width="16" height="16" />
               ) : (
-                <ChevronUpIcon
-                  width="16"
-                  height="16"
-                />
+                <ChevronUpIcon width="16" height="16" />
               )}{" "}
               {board.commentCount}개 댓글 보기
             </Button>
-            <Button
-              text
-              onClick={handleClickGoWriteReview}
-            >
-              <ChatIcon width="16" height="16" />{" "}
-              댓글 작성하기
+            <Button text onClick={handleClickGoWriteReview}>
+              <ChatIcon width="16" height="16" /> 댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>
         {writeReview && <RegistReview />}
         {viewReview &&
-          board.comments.map((review) => (
-            <Review content={review.content} />
-          ))}
+          board.comments.map((review) => <Review content={review.content} />)}
       </Container>
     </DetailBlock>
   );
