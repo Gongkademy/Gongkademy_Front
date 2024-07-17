@@ -6,9 +6,7 @@ const TitleBlock = styled.div`
   gap: 8px;
   justify-content: center;
 
-  h2 {
-    font: ${typo.titleRg700};
-  }
+  font: ${typo.titleRg700};
 `;
 
 export const PageTitle = ({ children }) => {

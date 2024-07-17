@@ -1,11 +1,10 @@
 import styled from "styled-components";
 export const PageLayoutBlock = styled.main`
-  margin-top: 3rem;
   display: flex;
 
   height: 100%;
   align-items: center;
   flex-direction: column;
   gap: 1.5rem;
-  padding-bottom: 3rem;
+  padding: 3rem;
 `;
