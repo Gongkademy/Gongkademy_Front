@@ -17,19 +17,19 @@ export default defineConfig({
   },
 
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@apis": path.resolve(__dirname, "/src/apis"),
-      "@assets": path.resolve(__dirname, "/src/assets"),
-      "@components": path.resolve(__dirname, "/src/components"),
-      "@hooks": path.resolve(__dirname, "/src/hooks"),
-      "@pages": path.resolve(__dirname, "/src/pages"),
-      "@contexts": path.resolve(__dirname, "/src/contexts"),
-      "@router": path.resolve(__dirname, "/src/router"),
-      "@store": path.resolve(__dirname, "/src/store"),
-      "@utils": path.resolve(__dirname, "/src/utils"),
-      "@styles": path.resolve(__dirname, "/src/styles"),
-      "@dummy": path.resolve(__dirname, "/src/dummy"),
-    },
+    alias: [
+      { find: "@", replacement: "./src" },
+      { find: "@apis", replacement: "/src/apis" },
+      { find: "@assets", replacement: "/src/assets" },
+      { find: "@components", replacement: "/src/components" },
+      { find: "@hooks", replacement: "/src/hooks" },
+      { find: "@pages", replacement: "/src/pages" },
+      { find: "@contexts", replacement: "/src/contexts" },
+      { find: "@router", replacement: "/src/router" },
+      { find: "@store", replacement: "/src/store" },
+      { find: "@utils", replacement: "/src/utils" },
+      { find: "@styles", replacement: "/src/styles" },
+      { find: "@dummy", replacement: "/src/dummy" },
+    ],
   },
 });
