@@ -5,7 +5,8 @@ import { color, typo } from "../../../styles/style";
 import { BookIcon, BookMarkIcon, StarIcon } from "@assets/svg/icons";
 const CourseSummary = ({ course }) => {
   const courseHour = Math.floor(course.totalCourseTime / 3600);
-  const courseMinute = Math.floor(course.totalCourseTime / 60);
+  const courseMinute =
+    Math.floor(course.totalCourseTime / 60) - 60 * courseHour;
   return (
     <Flex direction="column" padding="1rem 0" justify="space-between">
       <Text typo={typo.titleSm700}>{course.title}</Text>
