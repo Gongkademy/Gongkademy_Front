@@ -19,3 +19,4 @@ export { default as TrophyIcon } from "./TrophyIcon";
 export { default as VisibleIcon } from "./VisibleIcon";
 export { default as CheckboxIcon } from "./CheckboxIcon";
 export { default as MeetballIcon } from "./MeetballIcon";
+export { default as TeacherIcon } from "./TeacherIcon";

@@ -6,26 +6,39 @@ import { ConcernCard } from "@components/concern/ConcernCard";
 import { CONCERN_LIST } from "@dummy/Concern";
 import { ConcernContianer } from "@components/concern/ConcernCard.style";
 import { COURSE_LIST } from "@dummy/Course";
-import PageLayout from "../../../components/common/page/PageLayout";
-const COURSES = COURSE_LIST;
+import { TeacherIcon } from "@assets/svg/icons";
+import { useEffect, useState } from "react";
+import { getAllCourses } from "@apis/course/courseApi";
 const CONCERNS = CONCERN_LIST;
 const HomePage = () => {
+  const [courses, setCourses] = useState([]);
+  const fetchCourses = async () => {
+    try {
+      const response = await getAllCourses();
+      setCourses(response.data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, []);
   return (
     <>
-      <PageLayout>
-        <PageTitle>
-          <Teacher />
-          <h2>이런 강좌는 어떠세요?</h2>
-        </PageTitle>
-        <CourseContianer>
-          {COURSES.map((course) => (
-            <CourseCard course={course} key={course.url} />
-          ))}
-        </CourseContianer>
-      </PageLayout>
       <PageTitle>
-        <QuestionMark />
-        <h2>이런 고민도 있어요</h2>
+        <TeacherIcon width={"2rem"} />
+        이런 강좌는 어떠세요?
+      </PageTitle>
+      <CourseContianer>
+        {courses.map((course) => (
+          <CourseCard course={course} key={course} />
+        ))}
+      </CourseContianer>
+
+      <PageTitle>
+        <QuestionMark width={"2rem"} />
+        이런 고민도 있어요
       </PageTitle>
       <ConcernContianer>
         {CONCERNS.map((concern) => (

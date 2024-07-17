@@ -4,6 +4,7 @@ import { getAllCourses } from "@apis/course/courseApi";
 import { useEffect, useState } from "react";
 import { Flex } from "@components/common/flex/Flex";
 import PageLayout from "@components/common/page/PageLayout";
+import { CourseContianer } from "@components/course/CourseCard.style";
 const CoursesPage = () => {
   const [courses, setCourses] = useState([]);
 
@@ -24,13 +25,15 @@ const CoursesPage = () => {
   return (
     <>
       <PageTitle>📚 전체 강의</PageTitle>
-      <Flex align="center" gap="1rem">
+      {/* <Flex align="center" gap="1rem"> */}
+      <CourseContianer>
         {!courses
           ? "등록된 강의가 없습니다."
           : courses.map((course) => (
               <CourseCard course={course} key={course} />
             ))}
-      </Flex>
+      </CourseContianer>
+      {/* </Flex> */}
     </>
   );
 };
