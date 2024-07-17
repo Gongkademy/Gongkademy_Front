@@ -1,30 +1,38 @@
 import { Flex } from "../../common/flex/Flex";
 import Text from "@components/common/text/Text";
 import Button from "../../common/button/Button";
-import { color } from "../../../styles/style";
+import { color, typo } from "../../../styles/style";
 import { BookIcon, BookMarkIcon, StarIcon } from "@assets/svg/icons";
-const CourseSummary = () => {
+const CourseSummary = ({ course }) => {
+  const courseHour = Math.floor(course.totalCourseTime / 3600);
+  const courseMinute = Math.floor(course.totalCourseTime / 60);
   return (
     <Flex direction="column" padding="1rem 0" justify="space-between">
-      <Text typo="titleSm700">재료역학 전단력과 굽힘모멘트</Text>
+      <Text typo={typo.titleSm700}>{course.title}</Text>
 
       <Flex direction="column" gap="0.5rem">
-        <Flex>
+        <Flex align="center" gap="0.25rem">
           <StarIcon width="16" fill={color.yellow} />
-          <Text>{4.6}</Text>
+          <Text typo={typo.bodySm400}>{course.avgRating}</Text>
         </Flex>
 
         <Flex gap="0.5rem">
-          <Text typo="bodySm400">수강평</Text>
-          <Text typo="bodySm700">{100}개</Text>
-          <Text typo="bodySm400">수강생</Text>
-          <Text typo="bodySm700">{100}명</Text>
+          <Text typo={typo.bodySm400}>수강평</Text>
+          <Text typo={typo.bodySm700}>{course.reviewCount}개</Text>
+          <Text typo={typo.bodySm400}>수강생</Text>
+          <Text typo={typo.bodySm700}>{course.registCount}명</Text>
         </Flex>
 
         <Flex gap="0.5rem">
-          <Text typo="bodySm400">강의</Text>
-          <Text typo="bodySm700">{50}개</Text>
-          <Text typo="bodySm700">(18시간 30분)</Text>
+          <Text typo={typo.bodySm400}>강의</Text>
+          <Text typo={typo.bodySm700}>{Number(course.lectureCount)}개</Text>
+          <Text typo={typo.bodySm700}>
+            (
+            {!courseHour
+              ? courseMinute + "분"
+              : courseHour + "시간 " + courseMinute + "분"}
+            )
+          </Text>
         </Flex>
       </Flex>
 
