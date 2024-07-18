@@ -33,8 +33,8 @@ export const END_POINT = {
   PLAYER: "/player",
   PLAYER_PREV: "/player/prev",
   PLAYER_NEXT: "/player/next",
-  PLAYER_LECTURE: (lectureId) => `/player/lecture/${lectureId}`,
-  PLAYER_COURSE: (courseId) => `/player/course/${courseId}`,
+  PLAYER_LECTURE_DETAIL: (lectureId) => `/player/lecture/${lectureId}`,
+  PLAYER_COURSE_DETAIL: (courseId) => `/player/course/${courseId}`,
 
   LECTURE: "/lecture",
   LECTURE_DETAIL: (lectureId) => `/lecture/${lectureId}`,

@@ -1,3 +1,4 @@
+import { axiosInstance } from "@apis/axiosInstance";
 import { END_POINT } from "../apiConstants";
 
 export const getPlayerLatestCourse = async (courseId) => {

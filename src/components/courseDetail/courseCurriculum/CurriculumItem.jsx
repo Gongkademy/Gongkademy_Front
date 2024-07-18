@@ -1,25 +1,34 @@
 import { CheckIcon } from "@assets/svg/icons";
 import Text from "@components/common/text/Text";
 import { Flex } from "../../common/flex/Flex";
-import { PATH } from "../../../router/Constants";
-import { COURSE_ID, LECTURE_ID } from "@pages/Service/Lecture/constants";
+import { PATH } from "@router/Constants";
+import {
+  COURSE_ID,
+  LECTURE_ID,
+  LECUTRE_URL,
+} from "@pages/Service/Lecture/constants";
 import { CurriculumItemBlock } from "./CurriculumItem.style";
-import { color } from "../../../styles/style";
+import { color } from "@styles/style";
 import Button from "../../common/button/Button";
-import { deleteLecture } from "../../../apis/course/adminCourseApi";
-import { HTTP_STATUS_CODE } from "../../../apis/apiConstants";
+import { deleteLecture } from "@apis/course/adminCourseApi";
+import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { updateLecture } from "../../../apis/course/adminCourseApi";
+import { updateLecture } from "@apis/course/adminCourseApi";
+import useLectureStore from "@stores/course/lectureStore";
 
 const CurriculumItem = ({ lecture, type }) => {
+  const setCurlecture = useLectureStore((state) => state.setCurLecture);
+  const curLecture = useLectureStore((state) => state.curLecture);
   const params = useParams();
-  const lectureQueryString = `?${LECTURE_ID}=${1}&${COURSE_ID}=${1}`;
+  const lectureQueryString = `?${LECTURE_ID}=${lecture.lectureId}&${LECUTRE_URL}=${lecture.link}`;
   const [title, setTitle] = useState(lecture.title);
   const [time, setTime] = useState(lecture.time);
   const [url, setUrl] = useState(lecture.time);
-  const [order, setOrder] = useState(lecture.lectureOrder);
+  const [order, setOrder] = useState(lecture.lectureOrderD);
   const [isEdit, setIsEdit] = useState(false);
+
+  //
 
   const handleDeleteBtnClick = async () => {
     const isConfirm = confirm("목차를 삭제하시겠습니까?");
@@ -59,6 +68,10 @@ const CurriculumItem = ({ lecture, type }) => {
     <CurriculumItemBlock
       as={type === "admin" && "div"}
       to={PATH.LECTURE + lectureQueryString}
+      onClick={() => {
+        setCurlecture(lecture);
+        console.log(curLecture);
+      }}
     >
       <Flex gap="0.75rem" align="center">
         {type === "user" && (
