@@ -3,10 +3,23 @@ import Text from "@components/common/text/Text";
 import Button from "../../common/button/Button";
 import { color, typo } from "../../../styles/style";
 import { BookIcon, BookMarkIcon, StarIcon } from "@assets/svg/icons";
+import { registCourse } from "@apis/course/courseApi";
+import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 const CourseSummary = ({ course }) => {
   const courseHour = Math.floor(course.totalCourseTime / 3600);
   const courseMinute =
     Math.floor(course.totalCourseTime / 60) - 60 * courseHour;
+
+  const handleRegistBtnClick = async () => {
+    try {
+      const response = await registCourse(course.courseId);
+      if (response.status === HTTP_STATUS_CODE.CREATED) {
+        alert("수강 강좌를 등록했습니다.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Flex direction="column" padding="1rem 0" justify="space-between">
       <Text typo={typo.titleSm700}>{course.title}</Text>
@@ -47,7 +60,7 @@ const CourseSummary = ({ course }) => {
           저장하기
         </Button>
       </Flex>
-      <Button fill cta>
+      <Button fill cta onClick={handleRegistBtnClick}>
         수강하기
       </Button>
     </Flex>

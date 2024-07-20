@@ -20,7 +20,7 @@ export const END_POINT = {
   COURSE_INFO: (courseId) => `/course/info/${courseId}`,
   COURSE_SCRAP: "/course/scrap",
   COURSE_LIKE: "/course/like",
-  COURSE_REGIST: "/course/regist",
+  COURSE_REGIST: (courseId) => `/course/regist/${courseId}`,
 
   COURSE_COMMNET: "/course/comment",
   COURSE_COMMNET_DETAIL: (courseId) => `/course/comment/${courseId}`,
@@ -36,6 +36,7 @@ export const END_POINT = {
   PLAYER_LECTURE_DETAIL: (lectureId) => `/player/lecture/${lectureId}`,
   PLAYER_COURSE_DETAIL: (courseId) => `/player/course/${courseId}`,
 
+  COURSE_LECTURE: "/course/lecture",
   LECTURE: "/lecture",
   LECTURE_DETAIL: (lectureId) => `/lecture/${lectureId}`,
 

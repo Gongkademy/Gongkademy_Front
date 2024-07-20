@@ -9,8 +9,8 @@ export const getAllCourseContents = async (courseId) => {
   return await axiosInstance.get(END_POINT.COURSE_LIST(courseId));
 };
 
-export const registCourse = async (data) => {
-  return await axiosInstance.post(END_POINT.COURSE_REGIST, data);
+export const registCourse = async (courseId) => {
+  return await axiosInstance.post(END_POINT.COURSE_REGIST(courseId));
 };
 
 export const scrapCourse = async (data) => {
@@ -47,4 +47,8 @@ export const likeCourse = async (data) => {
 
 export const getCourseInfo = async (courseId) => {
   return await axiosInstance.get(END_POINT.COURSE_INFO(courseId));
+};
+
+export const getLecture = async (params) => {
+  return await axiosInstance.get(END_POINT.COURSE_LECTURE, { params: params });
 };
