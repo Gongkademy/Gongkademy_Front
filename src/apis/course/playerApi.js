@@ -12,11 +12,3 @@ export const getPlayerLatestLecture = async (lectureId) => {
 export const updatePlayerLatest = async (data) => {
   return await axiosInstance.patch(END_POINT.PLAYER, data);
 };
-
-export const getPlayerNext = async (data) => {
-  return await axiosInstance.get(END_POINT.PLAYER_NEXT);
-};
-
-export const getPlayerPrev = async (data) => {
-  return await axiosInstance.get(END_POINT.PLAYER_PREV);
-};

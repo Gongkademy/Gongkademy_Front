@@ -5,6 +5,7 @@ import { PATH } from "@router/Constants";
 import {
   COURSE_ID,
   LECTURE_ID,
+  LECUTRE_ORDER,
   LECUTRE_URL,
 } from "@pages/Service/Lecture/constants";
 import { CurriculumItemBlock } from "./CurriculumItem.style";
@@ -18,10 +19,11 @@ import { updateLecture } from "@apis/course/adminCourseApi";
 import useLectureStore from "@stores/course/lectureStore";
 
 const CurriculumItem = ({ lecture, type }) => {
-  const setCurlecture = useLectureStore((state) => state.setCurLecture);
-  const curLecture = useLectureStore((state) => state.curLecture);
+  // const setCurlecture = useLectureStore((state) => state.setCurLecture);
+  // const curLecture = useLectureStore((state) => state.curLecture);
+  console.log(lecture);
   const params = useParams();
-  const lectureQueryString = `?${LECTURE_ID}=${lecture.lectureId}&${LECUTRE_URL}=${lecture.link}`;
+  const lectureQueryString = `?${COURSE_ID}=${params.courseId}&${LECUTRE_ORDER}=${lecture.lectureOrder}`;
   const [title, setTitle] = useState(lecture.title);
   const [time, setTime] = useState(lecture.time);
   const [url, setUrl] = useState(lecture.time);
@@ -68,10 +70,6 @@ const CurriculumItem = ({ lecture, type }) => {
     <CurriculumItemBlock
       as={type === "admin" && "div"}
       to={PATH.LECTURE + lectureQueryString}
-      onClick={() => {
-        setCurlecture(lecture);
-        console.log(curLecture);
-      }}
     >
       <Flex gap="0.75rem" align="center">
         {type === "user" && (

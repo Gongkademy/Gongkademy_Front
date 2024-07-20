@@ -3,43 +3,37 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@assets/svg/icons";
 import { Flex } from "../../common/flex/Flex";
 import Text from "../../common/text/Text";
 import { useSearchParams } from "react-router-dom";
-import { COURSE_ID, LECTURE_ID } from "@pages/Service/Lecture/constants";
+import { Link } from "react-router-dom";
+import {
+  COURSE_ID,
+  LECTURE_ID,
+  LECUTRE_ORDER,
+} from "@pages/Service/Lecture/constants";
+import { PATH } from "@router/Constants";
 
 const LectureFooter = ({ lecture }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const createLectureUrl = (step) => {
+    return `?${COURSE_ID}=${searchParams.get(COURSE_ID)}&${LECUTRE_ORDER}=${
+      searchParams.get(LECUTRE_ORDER) * 1 + step
+    }`;
+  };
   //TODO: Reducer로 리팩토링 해보기
   return (
     <FooterBlock>
-      <Flex
-        align="center"
-        gap="0.5rem"
-        padding="0.25rem 3rem"
-        onClick={() =>
-          setSearchParams({
-            cid: searchParams.get(COURSE_ID),
-            lid: searchParams.get(LECTURE_ID) * 1 - 1,
-          })
-        }
-      >
-        <ArrowLeftIcon width={16} height={16} />
-        <Text typo="bodyRg400">이전 수업</Text>
-      </Flex>
+      <Link to={PATH.LECTURE + createLectureUrl(-1)}>
+        <Flex align="center" gap="0.5rem" padding="0.25rem 3rem">
+          <ArrowLeftIcon width={16} height={16} />
+          <Text typo="bodyRg400">이전 수업</Text>
+        </Flex>
+      </Link>
 
-      <Flex
-        align="center"
-        gap="0.5rem"
-        padding="0.25rem 3rem"
-        onClick={() =>
-          setSearchParams({
-            cid: searchParams.get(COURSE_ID),
-            lid: searchParams.get(LECTURE_ID) * 1 + 1,
-          })
-        }
-      >
-        <Text typo="bodyRg400">다음 수업</Text>
-        <ArrowRightIcon width={16} height={16} />
-      </Flex>
+      <Link to={PATH.LECTURE + createLectureUrl(+1)}>
+        <Flex align="center" gap="0.5rem" padding="0.25rem 3rem">
+          <Text typo="bodyRg400">다음 수업</Text>
+          <ArrowRightIcon width={16} height={16} />
+        </Flex>
+      </Link>
     </FooterBlock>
   );
 };
