@@ -38,50 +38,68 @@ const CommunityDetail = () => {
   const splitPath = location.pathname.split("/");
   const type = splitPath[2];
   const boardId = splitPath[3];
-  const [board, setBoard] = useState({});
-  const { notice, fetchNoticeDetail, likeNotice, scrapNotice } =
-    useNoticeStore();
-  const { concern, fetchConcernDetail, likeConcern, scrapConcern } =
-    useConcernStore();
-  const { qna, fetchQnaDetail, likeQna, scrapQna } = useQnaStore();
+  const [board, setBoard] = useState(null);
+  const {
+    notice,
+    fetchNoticeDetail,
+    likeNotice,
+    scrapNotice,
+  } = useNoticeStore();
+  const {
+    concern,
+    fetchConcernDetail,
+    likeConcern,
+    scrapConcern,
+  } = useConcernStore();
+  const {
+    qna,
+    fetchQnaDetail,
+    likeQna,
+    scrapQna,
+  } = useQnaStore();
   useEffect(() => {
     const fetchData = async () => {
+      let fetchBoard;
       if (type === "notice") {
         await fetchNoticeDetail(boardId);
-        setBoard(notice);
+        fetchBoard = notice;
       } else if (type === "concern") {
         await fetchConcernDetail(boardId);
-        setBoard(concern);
+        fetchBoard = concern;
       } else {
         await fetchQnaDetail(boardId);
-        setBoard(qna);
+        fetchBoard = qna;
       }
+      setBoard(fetchBoard);
     };
     fetchData();
-  }, [type, boardId, notice, concern, qna]);
-
-  const [viewReview, setViewReview] = useState(false);
-  const [writeReview, setWriteReview] = useState(false);
-  const [isMeetballClick, setIsMeetballClick] = useState(false);
+  }, [board]);
+  console.log(board);
+  const [viewReview, setViewReview] =
+    useState(false);
+  const [writeReview, setWriteReview] =
+    useState(false);
+  const [isMeetballClick, setIsMeetballClick] =
+    useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
-  const handleClickLike = (articleId) => {
+  const handleClickLike = () => {
     if (type === "notice") {
-      likeNotice(articleId);
+      likeNotice(boardId);
     } else if (type === "qna") {
-      likeQna(articleId);
+      likeQna(boardId);
     } else {
-      likeConcern(articleId);
+      likeConcern(boardId);
     }
   };
-  const handleClickBookMark = (articleId) => {
+  const handleClickBookMark = () => {
     if (type === "notice") {
-      scrapNotice(articleId);
+      scrapNotice(boardId);
     } else if (type === "qna") {
-      scrapQna(articleId);
+      scrapQna(boardId);
     } else {
-      scrapConcern(articleId);
+      scrapConcern(boardId);
     }
   };
   const handleClickGoWriteReview = () => {
@@ -91,6 +109,9 @@ const CommunityDetail = () => {
     console.log(isMeetballClick);
     setIsMeetballClick(!isMeetballClick);
   };
+  if (!board) {
+    return <div>Loading...</div>;
+  }
   return (
     <DetailBlock>
       <Container>
@@ -124,11 +145,18 @@ const CommunityDetail = () => {
                   onClick={handleClickLike}
                 />
               ) : (
-                <LikeIcon width="16" height="16" onClick={handleClickLike} />
+                <LikeIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickLike}
+                />
               )}
               <Content>0</Content>
             </ContainerCol>
-            <ContainerCol type="icon" style={{ position: "relative" }}>
+            <ContainerCol
+              type="icon"
+              style={{ position: "relative" }}
+            >
               <MeetballIcon
                 width="16"
                 height="16"
@@ -137,7 +165,9 @@ const CommunityDetail = () => {
               <br />
               {isMeetballClick && (
                 <MeetballSelect
-                  path={PATH.COMMUNITY_UPDATE(board.ariticleId)}
+                  path={PATH.COMMUNITY_UPDATE(
+                    board.ariticleId
+                  )}
                 />
               )}
             </ContainerCol>
@@ -149,33 +179,54 @@ const CommunityDetail = () => {
         </ContainerRow>
         <Content>{board.createTime} 작성</Content>
         <ContentContainer>
-          <Content type="black">{board.content}</Content>
+          <Content type="black">
+            {board.content}
+          </Content>
           {type === "qna" && (
             <ContainerRow type="center">
               <QnaImg />
               <ContainerCol>
-                <CourseName>{board.lectureTitle}</CourseName>
-                <Content>{board.courseTitle}</Content>
+                <CourseName>
+                  {board.lectureTitle}
+                </CourseName>
+                <Content>
+                  {board.courseTitle}
+                </Content>
               </ContainerCol>
             </ContainerRow>
           )}
           <ContainerRow>
-            <Button text onClick={handleClickViewReview}>
+            <Button
+              text
+              onClick={handleClickViewReview}
+            >
               {!viewReview ? (
-                <ChevronDownIcon width="16" height="16" />
+                <ChevronDownIcon
+                  width="16"
+                  height="16"
+                />
               ) : (
-                <ChevronUpIcon width="16" height="16" />
+                <ChevronUpIcon
+                  width="16"
+                  height="16"
+                />
               )}{" "}
               {board.commentCount}개 댓글 보기
             </Button>
-            <Button text onClick={handleClickGoWriteReview}>
-              <ChatIcon width="16" height="16" /> 댓글 작성하기
+            <Button
+              text
+              onClick={handleClickGoWriteReview}
+            >
+              <ChatIcon width="16" height="16" />{" "}
+              댓글 작성하기
             </Button>
           </ContainerRow>
         </ContentContainer>
         {writeReview && <RegistReview />}
         {viewReview &&
-          board.comments.map((review) => <Review content={review.content} />)}
+          board.comments.map((review) => (
+            <Review content={review.content} />
+          ))}
       </Container>
     </DetailBlock>
   );

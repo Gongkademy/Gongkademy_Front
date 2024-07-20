@@ -24,8 +24,8 @@ const CommunityCard = ({ board, type }) => {
   const handleClickConcernCard = () => {
     navigate(
       PATH.COMMUNITY_DETAIL(
-        type,
-        initialBoard.articleId
+        type === "QNA" ? "Q&A" : "concern",
+        board.articleId
       )
     );
   };

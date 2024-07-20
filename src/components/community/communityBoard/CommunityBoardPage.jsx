@@ -26,7 +26,13 @@ const CommunityBoardPage = ({ type, pageNo }) => {
       fetchConcernList("", "", pageNo - 1);
       setBoardList(concernList);
     }
-  }, [type, boardList, qnaList, concernList]);
+  }, [
+    type,
+    boardList,
+    qnaList,
+    concernList,
+    pageNo,
+  ]);
   return (
     <>
       {noticeList.map((notice) => (
