@@ -63,8 +63,8 @@ const CommunityRegistPage = () => {
     setSelectedLecture("강의를 선택해주세요.");
     navigate(
       PATH.COMMUNITY(
-        type === "Q&A" ? "Q&A" : "concern"
-      )
+        selected === "🙋Q&A" ? "Q&A" : "concern"
+      ) + `?keyword=&criteria=&pageNo=1`
     );
   };
   return (

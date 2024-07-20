@@ -10,6 +10,8 @@ import CommunityBoardPage from "@components/community/communityBoard/CommunityBo
 import { PATH } from "@router/Constants";
 import useCommonStore from "@stores/common/CommonStore";
 import { useState, useEffect } from "react";
+import useConcernStore from "@stores/Community/ConcernStore";
+import useQnaStore from "@stores/Community/QnaStore";
 const CommunityPage = () => {
   const { keyword, criteria } = useCommonStore();
   const location = useLocation();
@@ -19,9 +21,14 @@ const CommunityPage = () => {
   const params = new URLSearchParams(
     location.search
   );
-  const pageNo = parseInt(params.get("pageNo"));
+  const { qnaList } = useQnaStore();
+  const { concernList } = useConcernStore();
+  const [pageNo, setPageNo] = useState(
+    parseInt(params.get("pageNo"))
+  );
   useEffect(() => {
     setType(location.pathname.split("/")[2]);
+    setPageNo(parseInt(params.get("pageNo")));
   }, [location.pathname]);
   return (
     <Container>
@@ -33,10 +40,17 @@ const CommunityPage = () => {
             `?keyword=${keyword}&criteria=${criteria}&pageNo=1`
           }
         />
-        <CommunityBoardPage type={type} />
+        <CommunityBoardPage
+          type={type}
+          pageNo={pageNo}
+        />
         <Pagination
-          totalItems={51}
-          itemCountPerPage={5}
+          totalItems={
+            type === "Q&A"
+              ? qnaList.length
+              : concernList.length
+          }
+          itemCountPerPage={10}
           pageCount={5}
           currentPage={pageNo}
           type={type}

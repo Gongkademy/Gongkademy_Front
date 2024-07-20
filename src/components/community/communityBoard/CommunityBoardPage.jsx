@@ -8,7 +8,7 @@ import useNoticeStore from "@stores/Community/NoticeStore";
 import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 
-const CommunityBoardPage = ({ type }) => {
+const CommunityBoardPage = ({ type, pageNo }) => {
   const [boardList, setBoardList] = useState([]);
   const { noticeList, fetchNoticeList } =
     useNoticeStore();
@@ -20,10 +20,10 @@ const CommunityBoardPage = ({ type }) => {
   }, []);
   useEffect(() => {
     if (type === "Q&A") {
-      fetchQnaList("", "", 0);
+      fetchQnaList("", "", pageNo - 1);
       setBoardList(qnaList);
     } else {
-      fetchConcernList("", "", 0);
+      fetchConcernList("", "", pageNo - 1);
       setBoardList(concernList);
     }
   }, [type, boardList, qnaList, concernList]);
