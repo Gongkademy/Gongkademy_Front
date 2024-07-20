@@ -9,7 +9,7 @@ export const getQuestionList = async (
   return await axiosInstance.get(
     END_POINT.COMMUNITY_QUESTION,
     {
-      params: { keyword, criteria, page },
+      params: { page, criteria, keyword },
     }
   );
 };
