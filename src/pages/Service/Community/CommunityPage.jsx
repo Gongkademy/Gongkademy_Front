@@ -13,7 +13,12 @@ import { useState, useEffect } from "react";
 import useConcernStore from "@stores/Community/ConcernStore";
 import useQnaStore from "@stores/Community/QnaStore";
 const CommunityPage = () => {
-  const { keyword, criteria } = useCommonStore();
+  const {
+    keyword,
+    criteria,
+    setKeyword,
+    setCriteria,
+  } = useCommonStore();
   const location = useLocation();
   const type = location.pathname.split("/")[2];
   const params = new URLSearchParams(
@@ -36,6 +41,13 @@ const CommunityPage = () => {
       );
     }
   }, [type]);
+  const boardSearch = (keyword, criteria) => {
+    if (type === "Q&A") {
+      fetchQnaList(keyword, criteria, 0);
+    } else {
+      fetchConcernList(keyword, criteria, 0);
+    }
+  };
   return (
     <Container>
       <NavBar />
@@ -45,6 +57,8 @@ const CommunityPage = () => {
             PATH.COMMUNITY(type) +
             `?keyword=${keyword}&criteria=${criteria}&pageNo=1`
           }
+          search={boardSearch}
+          type={type}
         />
         <CommunityBoardPage
           type={type}
