@@ -5,7 +5,7 @@ import { updatePlayerLatest } from "@apis/course/playerApi";
 const PLAY_STATE = {
   PLAYING: 1,
 };
-const LecturePlayer = ({ lecture }) => {
+const LecturePlayer = ({ lecture, startPoint }) => {
   const [player, setPlayer] = useState();
   const UPDATE_PERIOD = 5_000;
   let isSaving = false; //처음에만 동작하도록
@@ -21,19 +21,20 @@ const LecturePlayer = ({ lecture }) => {
           }).then((response) => console.log(response));
         }
       }, UPDATE_PERIOD);
-      // player.seekTo(lecture.savePoint, true);
       isSaving = true;
       return () => clearInterval(timer);
     }
   };
 
+  const handleReadyState = (event) => {
+    setPlayer(event.target);
+    event.target.seekTo(startPoint, true);
+  };
+
   return (
     <LecturePlayerBlock>
-      {/* <button type="button" onClick={() => player?.seekTo(120, true)}>
-        Seek to 2 minutes
-      </button> */}
       <YouTube
-        videoId={"VSkkE6cKcEY"}
+        videoId={lecture.link}
         opts={{
           width: "100%",
           height: "720px",
@@ -42,7 +43,7 @@ const LecturePlayer = ({ lecture }) => {
           },
         }}
         onPlay={handlePlayerPlay}
-        onReady={(event) => setPlayer(event.target)}
+        onReady={(event) => handleReadyState(event)}
         // onReady={(event) => console.log(event.target)}
       />
 

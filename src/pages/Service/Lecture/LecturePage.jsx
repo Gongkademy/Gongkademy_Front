@@ -19,11 +19,13 @@ const LecturePage = () => {
   const [startPoint, setStartPoint] = useState(0);
   const fetchLecture = async () => {
     let lid = 0;
+    console.log(searchParams.get(LECUTRE_ORDER));
     try {
       const response = await getLecture({
         courseId: searchParams.get(COURSE_ID),
         lectureOrder: searchParams.get(LECUTRE_ORDER),
       });
+
       setLecture(response.data);
       lid = response.data.lectureId;
       console.log(response.data);
@@ -31,8 +33,8 @@ const LecturePage = () => {
       console.log(error);
     }
     try {
-      const resposne = await getPlayerLatestLecture(lid);
-      console.log(resposne);
+      const response = await getPlayerLatestLecture(lid);
+      setStartPoint(response.data.savePoint);
     } catch (error) {
       if (error.response.status === HTTP_STATUS_CODE.BAD_REQUEST) {
         if (error.response.data.message === "수강강의가 존재하지 않습니다") {
@@ -51,7 +53,7 @@ const LecturePage = () => {
     <PageBlock>
       <Flex direction="column" width="100%">
         <LectureHeader title={lecture.title} />
-        <LecturePlayer lecture={lecture} />
+        <LecturePlayer lecture={lecture} startPoint={startPoint} />
         <LectureFooter lecture={lecture} />
       </Flex>
       {/* <LectureSidebar lecture={curLecture} /> */}
