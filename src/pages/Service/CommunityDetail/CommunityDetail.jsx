@@ -73,7 +73,7 @@ const CommunityDetail = () => {
       setBoard(fetchBoard);
     };
     fetchData();
-  }, [board]);
+  }, []);
   console.log(board);
   const [viewReview, setViewReview] =
     useState(false);

@@ -15,21 +15,27 @@ import useQnaStore from "@stores/Community/QnaStore";
 const CommunityPage = () => {
   const { keyword, criteria } = useCommonStore();
   const location = useLocation();
-  const [type, setType] = useState(
-    location.pathname.split("/")[2]
-  );
+  const type = location.pathname.split("/")[2];
   const params = new URLSearchParams(
     location.search
   );
-  const { qnaList } = useQnaStore();
-  const { concernList } = useConcernStore();
   const [pageNo, setPageNo] = useState(
     parseInt(params.get("pageNo"))
   );
+  const { qnaList, fetchQnaList } = useQnaStore();
+  const { concernList, fetchConcernList } =
+    useConcernStore();
   useEffect(() => {
-    setType(location.pathname.split("/")[2]);
-    setPageNo(parseInt(params.get("pageNo")));
-  }, [location.pathname]);
+    if (type === "Q&A") {
+      fetchQnaList(keyword, criteria, pageNo - 1);
+    } else {
+      fetchConcernList(
+        keyword,
+        criteria,
+        pageNo - 1
+      );
+    }
+  }, [type]);
   return (
     <Container>
       <NavBar />
@@ -43,12 +49,17 @@ const CommunityPage = () => {
         <CommunityBoardPage
           type={type}
           pageNo={pageNo}
+          initialBoardList={
+            type === "Q&A"
+              ? qnaList.data
+              : concernList.data
+          }
         />
         <Pagination
           totalItems={
             type === "Q&A"
-              ? qnaList.length
-              : concernList.length
+              ? qnaList.totalCount
+              : concernList.totalCount
           }
           itemCountPerPage={10}
           pageCount={5}

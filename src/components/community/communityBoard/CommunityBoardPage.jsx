@@ -8,31 +8,16 @@ import useNoticeStore from "@stores/Community/NoticeStore";
 import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 
-const CommunityBoardPage = ({ type, pageNo }) => {
-  const [boardList, setBoardList] = useState([]);
+const CommunityBoardPage = ({
+  type,
+  initialBoardList,
+}) => {
   const { noticeList, fetchNoticeList } =
     useNoticeStore();
-  const { qnaList, fetchQnaList } = useQnaStore();
-  const { concernList, fetchConcernList } =
-    useConcernStore();
+
   useEffect(() => {
     fetchNoticeList();
   }, []);
-  useEffect(() => {
-    if (type === "Q&A") {
-      fetchQnaList("", "", pageNo - 1);
-      setBoardList(qnaList);
-    } else {
-      fetchConcernList("", "", pageNo - 1);
-      setBoardList(concernList);
-    }
-  }, [
-    type,
-    boardList,
-    qnaList,
-    concernList,
-    pageNo,
-  ]);
   return (
     <>
       {noticeList.map((notice) => (
@@ -42,13 +27,14 @@ const CommunityBoardPage = ({ type, pageNo }) => {
         />
       ))}
       <br />
-      {boardList.map((board) => (
-        <CommunityCard
-          board={board}
-          key={board.articleId}
-          type={board.boardType}
-        />
-      ))}
+      {initialBoardList &&
+        initialBoardList.map((board) => (
+          <CommunityCard
+            board={board}
+            key={board.articleId}
+            type={board.boardType}
+          />
+        ))}
       <Link
         to={PATH.COMMUNITY_REGIST(type)}
         state={{ type }}

@@ -12,23 +12,36 @@ import {
 } from "@apis/community/QnaApi";
 const useQnaStore = create((set, get) => ({
   qna: null,
-  qnaList: [],
+  qnaList: {},
   likedQnas: [],
   scrappedQnas: [],
 
   //질문 목록 가져오기
-  fetchQnaList: async (keyword, criteria, pageNo) => {
+  fetchQnaList: async (
+    keyword,
+    criteria,
+    pageNo
+  ) => {
     try {
-      const response = await getQuestionList(keyword, criteria, pageNo);
+      const response = await getQuestionList(
+        keyword,
+        criteria,
+        pageNo
+      );
       set({ qnaList: response.data });
     } catch (e) {
-      console.error("질문 목록 가져오기 실패 : ", e);
+      console.error(
+        "질문 목록 가져오기 실패 : ",
+        e
+      );
     }
   },
   //질문 상세보기
   fetchQnaDetail: async (articleId) => {
     try {
-      const response = await getQuestionDetail(articleId);
+      const response = await getQuestionDetail(
+        articleId
+      );
       set({ qna: response.data });
     } catch (e) {
       console.error("질문 상세보기 실패: ", e);
@@ -36,9 +49,11 @@ const useQnaStore = create((set, get) => ({
   },
   //질문글 작성
   writeQna: async (article) => {
-    await writeQuestion(article).then((response) => {
-      return response.data;
-    });
+    await writeQuestion(article).then(
+      (response) => {
+        return response.data;
+      }
+    );
   },
   //질문 수정
   updateQna: async (articleId, article) => {
@@ -54,7 +69,10 @@ const useQnaStore = create((set, get) => ({
       const response = await QuestionLiked();
       set({ likedQnas: response.data });
     } catch (e) {
-      console.error("좋아요한 리스트 가져오기 실패: ", e);
+      console.error(
+        "좋아요한 리스트 가져오기 실패: ",
+        e
+      );
     }
   },
   //스크랩 목록 가져오기
@@ -63,7 +81,10 @@ const useQnaStore = create((set, get) => ({
       const response = await QuestionScrapped();
       set({ scrappedQnas: response.data });
     } catch (e) {
-      console.error("스크랩한 리스트 가져오기 실패: ", e);
+      console.error(
+        "스크랩한 리스트 가져오기 실패: ",
+        e
+      );
     }
   },
   //질문 좋아요
