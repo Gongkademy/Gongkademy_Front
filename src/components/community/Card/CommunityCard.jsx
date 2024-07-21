@@ -21,19 +21,24 @@ import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
+  const [initialBoard, setInitialBoard] =
+    useState(board);
   const handleClickConcernCard = () => {
     navigate(
       PATH.COMMUNITY_DETAIL(
         type === "QNA" ? "Q&A" : "concern",
         board.articleId
-      )
+      ),
+      {
+        state: {
+          board: initialBoard,
+        },
+      }
     );
   };
   const { likeQna, scrapQna } = useQnaStore();
   const { likeConcern, scrapConcern } =
     useConcernStore();
-  const [initialBoard, setInitialBoard] =
-    useState(board);
   const handleClickLike = () => {
     if (type === "QNA") {
       likeQna(initialBoard.articleId);

@@ -35,10 +35,12 @@ import useNoticeStore from "@stores/Community/NoticeStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 const CommunityDetail = () => {
   const location = useLocation();
+  const { state } = useLocation();
   const splitPath = location.pathname.split("/");
   const type = splitPath[2];
-  const boardId = splitPath[3];
-  const [board, setBoard] = useState(null);
+  const { board } = state;
+  const [initialBoard, setInitialBoard] =
+    useState(board);
   const {
     notice,
     fetchNoticeDetail,
@@ -57,24 +59,7 @@ const CommunityDetail = () => {
     likeQna,
     scrapQna,
   } = useQnaStore();
-  useEffect(() => {
-    const fetchData = async () => {
-      let fetchBoard;
-      if (type === "notice") {
-        await fetchNoticeDetail(boardId);
-        fetchBoard = notice;
-      } else if (type === "concern") {
-        await fetchConcernDetail(boardId);
-        fetchBoard = concern;
-      } else {
-        await fetchQnaDetail(boardId);
-        fetchBoard = qna;
-      }
-      setBoard(fetchBoard);
-    };
-    fetchData();
-  }, []);
-  console.log(board);
+
   const [viewReview, setViewReview] =
     useState(false);
   const [writeReview, setWriteReview] =
@@ -86,21 +71,35 @@ const CommunityDetail = () => {
   };
   const handleClickLike = () => {
     if (type === "notice") {
-      likeNotice(boardId);
+      likeNotice(initialBoard.articleId);
     } else if (type === "qna") {
-      likeQna(boardId);
+      likeQna(initialBoard.articleId);
     } else {
-      likeConcern(boardId);
+      likeConcern(initialBoard.articleId);
     }
+    setInitialBoard((prevBoard) => ({
+      ...prevBoard,
+      isLiked: !prevBoard.isLiked,
+      likeCount: prevBoard.isLiked
+        ? prevBoard.likeCount - 1
+        : prevBoard.likeCount + 1,
+    }));
   };
   const handleClickBookMark = () => {
     if (type === "notice") {
-      scrapNotice(boardId);
+      scrapNotice(initialBoard.articleId);
     } else if (type === "qna") {
-      scrapQna(boardId);
+      scrapQna(initialBoard.articleId);
     } else {
-      scrapConcern(boardId);
+      scrapConcern(initialBoard.articleId);
     }
+    setInitialBoard((prevBoard) => ({
+      ...prevBoard,
+      isScrapped: !prevBoard.isScrapped,
+      scrapCount: prevBoard.isScrapped
+        ? prevBoard.scrapCount - 1
+        : prevBoard.scrapCount + 1,
+    }));
   };
   const handleClickGoWriteReview = () => {
     setWriteReview(!writeReview);
@@ -109,125 +108,140 @@ const CommunityDetail = () => {
     console.log(isMeetballClick);
     setIsMeetballClick(!isMeetballClick);
   };
-  if (!board) {
-    return <div>Loading...</div>;
-  }
   return (
     <DetailBlock>
-      <Container>
-        <TitleContainer>
-          <Title>{board.title}</Title>
-          <ContainerRow>
-            <ContainerCol type="icon">
-              {board.isScrapped ? (
-                <BookMarkIcon
-                  width="16"
-                  height="16"
-                  fill={color.yellow}
-                  onClick={handleClickBookMark}
-                />
-              ) : (
-                <BookMarkIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickBookMark}
-                />
-              )}
-              <Content>0</Content>
-            </ContainerCol>
-            <ContainerCol type="icon">
-              {board.iLiked ? (
-                <LikeIcon
-                  fill={color.pinkRed}
-                  stroke="none"
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
-              ) : (
-                <LikeIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickLike}
-                />
-              )}
-              <Content>0</Content>
-            </ContainerCol>
-            <ContainerCol
-              type="icon"
-              style={{ position: "relative" }}
-            >
-              <MeetballIcon
-                width="16"
-                height="16"
-                onClick={handleClickMeetball}
-              />
-              <br />
-              {isMeetballClick && (
-                <MeetballSelect
-                  path={PATH.COMMUNITY_UPDATE(
-                    board.ariticleId
-                  )}
-                />
-              )}
-            </ContainerCol>
-          </ContainerRow>
-        </TitleContainer>
-        <ContainerRow type="center">
-          <Profile />
-          <Content>{board.memberId}</Content>
-        </ContainerRow>
-        <Content>{board.createTime} 작성</Content>
-        <ContentContainer>
-          <Content type="black">
-            {board.content}
-          </Content>
-          {type === "qna" && (
-            <ContainerRow type="center">
-              <QnaImg />
-              <ContainerCol>
-                <CourseName>
-                  {board.lectureTitle}
-                </CourseName>
+      {initialBoard && (
+        <Container>
+          <TitleContainer>
+            <Title>{initialBoard.title}</Title>
+            <ContainerRow>
+              <ContainerCol type="icon">
+                {initialBoard.isScrapped ? (
+                  <BookMarkIcon
+                    width="16"
+                    height="16"
+                    fill={color.yellow}
+                    onClick={handleClickBookMark}
+                  />
+                ) : (
+                  <BookMarkIcon
+                    width="16"
+                    height="16"
+                    onClick={handleClickBookMark}
+                  />
+                )}
                 <Content>
-                  {board.courseTitle}
+                  {initialBoard.scrapCount}
                 </Content>
               </ContainerCol>
+              <ContainerCol type="icon">
+                {initialBoard.isLiked ? (
+                  <LikeIcon
+                    fill={color.pinkRed}
+                    stroke="none"
+                    width="16"
+                    height="16"
+                    onClick={handleClickLike}
+                  />
+                ) : (
+                  <LikeIcon
+                    width="16"
+                    height="16"
+                    onClick={handleClickLike}
+                  />
+                )}
+                <Content>
+                  {initialBoard.likeCount}
+                </Content>
+              </ContainerCol>
+              <ContainerCol
+                type="icon"
+                style={{ position: "relative" }}
+              >
+                <MeetballIcon
+                  width="16"
+                  height="16"
+                  onClick={handleClickMeetball}
+                />
+                <br />
+                {isMeetballClick && (
+                  <MeetballSelect
+                    path={PATH.COMMUNITY_UPDATE(
+                      initialBoard.ariticleId
+                    )}
+                  />
+                )}
+              </ContainerCol>
             </ContainerRow>
-          )}
-          <ContainerRow>
-            <Button
-              text
-              onClick={handleClickViewReview}
-            >
-              {!viewReview ? (
-                <ChevronDownIcon
-                  width="16"
-                  height="16"
-                />
-              ) : (
-                <ChevronUpIcon
-                  width="16"
-                  height="16"
-                />
-              )}{" "}
-              {board.commentCount}개 댓글 보기
-            </Button>
-            <Button
-              text
-              onClick={handleClickGoWriteReview}
-            >
-              <ChatIcon width="16" height="16" />{" "}
-              댓글 작성하기
-            </Button>
+          </TitleContainer>
+          <ContainerRow type="center">
+            <Profile />
+            <Content>
+              {initialBoard.memberId}
+            </Content>
           </ContainerRow>
-        </ContentContainer>
-        {writeReview && <RegistReview />}
-        {viewReview &&
-          board.comments.map((review) => (
-            <Review content={review.content} />
-          ))}
-      </Container>
+          <Content>
+            {initialBoard.createTime} 작성
+          </Content>
+          <ContentContainer>
+            <Content type="black">
+              {initialBoard.content}
+            </Content>
+            {type === "qna" && (
+              <ContainerRow type="center">
+                <QnaImg />
+                <ContainerCol>
+                  <CourseName>
+                    {initialBoard.lectureTitle}
+                  </CourseName>
+                  <Content>
+                    {initialBoard.courseTitle}
+                  </Content>
+                </ContainerCol>
+              </ContainerRow>
+            )}
+            <ContainerRow>
+              <Button
+                text
+                onClick={handleClickViewReview}
+              >
+                {!viewReview ? (
+                  <ChevronDownIcon
+                    width="16"
+                    height="16"
+                  />
+                ) : (
+                  <ChevronUpIcon
+                    width="16"
+                    height="16"
+                  />
+                )}{" "}
+                {initialBoard.commentCount}개 댓글
+                보기
+              </Button>
+              <Button
+                text
+                onClick={handleClickGoWriteReview}
+              >
+                <ChatIcon
+                  width="16"
+                  height="16"
+                />{" "}
+                댓글 작성하기
+              </Button>
+            </ContainerRow>
+          </ContentContainer>
+          {writeReview && <RegistReview />}
+          {viewReview &&
+            initialBoard.comments.map(
+              (review) => (
+                <Review
+                  content={review.content}
+                />
+              )
+            )}
+        </Container>
+      )}
     </DetailBlock>
   );
 };

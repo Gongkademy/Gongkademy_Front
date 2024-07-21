@@ -5,7 +5,10 @@ import {
   Content,
   Pointer,
 } from "./NoticeCard.style.js";
-import { VisibleIcon, LikeIcon } from "@assets/svg/icons";
+import {
+  VisibleIcon,
+  LikeIcon,
+} from "@assets/svg/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
@@ -14,27 +17,44 @@ import useNoticeStore from "@stores/Community/NoticeStore";
 const Notice = ({ notice }) => {
   const navigate = useNavigate();
   const { likeNotice } = useNoticeStore();
+  const [initialNotice, setInitialNotice] =
+    useState(notice);
   const handleClickConcernCard = () => {
-    navigate(PATH.COMMUNITY_DETAIL("notice", initialNotice.articleId));
+    navigate(
+      PATH.COMMUNITY_DETAIL(
+        "notice",
+        initialNotice.articleId
+      ),
+      {
+        state: {
+          board: initialNotice,
+        },
+      }
+    );
   };
-  const [initialNotice, setInitialNotice] = useState(notice);
   const handleClickLike = () => {
     likeNotice(initialNotice.articleId);
     setInitialNotice((prevNotice) => ({
       ...prevNotice,
       isLike: !prevNotice.isLiked,
-      likeCount: prevNotice.isLiked ? prevNotice.like - 1 : prevNotice.like + 1,
+      likeCount: prevNotice.isLiked
+        ? prevNotice.like - 1
+        : prevNotice.like + 1,
     }));
   };
   return (
     <NoticeContainer>
       <Pointer>
-        <NoticeTitle onClick={handleClickConcernCard}>
+        <NoticeTitle
+          onClick={handleClickConcernCard}
+        >
           {initialNotice.title}
         </NoticeTitle>
       </Pointer>
       <ContentContainer>
-        <Content>{initialNotice.createTime}</Content>
+        <Content>
+          {initialNotice.createTime}
+        </Content>
         <Content>
           <Pointer>
             {initialNotice.isLiked ? (
@@ -46,7 +66,11 @@ const Notice = ({ notice }) => {
                 onClick={handleClickLike}
               />
             ) : (
-              <LikeIcon width="16" height="16" onClick={handleClickLike} />
+              <LikeIcon
+                width="16"
+                height="16"
+                onClick={handleClickLike}
+              />
             )}
             {initialNotice.likeCount}
           </Pointer>
