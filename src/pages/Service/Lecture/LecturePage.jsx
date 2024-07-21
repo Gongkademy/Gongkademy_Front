@@ -18,22 +18,20 @@ const LecturePage = () => {
   const [lecture, setLecture] = useState("");
   const [startPoint, setStartPoint] = useState(0);
   const fetchLecture = async () => {
+    let lid = 0;
     try {
       const response = await getLecture({
         courseId: searchParams.get(COURSE_ID),
         lectureOrder: searchParams.get(LECUTRE_ORDER),
       });
       setLecture(response.data);
+      lid = response.data.lectureId;
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
-  const fetchLectureRecord = async () => {
     try {
-      const resposne = await getPlayerLatestLecture(
-        searchParams.get(LECTURE_ID)
-      );
+      const resposne = await getPlayerLatestLecture(lid);
       console.log(resposne);
     } catch (error) {
       if (error.response.status === HTTP_STATUS_CODE.BAD_REQUEST) {
@@ -47,14 +45,13 @@ const LecturePage = () => {
 
   useEffect(() => {
     fetchLecture();
-    // fetchLectureRecord();
   }, [searchParams.get(LECUTRE_ORDER)]);
 
   return (
     <PageBlock>
       <Flex direction="column" width="100%">
         <LectureHeader title={lecture.title} />
-        <LecturePlayer url={lecture.link} />
+        <LecturePlayer lecture={lecture} />
         <LectureFooter lecture={lecture} />
       </Flex>
       {/* <LectureSidebar lecture={curLecture} /> */}
