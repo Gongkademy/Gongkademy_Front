@@ -10,7 +10,12 @@ import {
 import Select from "@components/common/select/Select";
 import useCommonStore from "@stores/common/CommonStore";
 import { useNavigate } from "react-router-dom";
-const SearchBar = ({ link, search, type }) => {
+const SearchBar = ({
+  link,
+  search,
+  type,
+  setPageNo,
+}) => {
   const ref = useRef(null);
   const [selected, setSelected] =
     useState("최신순");
@@ -43,7 +48,8 @@ const SearchBar = ({ link, search, type }) => {
     }
   };
   useEffect(() => {
-    search(keyword, searchOptions[criteria]);
+    search(keyword, criteria);
+    setPageNo(1);
   }, [keyword, criteria]);
   useEffect(() => {
     if (pendingNavigation) {
@@ -70,7 +76,7 @@ const SearchBar = ({ link, search, type }) => {
         ref={ref}
       ></StyledSearchBar>
       <Select
-        options={Object.keys(searchOptions)}
+        options={searchOptions}
         selectedValue={selected}
         setSelectedValue={setSelected}
         width={"6rem"}

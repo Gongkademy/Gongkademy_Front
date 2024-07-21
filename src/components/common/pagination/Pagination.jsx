@@ -16,6 +16,7 @@ const Pagination = ({
   itemCountPerPage,
   pageCount,
   currentPage,
+  setPageNo,
   type,
   link,
 }) => {
@@ -33,7 +34,15 @@ const Pagination = ({
     if (currentPage < start)
       setStart((prev) => prev - pageCount);
   }, [currentPage, pageCount, start]);
-
+  const handleClickPrev = () => {
+    setPageNo(start - 1);
+  };
+  const handleClickPage = (pageNo) => {
+    setPageNo(pageNo);
+  };
+  const handleClickNext = () => {
+    setPageNo(start + pageCount);
+  };
   return (
     <Flex
       justify="center"
@@ -46,7 +55,10 @@ const Pagination = ({
             to={link + `&pageNo=${start - 1}`}
           >
             <li>
-              <Button text>
+              <Button
+                text
+                onClick={handleClickPrev}
+              >
                 <ChevronLeftIcon
                   width="16"
                   height="16"
@@ -67,7 +79,14 @@ const Pagination = ({
                       {start + idx}
                     </ActiveButton>
                   ) : (
-                    <Button text>
+                    <Button
+                      text
+                      onClick={() =>
+                        handleClickPage(
+                          start + idx
+                        )
+                      }
+                    >
                       {start + idx}
                     </Button>
                   )}
@@ -84,7 +103,10 @@ const Pagination = ({
             }
           >
             <li>
-              <Button text>
+              <Button
+                text
+                onClick={handleClickNext}
+              >
                 <ChevronRightIcon
                   width="16"
                   height="16"
