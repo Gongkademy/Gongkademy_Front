@@ -39,6 +39,7 @@ import AdminCourseReviewPage from "../pages/Admin/CourseReview/AdminCourseReview
 import AdminCourseNoticePage from "../pages/Admin/CourseNotice/AdminCourseNoticePage";
 import AdminCourseRegistPage from "../pages/Admin/CourseRegist/AdminCourseRegistPage";
 import AdminCourseNavbar from "../components/admin/navbar/AdminCourseNavbar";
+import AuthCheckPage from "@pages/Service/AuthCheck/AuthCheckPage";
 
 const AppRouter = () => {
   const routes = [
@@ -113,7 +114,7 @@ const AppRouter = () => {
         },
       ],
     },
-
+    { path: PATH.AUTH_CHECK, element: <AuthCheckPage /> },
     //header, footer없음
     {
       path: PATH.LECTURE,
