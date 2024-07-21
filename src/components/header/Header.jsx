@@ -7,11 +7,13 @@ import { LoginContext } from "@contexts/LoginContext";
 import { PATH } from "@router/Constants";
 import { Flex } from "../common/flex/Flex";
 import { Google } from "@assets/svg/logo";
+import axios from "axios";
 
 // const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const Header = () => {
   const { state, actions } = useContext(LoginContext);
+  // to={GOOGLE_LOGIN_URL}
   const navigate = useNavigate();
 
   const handleLogoutClick = (e) => {
@@ -20,6 +22,10 @@ const Header = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     navigate("/");
+  };
+
+  const handleLoginBtnClick = () => {
+    axios.get(GOOGLE_LOGIN_URL).then((response) => alert(response));
   };
 
   return (
@@ -32,8 +38,7 @@ const Header = () => {
           </Link>
           <Link
             to={
-              PATH.COMMUNITY("concern") +
-              "?keyword=&criteria=최신순&pageNo=1"
+              PATH.COMMUNITY("concern") + "?keyword=&criteria=최신순&pageNo=1"
             }
           >
             <Button text>커뮤니티</Button>
@@ -53,14 +58,14 @@ const Header = () => {
               </Button>
             </>
           ) : (
-            <>
-              <Link to={GOOGLE_LOGIN_URL}>
-                <Button outline>
-                  <Google width="1rem" />
-                  Google로 시작하기
-                </Button>
-              </Link>
-            </>
+            <Link to={GOOGLE_LOGIN_URL}>
+              {/* <div onClick={handleLoginBtnClick}> */}
+              <Button outline>
+                <Google width="1rem" />
+                Google로 시작하기
+              </Button>
+              {/* </div> */}
+            </Link>
           )}
         </Flex>
       </HeaderBlock>

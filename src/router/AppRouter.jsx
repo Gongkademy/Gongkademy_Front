@@ -114,7 +114,9 @@ const AppRouter = () => {
         },
       ],
     },
+
     { path: PATH.AUTH_CHECK, element: <AuthCheckPage /> },
+
     //header, footer없음
     {
       path: PATH.LECTURE,
