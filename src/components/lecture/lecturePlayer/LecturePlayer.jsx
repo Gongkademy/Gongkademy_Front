@@ -2,7 +2,9 @@ import YouTube from "react-youtube";
 import { LecturePlayerBlock } from "./LecturePlayer.style";
 import { useState, useRef, useEffect } from "react";
 import { updatePlayerLatest } from "@apis/course/playerApi";
-
+const PLAY_STATE = {
+  PLAYING: 1,
+};
 const LecturePlayer = ({ lecture }) => {
   const [player, setPlayer] = useState();
   const UPDATE_PERIOD = 5_000;
@@ -12,7 +14,7 @@ const LecturePlayer = ({ lecture }) => {
   const handlePlayerPlay = () => {
     if (!isSaving) {
       let timer = setInterval(() => {
-        if (player.getPlayerState() === 1) {
+        if (player.getPlayerState() === PLAY_STATE.PLAYING) {
           updatePlayerLatest({
             lectureId: lecture.lectureId,
             savePoint: player.getCurrentTime(),
