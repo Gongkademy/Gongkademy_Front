@@ -1,11 +1,9 @@
-import { END_POINT, HTTP_STATUS_CODE } from "@apis/apiConstants";
+import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
-import { PATH } from "@router/Constants";
-import { useLoginStore } from "@stores/member/loginStore";
 
 //사용중
 export const save = async (data) => {
-  return await axiosInstance.post(END_POINT.MEMBERS, data);
+  return await axiosInstance.post(END_POINT.MEMBER, data);
 };
 
 export const logout = async () => {
@@ -17,6 +15,9 @@ export const logout = async () => {
   }
 };
 
+export const getMemberInfo = () => {
+  return axiosInstance.get(END_POINT.MEMBER);
+};
 // 보류중
 export const validateDuplicateNickname = (nickname) => {
   return axiosInstance.get(`/check-nickname?nickname=${nickname}`);
@@ -48,12 +49,8 @@ export const login = (username, password) => {
   return axiosInstance.post(END_POINT.LOGIN, form, header);
 };
 
-export const getMemberInfo = (memberId) => {
-  return axiosInstance.get(END_POINT.MEMBER(memberId));
-};
-
 export const deleteMember = (memberId) => {
-  return axiosInstance.delete(END_POINT.MEMBER(memberId));
+  return axiosInstance.delete(END_POINT.MEMBER_DETAIL(memberId));
 };
 
 export const updateNickname = (memberId, newNickname) => {

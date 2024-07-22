@@ -2,8 +2,8 @@ export const BASE_URL = import.meta.env.VITE_APP_SERVICE_API_URL;
 export const ADMIN_BASE_URL = import.meta.env.VITE_APP_ADMIN_API_URL;
 
 export const END_POINT = {
-  MEMBERS: "members",
-  MEMBER: (memberId) => `members/${memberId}`,
+  MEMBER: "members",
+  MEMBER_DETAIL: (memberId) => `members/${memberId}`,
 
   LOGIN: "members/login",
   LOGOUT: "members/logout",

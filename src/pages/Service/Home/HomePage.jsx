@@ -9,8 +9,11 @@ import { COURSE_LIST } from "@dummy/Course";
 import { TeacherIcon } from "@assets/svg/icons";
 import { useEffect, useState } from "react";
 import { getAllCourses } from "@apis/course/courseApi";
+import { useMemeberStore } from "@stores/member/memberStore";
 const CONCERNS = CONCERN_LIST;
 const HomePage = () => {
+  const memberId = useMemeberStore((state) => state.member);
+  console.log(memberId);
   const [courses, setCourses] = useState([]);
   const fetchCourses = async () => {
     try {

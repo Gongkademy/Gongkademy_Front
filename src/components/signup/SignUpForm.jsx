@@ -13,16 +13,20 @@ import Checkbox from "../common/checkbox/Checkbox";
 import { Flex } from "../common/flex/Flex";
 import { MAX_NICKNAME_LENGTH, MIN_NICKNAME_LENGTH } from "./Constants";
 import { useLoginStore } from "@stores/member/loginStore";
-import { save } from "@apis/members/membersApi";
+import { getMemberInfo, save } from "@apis/members/membersApi";
 import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { PATH } from "@router/Constants";
+import { useMemeberStore } from "@stores/member/memberStore";
+
 const SignUpForm = () => {
   const setIsLogin = useLoginStore((state) => state.setIsLogin);
+  const setMember = useMemeberStore((state) => state.setMember);
   const join = async (data) => {
     try {
       const response = await save(data);
       if (response.status === HTTP_STATUS_CODE.CREATED) {
         setIsLogin(true);
+        await getMemberInfo().then((response) => setMember(response.data.id));
         location.href = PATH.ROOT;
       }
     } catch (error) {
