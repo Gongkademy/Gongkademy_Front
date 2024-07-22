@@ -1,3 +1,4 @@
+import { LOGIN_KEY } from "@stores/member/constant";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
@@ -9,8 +10,8 @@ export const useLoginStore = create(
       setIsLogin: (isLogin) => set({ isLogin: isLogin }),
     }),
     {
-      name: "isLogin",
-      storage: createJSONStorage(() => sessionStorage),
+      name: LOGIN_KEY,
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

@@ -2,6 +2,29 @@ import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 import { PATH } from "@router/Constants";
 
+//사용중
+export const join = async (data) => {
+  try {
+    const response = await axiosInstance.post(END_POINT.MEMBERS, data);
+    console.log(response.status);
+    if (response.status === 201) {
+      location.href = PATH.ROOT;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logout = async () => {
+  try {
+    const response = await axiosInstance.post(END_POINT.LOGOUT);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 보류중
 export const validateDuplicateNickname = (nickname) => {
   return axiosInstance.get(`/check-nickname?nickname=${nickname}`);
 };
@@ -38,18 +61,6 @@ export const getMemberInfo = (memberId) => {
 
 export const deleteMember = (memberId) => {
   return axiosInstance.delete(END_POINT.MEMBER(memberId));
-};
-
-export const join = async (data) => {
-  try {
-    const response = await await axiosInstance.post(END_POINT.MEMBERS, data);
-    console.log(response.status);
-    if (response.status === 201) {
-      location.href = PATH.ROOT;
-    }
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 export const updateNickname = (memberId, newNickname) => {

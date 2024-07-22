@@ -6,7 +6,7 @@ export const END_POINT = {
   MEMBER: (memberId) => `members/${memberId}`,
 
   LOGIN: "members/login",
-
+  LOGOUT: "members/logout",
   // 강좌,강의
   COURSE: "/course",
   COURSE_DETAIL: (courseId) => `/course/${courseId}`,

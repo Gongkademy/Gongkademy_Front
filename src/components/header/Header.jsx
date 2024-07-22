@@ -9,19 +9,19 @@ import { Flex } from "../common/flex/Flex";
 import { Google } from "@assets/svg/logo";
 import axios from "axios";
 import { useLoginStore } from "@stores/member/loginStore";
+import { logout } from "@apis/members/membersApi";
+import { LOGIN_KEY } from "@stores/member/constant";
 
 // const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const Header = () => {
-  const { state, actions } = useContext(LoginContext);
   const isLogin = useLoginStore((state) => state.isLogin);
   const navigate = useNavigate();
 
-  const handleLogoutClick = (e) => {
+  const handleLogoutClick = async (e) => {
     e.preventDefault();
-    actions.setIsLogin(false);
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    await logout();
+    localStorage.removeItem(LOGIN_KEY);
     navigate("/");
   };
   // TODO: 이 방법으로 시도해보기
