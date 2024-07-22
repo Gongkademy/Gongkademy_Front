@@ -13,7 +13,7 @@ const GoogleRedirectPage = () => {
     if (mode === "signup") {
       navigate(PATH.SIGN_UP);
     } else if (mode === "login") {
-      getMemberInfo().then((response) => console.log(response));
+      // getMemberInfo().then((response) => console.log(response));
       setIsLogin(true);
       navigate(PATH.ROOT);
     }

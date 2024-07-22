@@ -10,11 +10,25 @@ import Button from "@components/common/button/Button";
 import { color, typo } from "@styles/style";
 import validate from "@utils/validate";
 import Checkbox from "../common/checkbox/Checkbox";
-import { join } from "../../apis/members/membersApi";
 import { Flex } from "../common/flex/Flex";
 import { MAX_NICKNAME_LENGTH, MIN_NICKNAME_LENGTH } from "./Constants";
+import { useLoginStore } from "@stores/member/loginStore";
+import { save } from "@apis/members/membersApi";
+import { HTTP_STATUS_CODE } from "@apis/apiConstants";
+import { PATH } from "@router/Constants";
 const SignUpForm = () => {
-  //message랑 에러를 다뤄야겠다
+  const setIsLogin = useLoginStore((state) => state.setIsLogin);
+  const join = async (data) => {
+    try {
+      const response = await save(data);
+      if (response.status === HTTP_STATUS_CODE.CREATED) {
+        setIsLogin(true);
+        location.href = PATH.ROOT;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const { values, messages, states, submitting, handleChange, handleSubmit } =
     useForm({
       initialValues: {

@@ -1,18 +1,11 @@
-import { END_POINT } from "@apis/apiConstants";
+import { END_POINT, HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 import { PATH } from "@router/Constants";
+import { useLoginStore } from "@stores/member/loginStore";
 
 //사용중
-export const join = async (data) => {
-  try {
-    const response = await axiosInstance.post(END_POINT.MEMBERS, data);
-    console.log(response.status);
-    if (response.status === 201) {
-      location.href = PATH.ROOT;
-    }
-  } catch (error) {
-    console.log(error);
-  }
+export const save = async (data) => {
+  return await axiosInstance.post(END_POINT.MEMBERS, data);
 };
 
 export const logout = async () => {
