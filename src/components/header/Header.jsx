@@ -8,12 +8,13 @@ import { PATH } from "@router/Constants";
 import { Flex } from "../common/flex/Flex";
 import { Google } from "@assets/svg/logo";
 import axios from "axios";
+import { useLoginStore } from "@stores/member/loginStore";
 
 // const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const Header = () => {
   const { state, actions } = useContext(LoginContext);
-  // to={GOOGLE_LOGIN_URL}
+  const isLogin = useLoginStore((state) => state.isLogin);
   const navigate = useNavigate();
 
   const handleLogoutClick = (e) => {
@@ -23,7 +24,7 @@ const Header = () => {
     localStorage.removeItem("refreshToken");
     navigate("/");
   };
-
+  // TODO: 이 방법으로 시도해보기
   const handleLoginBtnClick = () => {
     axios.get(GOOGLE_LOGIN_URL).then((response) => alert(response));
   };
@@ -48,7 +49,7 @@ const Header = () => {
         <SearchBar placeholder="어떤 걸 배워볼까요?" />
 
         <Flex aling="center" gap="0.5rem">
-          {state.isLogin ? (
+          {isLogin ? (
             <>
               <Link to={PATH.MY_PAGE}>
                 <Button fill>마이페이지</Button>

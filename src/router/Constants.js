@@ -24,7 +24,7 @@ export const PATH = {
   COMMUNITY_UPDATE: (id) => `/community/update/id`,
   MY_PAGE: "/mypage",
 
-  AUTH_CHECK: "/auth/google/val",
+  GOOGLE_REDIRECT: "/auth/google/val",
   SIGN_UP: "/signup",
 };
 
