@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { BASE_URL, ADMIN_BASE_URL } from "@apis/apiConstants";
-
+import { BASE_URL, ADMIN_BASE_URL, HTTP_STATUS_CODE } from "@apis/apiConstants";
+const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
 
@@ -19,3 +19,28 @@ export const adminInstance = axios.create({
   },
   withCredentials: true,
 });
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    return Promise.reject;
+  }
+);
+
+adminInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    console.log(error);
+    if (
+      error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
+      error.response.data.message === "쿠키에 엑세스 토큰이 없습니다."
+    ) {
+      location.href = GOOGLE_LOGIN_URL;
+    }
+    return Promise.reject;
+  }
+);
