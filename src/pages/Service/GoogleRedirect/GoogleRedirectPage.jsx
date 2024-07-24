@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const GoogleRedirectPage = () => {
-  const [searchParam] = useSearchParams();
   const navigate = useNavigate();
   const setIsLogin = useLoginStore((state) => state.setIsLogin);
   const setMember = useMemeberStore((state) => state.setMember);

@@ -108,10 +108,10 @@ const AppRouter = () => {
           path: PATH.MY_PAGE,
           element: <MyPage />,
         },
-        {
-          path: PATH.SIGN_UP,
-          element: <SignUpPage />,
-        },
+        // {
+        //   path: PATH.SIGN_UP,
+        //   element: <SignUpPage />,
+        // },
       ],
     },
 
