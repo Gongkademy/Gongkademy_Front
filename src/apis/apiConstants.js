@@ -8,7 +8,7 @@ export const END_POINT = {
   LOGIN: "members/login",
   LOGOUT: "members/logout",
   // 강좌,강의
-  COURSE: "/course",
+  COURSE: "/course/all",
   COURSE_DETAIL: (courseId) => `/course/${courseId}`,
   COURSE_STATUS: (courseId) => `/course/status/${courseId}`,
   COURSE_NOTICE: "/course/notice",

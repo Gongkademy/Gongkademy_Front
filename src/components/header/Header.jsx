@@ -10,7 +10,8 @@ import { Google } from "@assets/svg/logo";
 import axios from "axios";
 import { useLoginStore } from "@stores/member/loginStore";
 import { logout } from "@apis/members/membersApi";
-import { LOGIN_KEY } from "@stores/member/constant";
+import { LOGIN_KEY, MEMBER_KEY } from "@stores/member/constant";
+import { LECUTRE_KEY } from "@pages/Service/Lecture/constants";
 
 // const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
@@ -20,9 +21,11 @@ const Header = () => {
 
   const handleLogoutClick = async (e) => {
     e.preventDefault();
-    await logout();
+    // await logout();
     localStorage.removeItem(LOGIN_KEY);
-    navigate("/");
+    localStorage.removeItem(MEMBER_KEY);
+    sessionStorage.removeItem(LECUTRE_KEY);
+    location.href = PATH.ROOT;
   };
   // TODO: 이 방법으로 시도해보기
   const handleLoginBtnClick = () => {

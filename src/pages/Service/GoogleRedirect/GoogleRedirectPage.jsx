@@ -14,7 +14,7 @@ const GoogleRedirectPage = () => {
     setIsLogin(true);
     getMemberInfo().then((response) => setMember(response.data.id));
 
-    // 직전페이지로 리다이렉트
+    // TODO: 직전페이지로 리다이렉트
     navigate(PATH.ROOT);
   }, []);
   return <div>Redirect</div>;
