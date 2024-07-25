@@ -9,10 +9,16 @@ const MyPage = () => {
       <PageTitle>마이페이지</PageTitle>
       <MyPageContainer>
         <Link to="update">
-          <Tab>내 정보 수정</Tab>
+          <Tab>나의 강좌</Tab>
         </Link>
         <Link to="/">
-          <Tab>내가 쓴 질문</Tab>
+          <Tab>나의 게시글</Tab>
+        </Link>
+        <Link to="/">
+          <Tab>계정 정보</Tab>
+        </Link>
+        <Link to="/">
+          <Tab>알림</Tab>
         </Link>
       </MyPageContainer>
     </PageLayout>

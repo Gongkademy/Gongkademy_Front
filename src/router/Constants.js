@@ -26,20 +26,16 @@ export const PATH = {
   //마이페이지
   MY_PAGE: "/mypage",
 
+  // MY_COURSE: "/mypage/course",
   MY_COURSE: "/mypage/course",
-  MY_COURSE_COMPLETE: "/mypage/course/complete",
-  MY_COURSE_STUDYING: "/mypage/course/studying",
 
-  MY_COMMUNITY_POST: "/mypage/community/post",
-  MY_COMMUNITY_LIKE: "/mypage/community/like",
-  MY_COMMUNITY_SCRAP: "/mypage/community/scrap",
+  MY_COMMUNITY: (type) => `/mypage/community/${type}`,
 
-  MY_INFO: "/mypage/info",
+  // MY_INFO: "/mypage/info",
   MY_INFO_UPDARTE: "/mypage/info/update",
   MY_INFO_OUT: "/mypage/info/out",
 
-  MY_NOTIFICATION: "/mypage/notification",
-  MY_NOTIFICATION: "/mypage/notification",
+  // MY_NOTIFICATION: "/mypage/notification",
   MY_NOTIFICATION_SETTING: "/mypage/notification/setting",
 
   GOOGLE_REDIRECT: "/auth/google/val",
