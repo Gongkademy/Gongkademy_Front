@@ -22,10 +22,28 @@ export const PATH = {
   COMMUNITY_REGIST: (communityType) => `/community/regist/` + communityType,
   COMMUNITY_DETAIL: (communityType, id) => `/community/${communityType}/${id}`,
   COMMUNITY_UPDATE: (id) => `/community/update/id`,
+
+  //마이페이지
   MY_PAGE: "/mypage",
 
+  MY_COURSE: "/mypage/course",
+  MY_COURSE_COMPLETE: "/mypage/course/complete",
+  MY_COURSE_STUDYING: "/mypage/course/studying",
+
+  MY_COMMUNITY_POST: "/mypage/community/post",
+  MY_COMMUNITY_LIKE: "/mypage/community/like",
+  MY_COMMUNITY_SCRAP: "/mypage/community/scrap",
+
+  MY_INFO: "/mypage/info",
+  MY_INFO_UPDARTE: "/mypage/info/update",
+  MY_INFO_OUT: "/mypage/info/out",
+
+  MY_NOTIFICATION: "/mypage/notification",
+  MY_NOTIFICATION: "/mypage/notification",
+  MY_NOTIFICATION_SETTING: "/mypage/notification/setting",
+
   GOOGLE_REDIRECT: "/auth/google/val",
-  SIGN_UP: "/signup",
+  // SIGN_UP: "/signup",
 };
 
 export const ADMIN_PATH = {
