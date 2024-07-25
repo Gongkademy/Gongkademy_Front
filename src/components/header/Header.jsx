@@ -21,15 +21,11 @@ const Header = () => {
 
   const handleLogoutClick = async (e) => {
     e.preventDefault();
-    // await logout();
+    await logout();
     localStorage.removeItem(LOGIN_KEY);
     localStorage.removeItem(MEMBER_KEY);
     sessionStorage.removeItem(LECUTRE_KEY);
     location.href = PATH.ROOT;
-  };
-  // TODO: 이 방법으로 시도해보기
-  const handleLoginBtnClick = () => {
-    axios.get(GOOGLE_LOGIN_URL).then((response) => alert(response));
   };
 
   return (

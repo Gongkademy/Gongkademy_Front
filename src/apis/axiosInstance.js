@@ -28,8 +28,9 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     console.log(error);
     if (
-      error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
-      error.response.data.message === "쿠키에 엑세스 토큰이 없습니다."
+      (error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
+        error.response.data.message === "쿠키에 엑세스 토큰이 없습니다.") ||
+      error.response.data.message === "리프레시 토큰이 만료되었습니다."
     ) {
       location.href = GOOGLE_LOGIN_URL;
     }
@@ -45,8 +46,9 @@ adminInstance.interceptors.response.use(
   async (error) => {
     console.log(error);
     if (
-      error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
-      error.response.data.message === "쿠키에 엑세스 토큰이 없습니다."
+      (error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
+        error.response.data.message === "쿠키에 엑세스 토큰이 없습니다.") ||
+      error.response.data.message === "리프레시 토큰이 만료되었습니다."
     ) {
       location.href = GOOGLE_LOGIN_URL;
     }
