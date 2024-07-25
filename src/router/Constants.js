@@ -32,8 +32,8 @@ export const PATH = {
   MY_COMMUNITY: (type) => `/mypage/community/${type}`,
 
   // MY_INFO: "/mypage/info",
-  MY_INFO_UPDARTE: "/mypage/info/update",
-  MY_INFO_OUT: "/mypage/info/out",
+  MY_INFO_UPDARTE: "/mypage/update",
+  MEMBER_DELETE: "/member/delete",
 
   // MY_NOTIFICATION: "/mypage/notification",
   MY_NOTIFICATION_SETTING: "/mypage/notification/setting",

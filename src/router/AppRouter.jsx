@@ -21,7 +21,6 @@ import CourseDetailPage from "@pages/Service/CourseDetail/CourseDetailPage";
 import LecturePage from "@pages/Service/Lecture/LecturePage";
 import CoursesPage from "@pages/Service/Courses/CoursesPage";
 
-import SignUpPage from "@pages/Service/Signup/SignUpPage";
 import MyPage from "@pages/Service/MyPage/MyPage";
 import { ADMIN_PATH } from "./Constants";
 import AdminHomePage from "../pages/Admin/Home/AdminHomePage";
@@ -40,6 +39,11 @@ import AdminCourseNoticePage from "../pages/Admin/CourseNotice/AdminCourseNotice
 import AdminCourseRegistPage from "../pages/Admin/CourseRegist/AdminCourseRegistPage";
 import AdminCourseNavbar from "../components/admin/navbar/AdminCourseNavbar";
 import GoogleRedirectPage from "@pages/Service/GoogleRedirect/GoogleRedirectPage";
+import MyCoursePage from "@pages/Service/MyCourse/MyCoursePage";
+import MyCommunityPage from "@pages/Service/MyCommunity/MyCommunityPage";
+import MyNotificationSettingPage from "@pages/Service/MyNotificationSetting/MyNotificationSettingPage";
+import MyInfoUpdatePage from "@pages/Service/MyInfoUpdate/MyInfoUpdatePage";
+import MemberDeletePage from "@pages/Service/MemberDelete/MemberDeletePage";
 
 const AppRouter = () => {
   const routes = [
@@ -103,15 +107,33 @@ const AppRouter = () => {
           ],
         },
 
-        //계정 관련 Route
+        //마이페이지
         {
           path: PATH.MY_PAGE,
           element: <MyPage />,
         },
-        // {
-        //   path: PATH.SIGN_UP,
-        //   element: <SignUpPage />,
-        // },
+
+        {
+          path: PATH.MY_COURSE,
+          element: <MyCoursePage />,
+        },
+        {
+          path: PATH.MY_COMMUNITY(":type"),
+          element: <MyCommunityPage />,
+        },
+        {
+          path: PATH.MY_INFO_UPDARTE,
+          element: <MyInfoUpdatePage />,
+        },
+        {
+          path: PATH.MEMBER_DELETE,
+          element: <MemberDeletePage />,
+        },
+
+        {
+          path: PATH.MY_NOTIFICATION_SETTING,
+          element: <MyNotificationSettingPage />,
+        },
       ],
     },
 
