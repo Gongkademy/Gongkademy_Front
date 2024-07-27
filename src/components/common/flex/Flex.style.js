@@ -29,5 +29,6 @@ export const FlexBlock = styled.div`
   border-left: ${(props) => props.borderLeft};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  max-width: ${(props) => props.maxWidth};
   position: ${(props) => props.position || "static"};
 `;
