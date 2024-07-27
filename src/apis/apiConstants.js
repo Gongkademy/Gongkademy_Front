@@ -56,7 +56,7 @@ export const END_POINT = {
 };
 
 export const HTTP_STATUS_CODE = {
-  SUCCESS: 200,
+  OK: 200,
   CREATED: 201,
   NO_CONTENT: 204,
   BAD_REQUEST: 400,

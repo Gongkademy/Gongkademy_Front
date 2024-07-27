@@ -15,8 +15,8 @@ export const logout = async () => {
   }
 };
 
-export const getMemberInfo = () => {
-  return axiosInstance.get(END_POINT.MEMBER);
+export const getMemberInfo = async () => {
+  return await axiosInstance.get(END_POINT.MEMBER);
 };
 
 export const checkMemberRole = (memberRole) => {

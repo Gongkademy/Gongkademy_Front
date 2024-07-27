@@ -22,11 +22,9 @@ export const adminInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   async (error) => {
-    console.log(error);
     if (
       (error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
         error.response.data.message === "쿠키에 엑세스 토큰이 없습니다.") ||
@@ -40,11 +38,9 @@ axiosInstance.interceptors.response.use(
 
 adminInstance.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   async (error) => {
-    console.log(error);
     if (
       (error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED &&
         error.response.data.message === "쿠키에 엑세스 토큰이 없습니다.") ||

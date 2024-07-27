@@ -44,6 +44,7 @@ import MyCommunityPage from "@pages/Service/MyCommunity/MyCommunityPage";
 import MyNotificationSettingPage from "@pages/Service/MyNotificationSetting/MyNotificationSettingPage";
 import MyInfoUpdatePage from "@pages/Service/MyInfoUpdate/MyInfoUpdatePage";
 import MemberDeletePage from "@pages/Service/MemberDelete/MemberDeletePage";
+import PrivateRouter from "@router/PrivaterRouter";
 
 const AppRouter = () => {
   const routes = [
@@ -66,20 +67,13 @@ const AppRouter = () => {
           path: PATH.COMMUNITY_DETAIL(`:communityType`, `:id`),
           element: <CommunityDetail />,
         },
-        {
-          path: PATH.COMMUNITY_REGIST(`:communityType`),
-          element: <CommunityRegistPage />,
-        },
-        {
-          path: PATH.COMMUNITY_UPDATE(`:id`),
-          element: <CommunityUpdatePage />,
-        },
 
         // 강의 관련 Route
         {
           path: PATH.COURSES,
           element: <CoursesPage />,
         },
+
         {
           path: PATH.COURSE_DETAIL(`:courseId`),
           element: <CourseDetailPage />,
@@ -106,109 +100,124 @@ const AppRouter = () => {
             },
           ],
         },
+        //PrivateRouter 적용
+        {
+          element: <PrivateRouter memberRole={"USER"} />,
+          children: [
+            {
+              path: PATH.COMMUNITY_REGIST(`:communityType`),
+              element: <CommunityRegistPage />,
+            },
+            {
+              path: PATH.COMMUNITY_UPDATE(`:id`),
+              element: <CommunityUpdatePage />,
+            },
+            {
+              path: PATH.MY_PAGE,
+              element: <MyPage />,
+            },
 
-        //마이페이지
-        {
-          path: PATH.MY_PAGE,
-          element: <MyPage />,
-        },
+            {
+              path: PATH.MY_COURSE,
+              element: <MyCoursePage />,
+            },
+            {
+              path: PATH.MY_COMMUNITY(":type"),
+              element: <MyCommunityPage />,
+            },
+            {
+              path: PATH.MY_INFO_UPDARTE,
+              element: <MyInfoUpdatePage />,
+            },
+            {
+              path: PATH.MEMBER_DELETE,
+              element: <MemberDeletePage />,
+            },
 
-        {
-          path: PATH.MY_COURSE,
-          element: <MyCoursePage />,
-        },
-        {
-          path: PATH.MY_COMMUNITY(":type"),
-          element: <MyCommunityPage />,
-        },
-        {
-          path: PATH.MY_INFO_UPDARTE,
-          element: <MyInfoUpdatePage />,
-        },
-        {
-          path: PATH.MEMBER_DELETE,
-          element: <MemberDeletePage />,
-        },
-
-        {
-          path: PATH.MY_NOTIFICATION_SETTING,
-          element: <MyNotificationSettingPage />,
+            {
+              path: PATH.MY_NOTIFICATION_SETTING,
+              element: <MyNotificationSettingPage />,
+            },
+            {
+              path: PATH.LECTURE,
+              element: <LecturePage />,
+            },
+          ],
         },
       ],
     },
-
     { path: PATH.GOOGLE_REDIRECT, element: <GoogleRedirectPage /> },
 
     //header, footer없음
-    {
-      path: PATH.LECTURE,
-      element: <LecturePage />,
-    },
 
     //관리자
     {
-      path: ADMIN_PATH.ROOT,
       element: <AdminApp />,
       children: [
         {
-          path: ADMIN_PATH.ROOT,
-          element: <AdminHomePage />,
-        },
-        {
-          path: ADMIN_PATH.COMMUNITY,
-          element: <AdminCommunityNavbar />,
+          element: <PrivateRouter memberRole={"ADMIN"} />,
           children: [
             {
-              path: ADMIN_PATH.COMMUNITY_NOTEICE,
-              element: <AdminCommunityNoticePage />,
+              path: ADMIN_PATH.ROOT,
+              element: <AdminHomePage />,
             },
             {
-              path: ADMIN_PATH.COMMUNITY_QNA,
-              element: <AdminCommunityQnaPage />,
+              path: ADMIN_PATH.COMMUNITY,
+              element: <AdminCommunityNavbar />,
+              children: [
+                {
+                  path: ADMIN_PATH.COMMUNITY_NOTEICE,
+                  element: <AdminCommunityNoticePage />,
+                },
+                {
+                  path: ADMIN_PATH.COMMUNITY_QNA,
+                  element: <AdminCommunityQnaPage />,
+                },
+                {
+                  path: ADMIN_PATH.COMMUNITY_CONCERN,
+                  element: <AdminCommunityConcernPage />,
+                },
+              ],
             },
             {
-              path: ADMIN_PATH.COMMUNITY_CONCERN,
-              element: <AdminCommunityConcernPage />,
+              path: ADMIN_PATH.MEMBER,
+              element: <AdminMemberPage />,
+            },
+            {
+              path: ADMIN_PATH.COURSE,
+              element: <AdminCoursePage />,
+            },
+            {
+              path: ADMIN_PATH.COURSE,
+              element: <AdminCourseNavbar />,
+              children: [
+                {
+                  path: ADMIN_PATH.COURSE_INTRODUCE(":courseId"),
+                  element: <AdminCourseIntroducePage />,
+                },
+                {
+                  path: ADMIN_PATH.COURSE_ORDER(":courseId"),
+                  element: <AdminCourseOrderPage />,
+                },
+                {
+                  path: ADMIN_PATH.COURSE_QNA(":courseId"),
+                  element: <AdminCourseQnaPage />,
+                },
+                {
+                  path: ADMIN_PATH.COURSE_REVIEW(":courseId"),
+                  element: <AdminCourseReviewPage />,
+                },
+                {
+                  path: ADMIN_PATH.COURSE_NOTICE(":courseId"),
+                  element: <AdminCourseNoticePage />,
+                },
+              ],
+            },
+            {
+              path: ADMIN_PATH.COURSE_REGIST,
+              element: <AdminCourseRegistPage />,
             },
           ],
-        },
-        {
-          path: ADMIN_PATH.MEMBER,
-          element: <AdminMemberPage />,
-        },
-        {
-          path: ADMIN_PATH.COURSE,
-          element: <AdminCoursePage />,
-        },
-        {
-          path: ADMIN_PATH.COURSE,
-          element: <AdminCourseNavbar />,
-          children: [
-            {
-              path: ADMIN_PATH.COURSE_INTRODUCE(":courseId"),
-              element: <AdminCourseIntroducePage />,
-            },
-            {
-              path: ADMIN_PATH.COURSE_ORDER(":courseId"),
-              element: <AdminCourseOrderPage />,
-            },
-            {
-              path: ADMIN_PATH.COURSE_QNA(":courseId"),
-              element: <AdminCourseQnaPage />,
-            },
-            {
-              path: ADMIN_PATH.COURSE_REVIEW(":courseId"),
-              element: <AdminCourseReviewPage />,
-            },
-            {
-              path: ADMIN_PATH.COURSE_NOTICE(":courseId"),
-              element: <AdminCourseNoticePage />,
-            },
-          ],
-        },
-        {
-          path: ADMIN_PATH.COURSE_REGIST,
-          element: <AdminCourseRegistPage />,
         },
       ],
     },
