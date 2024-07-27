@@ -9,6 +9,9 @@ import {
   QuestionScrapped, //질문스크랩목록
   likeQuestion, //질문좋아요
   scrapQuestion, //질문스크랩
+  getQuestionListNonLogin,
+  getQuestionDetailNonLogin,
+  getMyQna,
 } from "@apis/community/QnaApi";
 const useQnaStore = create((set, get) => ({
   qna: null,
@@ -36,6 +39,27 @@ const useQnaStore = create((set, get) => ({
       );
     }
   },
+  //비로그인 질문 목록 가져오기
+  fetchQnaListNonLogin: async (
+    keyword,
+    criteria,
+    pageNo
+  ) => {
+    try {
+      const response =
+        await getQuestionListNonLogin(
+          keyword,
+          criteria,
+          pageNo
+        );
+      set({ qnaList: response.data });
+    } catch (e) {
+      console.error(
+        "질문 목록 가져오기 실패 : ",
+        e
+      );
+    }
+  },
   //질문 상세보기
   fetchQnaDetail: async (articleId) => {
     try {
@@ -45,6 +69,33 @@ const useQnaStore = create((set, get) => ({
       set({ qna: response.data });
     } catch (e) {
       console.error("질문 상세보기 실패: ", e);
+    }
+  },
+  //비로그인 질문 상세보기
+  fetchQnaDetailNonLogin: async (articleId) => {
+    try {
+      const response =
+        await getQuestionDetailNonLogin(
+          articleId
+        );
+      set({ qna: response.data });
+    } catch (e) {
+      console.error("질문 상세보기 실패: ", e);
+    }
+  },
+  //내 질문 가져오기
+  fetchMyQna: async (page, criteria) => {
+    try {
+      const response = await getMyQna(
+        page,
+        criteria
+      );
+      set({ qnaList: response.data });
+    } catch (e) {
+      console.error(
+        "내질문 목록 가져오기 실패 : ",
+        e
+      );
     }
   },
   //질문글 작성

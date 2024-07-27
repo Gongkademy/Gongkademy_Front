@@ -12,6 +12,8 @@ import {
   scrapNotice,
   noticeLiked,
   noticeScrapped,
+  getNoticeListNonLogin,
+  getNoticeDetailNonLogin,
 } from "@apis/community/noticeApi";
 const useNoticeStore = create((set, get) => ({
   notice: null,
@@ -25,16 +27,51 @@ const useNoticeStore = create((set, get) => ({
       const response = await getNoticeList();
       set({ noticeList: response.data });
     } catch (error) {
-      console.error("공지사항리스트 가져오기 실패 : ", error);
+      console.error(
+        "공지사항리스트 가져오기 실패 : ",
+        error
+      );
+    }
+  },
+  //비로그인
+  fetchNoticeListNonLogin: async () => {
+    try {
+      const response =
+        await getNoticeListNonLogin();
+      set({ noticeList: response.data });
+    } catch (error) {
+      console.error(
+        "공지사항리스트 가져오기 실패 : ",
+        error
+      );
     }
   },
   //공지사항 상세보기
   fetchNoticeDetail: async (articleId) => {
     try {
-      const response = await getNoticeDetail(articleId);
+      const response = await getNoticeDetail(
+        articleId
+      );
       set({ notice: response.data });
     } catch (error) {
-      console.error("공지사항 상세보기 실패 : ", error);
+      console.error(
+        "공지사항 상세보기 실패 : ",
+        error
+      );
+    }
+  },
+  fetchNoticeDetailNonLogin: async (
+    articleId
+  ) => {
+    try {
+      const response =
+        await getNoticeDetailNonLogin(articleId);
+      set({ notice: response.data });
+    } catch (error) {
+      console.error(
+        "공지사항 상세보기 실패 : ",
+        error
+      );
     }
   },
   // 공지사항 좋아요
@@ -63,7 +100,10 @@ const useNoticeStore = create((set, get) => ({
       const response = await noticeLiked();
       set({ likedNotices: response.data });
     } catch (error) {
-      console.error("좋아요한 리스트 가져오기 실패! :", error);
+      console.error(
+        "좋아요한 리스트 가져오기 실패! :",
+        error
+      );
     }
   },
 
@@ -73,7 +113,10 @@ const useNoticeStore = create((set, get) => ({
       const response = await noticeScrapped();
       set({ scrappedNotices: response.data });
     } catch (error) {
-      console.error("스크랩한 리스트 가져오기 실패! :", error);
+      console.error(
+        "스크랩한 리스트 가져오기 실패! :",
+        error
+      );
     }
   },
 }));

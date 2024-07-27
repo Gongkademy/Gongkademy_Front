@@ -9,6 +9,9 @@ import {
   concernScrapped, //고민스크랩목록
   likeConcern, //고민좋아요
   scrapConcern, //고민스크랩
+  getConcernListNonLogin,
+  getConcernDetailNonLogin,
+  getMyConcern,
 } from "@apis/community/concernApi";
 const useConcernStore = create((set) => ({
   concern: null,
@@ -36,12 +39,45 @@ const useConcernStore = create((set) => ({
       );
     }
   },
+  //비로그인 고민 목록 가져오기
+  fetchConcernListNonLogin: async (
+    keyword,
+    criteria,
+    pageNo
+  ) => {
+    try {
+      const response =
+        await getConcernListNonLogin(
+          keyword,
+          criteria,
+          pageNo
+        );
+      set({ concernList: response.data });
+    } catch (e) {
+      console.error(
+        "고민 목록 가져오기 실패 : ",
+        e
+      );
+    }
+  },
   //고민 상세보기
   fetchConcernDetail: async (articleId) => {
     try {
       const response = await getConcernDetail(
         articleId
       );
+      set({ concern: response.data });
+    } catch (e) {
+      console.error("고민 상세보기 실패: ", e);
+    }
+  },
+  //비로그인 고민 상세보기
+  fetchConcernDetailNonLogin: async (
+    articleId
+  ) => {
+    try {
+      const response =
+        await getConcernDetailNonLogin(articleId);
       set({ concern: response.data });
     } catch (e) {
       console.error("고민 상세보기 실패: ", e);
@@ -55,6 +91,21 @@ const useConcernStore = create((set) => ({
         return response.data;
       }
     );
+  },
+  //내 고민 가져오기
+  fetchMyConcern: async (page, criteria) => {
+    try {
+      const response = await getMyConcern(
+        page,
+        criteria
+      );
+      set({ concernList: response.data });
+    } catch (e) {
+      console.error(
+        "내고민 목록 가져오기 실패 : ",
+        e
+      );
+    }
   },
   //고민 수정
   updateConcern: async (articleId, article) => {

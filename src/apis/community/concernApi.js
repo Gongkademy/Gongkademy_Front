@@ -1,7 +1,7 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 //고민 리스트
-export const getConcernList = async (
+export const getConcernListNonLogin = async (
   keyword,
   criteria,
   page
@@ -14,11 +14,45 @@ export const getConcernList = async (
   );
 };
 //고민 상세보기
-export const getConcernDetail = async (
+export const getConcernDetailNonLogin = async (
   articleId
 ) => {
   return await axiosInstance.get(
     END_POINT.COMMUNITY_CONCERN_ARTICLE(articleId)
+  );
+};
+
+//로그인 고민 리스트
+export const getConcernList = async (
+  keyword,
+  criteria,
+  page
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_CONCERN + "/login",
+    {
+      params: { page, criteria, keyword },
+    }
+  );
+};
+//로그인 고민 상세보기
+export const getConcernDetail = async (
+  articleId
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_CONCERN_ARTICLE(
+      articleId
+    ) + "/login"
+  );
+};
+//내 고민
+export const getMyConcern = async (
+  page,
+  criteria
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_CONCERN + "myboard",
+    { params: { page, criteria } }
   );
 };
 //고민 작성

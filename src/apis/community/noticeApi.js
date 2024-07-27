@@ -12,6 +12,24 @@ export const getNoticeDetail = async (
     END_POINT.COMMUNITY_NOTICE_ARTICLE(articleId)
   );
 };
+
+//비로그인 유저
+export const getNoticeListNonLogin = async () => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_NOTICE +
+      "/top_latest/non-login"
+  );
+};
+export const getNoticeDetailNonLogin = async (
+  articleId
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_NOTICE_ARTICLE(
+      articleId
+    ) + "/non-login"
+  );
+};
+
 export const likeNotice = async (articleId) => {
   return await axiosInstance.post(
     END_POINT.COMMUNITY_NOTICE_ARTICLE(

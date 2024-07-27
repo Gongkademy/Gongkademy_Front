@@ -1,7 +1,8 @@
 import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
-//질문 리스트
-export const getQuestionList = async (
+
+//비로그인 질문 전체
+export const getQuestionListNonLogin = async (
   keyword,
   criteria,
   page
@@ -13,8 +14,8 @@ export const getQuestionList = async (
     }
   );
 };
-//질문 상세보기
-export const getQuestionDetail = async (
+//비로그인 질문 상세보기
+export const getQuestionDetailNonLogin = async (
   articleId
 ) => {
   return await axiosInstance.get(
@@ -23,6 +24,43 @@ export const getQuestionDetail = async (
     )
   );
 };
+
+//로그인 질문 리스트
+export const getQuestionList = async (
+  keyword,
+  criteria,
+  page
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_QUESTION + "/login",
+    {
+      params: { page, criteria, keyword },
+    }
+  );
+};
+//로그인 질문 상세보기
+export const getQuestionDetail = async (
+  articleId
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_QUESTION_ARTICLE(
+      articleId
+    ) + "/login"
+  );
+};
+//내가 쓴 질문 리스트
+export const getMyQna = async (
+  page,
+  criteria
+) => {
+  return await axiosInstance.get(
+    END_POINT.COMMUNITY_QUESTION + "/myboard",
+    {
+      params: { page, criteria },
+    }
+  );
+};
+
 //질문 작성
 export const writeQuestion = async (article) => {
   return await axiosInstance.post(
