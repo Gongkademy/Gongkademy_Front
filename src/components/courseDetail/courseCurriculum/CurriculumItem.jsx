@@ -1,4 +1,4 @@
-import { CheckIcon } from "@assets/svg/icons";
+// import { CheckIcon } from "@assets/svg/icons";
 import Text from "@components/common/text/Text";
 import { Flex } from "../../common/flex/Flex";
 import { PATH } from "@router/Constants";
@@ -72,12 +72,12 @@ const CurriculumItem = ({ lecture, type }) => {
       to={PATH.LECTURE + lectureQueryString}
     >
       <Flex gap="0.75rem" align="center">
-        {type === "user" && (
+        {/* {type === "user" && (
           <CheckIcon
             width="1rem"
             stroke={lecture.isCompleted ? color.green : color.gray400}
           />
-        )}
+        )} */}
         <Text typo="bodyRg700">
           {lecture.lectureOrder} .&nbsp; {lecture.title}
         </Text>
