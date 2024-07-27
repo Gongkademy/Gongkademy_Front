@@ -33,7 +33,12 @@ import { PATH } from "@router/Constants";
 import useQnaStore from "@stores/Community/QnaStore";
 import useNoticeStore from "@stores/Community/NoticeStore";
 import useConcernStore from "@stores/Community/ConcernStore";
+import { useLoginStore } from "@stores/member/loginStore";
+
 const CommunityDetail = () => {
+  const GOOGLE_LOGIN_URL = import.meta.env
+    .VITE_GOOGLE_LOGIN_URL;
+  const { isLogin } = useLoginStore();
   const location = useLocation();
   const { state } = useLocation();
   const splitPath = location.pathname.split("/");
@@ -70,39 +75,51 @@ const CommunityDetail = () => {
     setViewReview(!viewReview);
   };
   const handleClickLike = () => {
-    if (type === "notice") {
-      likeNotice(initialBoard.articleId);
-    } else if (type === "qna") {
-      likeQna(initialBoard.articleId);
+    if (isLogin) {
+      if (type === "notice") {
+        likeNotice(initialBoard.articleId);
+      } else if (type === "qna") {
+        likeQna(initialBoard.articleId);
+      } else {
+        likeConcern(initialBoard.articleId);
+      }
+      setInitialBoard((prevBoard) => ({
+        ...prevBoard,
+        isLiked: !prevBoard.isLiked,
+        likeCount: prevBoard.isLiked
+          ? prevBoard.likeCount - 1
+          : prevBoard.likeCount + 1,
+      }));
     } else {
-      likeConcern(initialBoard.articleId);
+      window.location.href = GOOGLE_LOGIN_URL;
     }
-    setInitialBoard((prevBoard) => ({
-      ...prevBoard,
-      isLiked: !prevBoard.isLiked,
-      likeCount: prevBoard.isLiked
-        ? prevBoard.likeCount - 1
-        : prevBoard.likeCount + 1,
-    }));
   };
   const handleClickBookMark = () => {
-    if (type === "notice") {
-      scrapNotice(initialBoard.articleId);
-    } else if (type === "qna") {
-      scrapQna(initialBoard.articleId);
+    if (isLogin) {
+      if (type === "notice") {
+        scrapNotice(initialBoard.articleId);
+      } else if (type === "qna") {
+        scrapQna(initialBoard.articleId);
+      } else {
+        scrapConcern(initialBoard.articleId);
+      }
+      setInitialBoard((prevBoard) => ({
+        ...prevBoard,
+        isScrapped: !prevBoard.isScrapped,
+        scrapCount: prevBoard.isScrapped
+          ? prevBoard.scrapCount - 1
+          : prevBoard.scrapCount + 1,
+      }));
     } else {
-      scrapConcern(initialBoard.articleId);
+      window.location.href = GOOGLE_LOGIN_URL;
     }
-    setInitialBoard((prevBoard) => ({
-      ...prevBoard,
-      isScrapped: !prevBoard.isScrapped,
-      scrapCount: prevBoard.isScrapped
-        ? prevBoard.scrapCount - 1
-        : prevBoard.scrapCount + 1,
-    }));
   };
   const handleClickGoWriteReview = () => {
-    setWriteReview(!writeReview);
+    if (isLogin) {
+      setWriteReview(!writeReview);
+    } else {
+      window.location.href = GOOGLE_LOGIN_URL;
+    }
   };
   const handleClickMeetball = () => {
     console.log(isMeetballClick);
