@@ -19,7 +19,11 @@ import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
 import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
+import { useLoginStore } from "@stores/member/loginStore.js";
 const CommunityCard = ({ board, type }) => {
+  const GOOGLE_LOGIN_URL = import.meta.env
+    .VITE_GOOGLE_LOGIN_URL;
+  const { isLogin } = useLoginStore();
   const navigate = useNavigate();
   const [initialBoard, setInitialBoard] =
     useState(board);
@@ -40,32 +44,40 @@ const CommunityCard = ({ board, type }) => {
   const { likeConcern, scrapConcern } =
     useConcernStore();
   const handleClickLike = () => {
-    if (type === "QNA") {
-      likeQna(initialBoard.articleId);
+    if (isLogin) {
+      if (type === "QNA") {
+        likeQna(initialBoard.articleId);
+      } else {
+        likeConcern(initialBoard.articleId);
+      }
+      setInitialBoard((prevBoard) => ({
+        ...prevBoard,
+        isLiked: !prevBoard.isLiked,
+        likeCount: prevBoard.isLiked
+          ? prevBoard.likeCount - 1
+          : prevBoard.likeCount + 1,
+      }));
     } else {
-      likeConcern(initialBoard.articleId);
+      window.location.href = GOOGLE_LOGIN_URL;
     }
-    setInitialBoard((prevBoard) => ({
-      ...prevBoard,
-      isLiked: !prevBoard.isLiked,
-      likeCount: prevBoard.isLiked
-        ? prevBoard.likeCount - 1
-        : prevBoard.likeCount + 1,
-    }));
   };
   const handleClickBookMark = () => {
-    if (type === "QNA") {
-      scrapQna(initialBoard.articleId);
+    if (isLogin) {
+      if (type === "QNA") {
+        scrapQna(initialBoard.articleId);
+      } else {
+        scrapConcern(initialBoard.articleId);
+      }
+      setInitialBoard((prevBoard) => ({
+        ...prevBoard,
+        isScrapped: !prevBoard.isScrapped,
+        scrapCount: prevBoard.isScrapped
+          ? prevBoard.scrapCount - 1
+          : prevBoard.scrapCount + 1,
+      }));
     } else {
-      scrapConcern(initialBoard.articleId);
+      window.location.href = GOOGLE_LOGIN_URL;
     }
-    setInitialBoard((prevBoard) => ({
-      ...prevBoard,
-      isScrapped: !prevBoard.isScrapped,
-      scrapCount: prevBoard.isScrapped
-        ? prevBoard.scrapCount - 1
-        : prevBoard.scrapCount + 1,
-    }));
   };
   return (
     <CardContainer>

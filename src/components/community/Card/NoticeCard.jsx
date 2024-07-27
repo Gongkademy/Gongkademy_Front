@@ -14,11 +14,15 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@router/Constants";
 import { color } from "@styles/style";
 import useNoticeStore from "@stores/Community/NoticeStore";
+import { useLoginStore } from "@stores/member/loginStore.js";
 const Notice = ({ notice }) => {
+  const GOOGLE_LOGIN_URL = import.meta.env
+    .VITE_GOOGLE_LOGIN_URL;
   const navigate = useNavigate();
   const { likeNotice } = useNoticeStore();
   const [initialNotice, setInitialNotice] =
     useState(notice);
+  const { isLogin } = useLoginStore();
   const handleClickConcernCard = () => {
     navigate(
       PATH.COMMUNITY_DETAIL(
@@ -33,14 +37,19 @@ const Notice = ({ notice }) => {
     );
   };
   const handleClickLike = () => {
-    likeNotice(initialNotice.articleId);
-    setInitialNotice((prevNotice) => ({
-      ...prevNotice,
-      isLike: !prevNotice.isLiked,
-      likeCount: prevNotice.isLiked
-        ? prevNotice.like - 1
-        : prevNotice.like + 1,
-    }));
+    if (isLogin) {
+      likeNotice(initialNotice.articleId);
+      setInitialNotice((prevNotice) => ({
+        ...prevNotice,
+        isLike: !prevNotice.isLiked,
+        likeCount: prevNotice.isLiked
+          ? prevNotice.like - 1
+          : prevNotice.like + 1,
+      }));
+    } else {
+      window.location.href = GOOGLE_LOGIN_URL;
+      return;
+    }
   };
   return (
     <NoticeContainer>

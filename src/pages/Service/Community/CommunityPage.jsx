@@ -10,9 +10,12 @@ import CommunityBoardPage from "@components/community/communityBoard/CommunityBo
 import { PATH } from "@router/Constants";
 import useCommonStore from "@stores/common/CommonStore";
 import { useState, useEffect } from "react";
+import useNoticeStore from "@stores/Community/NoticeStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 import useQnaStore from "@stores/Community/QnaStore";
+import { useLoginStore } from "@stores/member/loginStore";
 const CommunityPage = () => {
+  const { isLogin } = useLoginStore();
   const { keyword, criteria } = useCommonStore();
   const location = useLocation();
   const type = location.pathname.split("/")[2];
@@ -22,25 +25,73 @@ const CommunityPage = () => {
   const [pageNo, setPageNo] = useState(
     parseInt(params.get("pageNo"))
   );
-  const { qnaList, fetchQnaList } = useQnaStore();
-  const { concernList, fetchConcernList } =
-    useConcernStore();
+  const {
+    noticeList,
+    fetchNoticeList,
+    fetchNoticeListNonLogin,
+  } = useNoticeStore();
+  const {
+    qnaList,
+    fetchQnaList,
+    fetchQnaListNonLogin,
+  } = useQnaStore();
+  const {
+    concernList,
+    fetchConcernList,
+    fetchConcernListNonLogin,
+  } = useConcernStore();
+  useEffect(() => {
+    if (isLogin) fetchNoticeList();
+    else fetchNoticeListNonLogin();
+  }, []);
   useEffect(() => {
     if (type === "Q&A") {
-      fetchQnaList(keyword, criteria, pageNo - 1);
+      if (isLogin)
+        fetchQnaList(
+          keyword,
+          criteria,
+          pageNo - 1
+        );
+      else
+        fetchQnaListNonLogin(
+          keyword,
+          criteria,
+          pageNo - 1
+        );
     } else {
-      fetchConcernList(
-        keyword,
-        criteria,
-        pageNo - 1
-      );
+      if (isLogin)
+        fetchConcernList(
+          keyword,
+          criteria,
+          pageNo - 1
+        );
+      else
+        fetchConcernListNonLogin(
+          keyword,
+          criteria,
+          pageNo - 1
+        );
     }
   }, [type, pageNo]);
   const boardSearch = (keyword, criteria) => {
     if (type === "Q&A") {
-      fetchQnaList(keyword, criteria, 0);
+      if (isLogin)
+        fetchQnaList(keyword, criteria, 0);
+      else
+        fetchQnaListNonLogin(
+          keyword,
+          criteria,
+          0
+        );
     } else {
-      fetchConcernList(keyword, criteria, 0);
+      if (isLogin)
+        fetchConcernList(keyword, criteria, 0);
+      else
+        fetchConcernListNonLogin(
+          keyword,
+          criteria,
+          0
+        );
     }
   };
   return (
@@ -59,6 +110,7 @@ const CommunityPage = () => {
         <CommunityBoardPage
           type={type}
           pageNo={pageNo}
+          noticeList={noticeList}
           initialBoardList={
             type === "Q&A"
               ? qnaList.data

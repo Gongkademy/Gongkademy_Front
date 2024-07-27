@@ -3,29 +3,24 @@ import { PATH } from "@router/Constants";
 import NoticeCard from "@components/community/Card/NoticeCard";
 import CommunityCard from "@components/community/Card/CommunityCard";
 import { StyledButton } from "@pages/Service/Community/CommunityPage.style";
-import { useEffect, useState } from "react";
-import useNoticeStore from "@stores/Community/NoticeStore";
-import useQnaStore from "@stores/Community/QnaStore";
-import useConcernStore from "@stores/Community/ConcernStore";
-
+import { useLoginStore } from "@stores/member/loginStore";
 const CommunityBoardPage = ({
   type,
+  noticeList,
   initialBoardList,
 }) => {
-  const { noticeList, fetchNoticeList } =
-    useNoticeStore();
-
-  useEffect(() => {
-    fetchNoticeList();
-  }, []);
+  const GOOGLE_LOGIN_URL = import.meta.env
+    .VITE_GOOGLE_LOGIN_URL;
+  const { isLogin } = useLoginStore();
   return (
     <>
-      {noticeList.map((notice) => (
-        <NoticeCard
-          notice={notice}
-          key={notice.articleId}
-        />
-      ))}
+      {noticeList &&
+        noticeList.map((notice) => (
+          <NoticeCard
+            notice={notice}
+            key={notice.articleId}
+          />
+        ))}
       <br />
       {initialBoardList &&
         initialBoardList.map((board) => (
@@ -36,7 +31,11 @@ const CommunityBoardPage = ({
           />
         ))}
       <Link
-        to={PATH.COMMUNITY_REGIST(type)}
+        to={
+          isLogin
+            ? PATH.COMMUNITY_REGIST(type)
+            : GOOGLE_LOGIN_URL
+        }
         state={{ type }}
         style={{
           inline: "block",
