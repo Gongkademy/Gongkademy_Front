@@ -5,7 +5,7 @@ import { typo } from "@styles/style";
 const Input = ({ label, ...props }) => {
   return (
     <>
-      <Flex as="label" direction="column" gap="0.5rem">
+      <Flex as="label" direction="column" gap="0.5rem" align="start">
         {label && <Text typo={typo.bodySm700}>{label}</Text>}
         <StyledInput {...props} />
       </Flex>
