@@ -23,26 +23,13 @@ export const checkMemberRole = (memberRole) => {
   return axiosInstance.get(END_POINT.CHECK_MEMBER_ROLE(memberRole));
 };
 
+export const patchMemberInfo = (data) => {
+  return axiosInstance.patch(END_POINT.MEMBER, data);
+};
+
 // 보류중
 export const validateDuplicateNickname = (nickname) => {
   return axiosInstance.get(`/check-nickname?nickname=${nickname}`);
-};
-
-export const validateDuplicateEmail = (email) => {
-  return axiosInstance.get(`/check-email?email=${email}`);
-};
-
-export const sendEmail = (email) => {
-  return axiosInstance.post("/mailSend", {
-    email: email,
-  });
-};
-
-export const checkAuthNum = (email, authNum) => {
-  return axiosInstance.post("/mailauthCheck", {
-    email: email,
-    authNum: authNum,
-  });
 };
 
 export const login = (username, password) => {
@@ -56,18 +43,4 @@ export const login = (username, password) => {
 
 export const deleteMember = (memberId) => {
   return axiosInstance.delete(END_POINT.MEMBER_DETAIL(memberId));
-};
-
-export const updateNickname = (memberId, newNickname) => {
-  return axiosInstance.patch("/update-member", {
-    memberId: memberId,
-    newNickname: newNickname,
-  });
-};
-
-export const updatePassword = (memberId, newPassword) => {
-  return axiosInstance.patch("/update-password", {
-    memberId: memberId,
-    newPassword: newPassword,
-  });
 };

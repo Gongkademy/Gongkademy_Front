@@ -6,6 +6,7 @@ import Profile from "@components/common/profile/Profile";
 import { useMemberInfoQuery } from "@queries/useMemberQuery";
 import { useState } from "react";
 import Button from "@components/common/button/Button";
+import { patchMemberInfo } from "@apis/members/membersApi";
 const MyInfoUpdatePage = () => {
   const [newProfileImg, setNewProfileImg] = useState();
   const [mode, setMode] = useState("read");
@@ -13,9 +14,14 @@ const MyInfoUpdatePage = () => {
   const [newNickname, setNewNickname] = useState();
   console.log(data);
 
-  const handleUpdateBtnClick = () => {
-    setMode("update");
-    setNewNickname(data.data.value);
+  const handleUpdateBtnClick = async () => {
+    if (mode === "read") {
+      setMode("update");
+      setNewNickname(data.data.value);
+    } else if (mode === "update") {
+      const response = await patchMemberInfo({ newNickname: newNickname });
+      console.log(response);
+    }
   };
 
   if (isLoading) {
