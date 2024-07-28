@@ -5,6 +5,7 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
   // onSubmit: 성공시 로직
   // validate: 유효성검사 함수
   const [values, setValues] = useState(initialValues);
+  console.log(values);
   const [messages, setMessages] = useState({});
   const [states, setStates] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -26,21 +27,28 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
     console.log({ ...values, [name]: value });
   };
 
+  useEffect(() => {
+    setValues(initialValues);
+  }, [initialValues]);
+
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    if (event?.type === "submit") {
+      event.preventDefault();
+    }
 
     setSubmitting(true);
     const newResponse = await onSubmit(values);
     setResponse(newResponse);
     await new Promise((r) => setTimeout(r, 1000));
+    setSubmitting(false);
   };
 
   useEffect(() => {
     if (submitting) {
       if (Object.keys(messages).length === 0) {
         onSubmit(values);
+        setSubmitting(false);
       }
-      setSubmitting(false);
     }
   }, [messages]);
 

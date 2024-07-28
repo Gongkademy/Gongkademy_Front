@@ -3,7 +3,7 @@ import {
   MIN_NICKNAME_LENGTH,
 } from "../components/signup/Constants";
 
-const validate = ({ nickname, birthday }) => {
+const validate = ({ nickname, newNickname, birthday }) => {
   const messages = {};
   const states = {};
   if (!nickname) {
@@ -18,6 +18,20 @@ const validate = ({ nickname, birthday }) => {
   } else {
     messages.nickname = "사용가능한 닉네임 입니다.";
     states.nickname = "success";
+  }
+
+  if (!newNickname) {
+    messages.newNickname = "";
+    states.newNickname = "default";
+  } else if (newNickname.length < MIN_NICKNAME_LENGTH) {
+    messages.newNickname = `${MIN_NICKNAME_LENGTH}자 이상으로 입력해주세요.`;
+    states.newNickname = "error";
+  } else if (newNickname.length > MAX_NICKNAME_LENGTH) {
+    messages.newNickname = `${MAX_NICKNAME_LENGTH}자 이하로 입력해주세요.`;
+    states.newNickname = "error";
+  } else {
+    messages.newNickname = "사용가능한 닉네임 입니다.";
+    states.newNickname = "success";
   }
 
   if (!birthday) {

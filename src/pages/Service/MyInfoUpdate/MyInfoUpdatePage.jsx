@@ -4,29 +4,60 @@ import Input from "@components/common/input/Input";
 import { PageTitle } from "@components/common/page/PageTitle";
 import Profile from "@components/common/profile/Profile";
 import { useMemberInfoQuery } from "@queries/useMemberQuery";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@components/common/button/Button";
 import { patchMemberInfo } from "@apis/members/membersApi";
+import validate from "@utils/validate";
+import useForm from "@hooks/useForm";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 const MyInfoUpdatePage = () => {
   const [newProfileImg, setNewProfileImg] = useState();
   const [mode, setMode] = useState("read");
   const { data, isLoading } = useMemberInfoQuery();
-  const [newNickname, setNewNickname] = useState();
-  console.log(data);
+  const [initialValues, setInitialValues] = useState({ newNickname: "" });
+  const queryClient = useQueryClient();
+  const updateMutation = useMutation({
+    mutationFn: (data) => patchMemberInfo(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["memberInfo"]);
+    },
+    onError: (error) => {
+      // 요청에 에러가 발생된 경우
+      console.log("onError", error);
+    },
+    onSettled: () => {
+      // 요청이 성공하든, 에러가 발생되든 실행하고 싶은 경우
+      console.log("onSettled");
+    },
+  });
+
+  useEffect(() => {
+    if (data) {
+      setInitialValues({ newNickname: data.data.nickname });
+    }
+  }, [data]);
+
+  const { values, submitting, handleChange, handleSubmit, response, states } =
+    useForm({
+      initialValues,
+      onSubmit: updateMutation.mutate,
+      validate: validate,
+    });
 
   const handleUpdateBtnClick = async () => {
     if (mode === "read") {
       setMode("update");
-      setNewNickname(data.data.value);
     } else if (mode === "update") {
-      const response = await patchMemberInfo({ newNickname: newNickname });
-      console.log(response);
+      await handleSubmit();
+      setMode("read");
     }
   };
 
   if (isLoading) {
     return <div>Loading...</div>; // 로딩 중일 때 표시할 컴포넌트
   }
+
   return (
     <>
       <PageTitle>
@@ -38,11 +69,16 @@ const MyInfoUpdatePage = () => {
         <Flex width="100%" align="end" gap="0.25rem">
           <Input
             label={"닉네임"}
-            value={mode === "read" ? data.data.nickname : newNickname}
-            onChange={(e) => setNewNickname(e.target.value)}
+            name={"newNickname"}
+            value={mode === "read" ? data.data.nickname : values.newNickname}
+            onChange={handleChange}
             disabled={mode === "read"}
           />
-          <Button onClick={handleUpdateBtnClick} fill>
+          <Button
+            onClick={handleUpdateBtnClick}
+            fill
+            disabled={states.newNickname === "error" || submitting}
+          >
             {mode === "read" ? "닉네임 수정" : "수정하기"}
           </Button>
           {mode === "update" && (
