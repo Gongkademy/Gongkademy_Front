@@ -27,6 +27,9 @@ export const patchMemberInfo = (data) => {
   return axiosInstance.patch(END_POINT.MEMBER, data);
 };
 
+export const deleteMember = () => {
+  return axiosInstance.delete(END_POINT.MEMBER);
+};
 // 보류중
 export const validateDuplicateNickname = (nickname) => {
   return axiosInstance.get(`/check-nickname?nickname=${nickname}`);
@@ -39,8 +42,4 @@ export const login = (username, password) => {
   form.append("password", password);
 
   return axiosInstance.post(END_POINT.LOGIN, form, header);
-};
-
-export const deleteMember = (memberId) => {
-  return axiosInstance.delete(END_POINT.MEMBER_DETAIL(memberId));
 };
