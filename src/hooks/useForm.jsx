@@ -29,7 +29,7 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
 
   useEffect(() => {
     setValues(initialValues);
-  }, [initialValues]);
+  }, []);
 
   const handleSubmit = async (event) => {
     if (event?.type === "submit") {

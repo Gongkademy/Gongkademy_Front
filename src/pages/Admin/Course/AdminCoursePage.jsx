@@ -19,7 +19,6 @@ const AdminCoursePage = () => {
   };
   useEffect(() => {
     fetchCourses();
-    console.log(1);
   }, []);
   return (
     <>
