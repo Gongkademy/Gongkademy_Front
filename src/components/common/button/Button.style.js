@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/style";
 
 export const StyledButton = styled.button`
+  width: ${(props) => props.width};
   height: 3rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
