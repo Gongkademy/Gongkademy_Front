@@ -27,6 +27,7 @@ export default defineConfig({
       { find: "@contexts", replacement: "/src/contexts" },
       { find: "@router", replacement: "/src/router" },
       { find: "@stores", replacement: "/src/stores" },
+      { find: "@queries", replacement: "/src/queries" },
       { find: "@utils", replacement: "/src/utils" },
       { find: "@styles", replacement: "/src/styles" },
       { find: "@dummy", replacement: "/src/dummy" },

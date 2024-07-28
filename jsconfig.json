@@ -10,6 +10,7 @@
       "@hooks/*": ["hooks/*"],
       "@pages/*": ["pages/*"],
       "@contexts/*": ["contexts/*"],
+      "@queries/*": ["queries/*"],
       "@router/*": ["router/*"],
       "@stores/*": ["stores/*"],
       "@utils/*": ["utils/*"],
