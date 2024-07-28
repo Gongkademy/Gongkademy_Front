@@ -15,15 +15,6 @@ export const ModalMessage = styled.p`
   color: ${color.black};
 `;
 
-export const Dim = styled.div`
-  background-color: ${color.black};
-  width: 100vh;
-  height: 100vh;
-  opacity: 0.25;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
 export const customModalStyles = {
   overlay: {
     color: "black",

@@ -8,10 +8,12 @@ import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
 import { deleteMember } from "@apis/members/membersApi";
 import { useMutation } from "@tanstack/react-query";
 import MemberDeleteConfirmModal from "@components/common/modal/confirmModal/MemberDeleteConfirmModal";
+import { useLoginStore } from "@stores/member/loginStore";
 
 const MyPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const setIsLogin = useLoginStore((state) => state.setIsLogin);
   const outMemberMutation = useMutation({
     mutationFn: deleteMember,
     onSuccess: () => {
@@ -25,6 +27,7 @@ const MyPage = () => {
   const handleConfirmBtnClick = () => {
     outMemberMutation.mutate();
     setIsOpen(false);
+    setIsLogin(false);
     navigate(PATH.ROOT);
   };
 
