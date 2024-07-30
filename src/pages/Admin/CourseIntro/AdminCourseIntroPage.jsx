@@ -48,7 +48,7 @@ const AdminCourseIntroducePage = () => {
           불러오기
         </Button>
       </Flex>
-      {/* <div dangerouslySetInnerHTML={{ __html: summary }}></div> */}
+
       <Flex>
         <p>강의요약</p>
         <CourseIntroEditor
