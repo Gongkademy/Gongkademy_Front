@@ -3,6 +3,7 @@ import { getCourseInfo } from "@apis/course/courseApi";
 import CourseIntroEditor from "@components/admin/course/CourseIntroEditor";
 import Button from "@components/common/button/Button";
 import { Flex } from "@components/common/flex/Flex";
+import { useCourseIntroQuery } from "@queries/useCourseDetailQuery";
 import { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
@@ -11,6 +12,7 @@ const AdminCourseIntroducePage = () => {
   const [preCourse, setPreCourse] = useState("");
   const [content, setContent] = useState("");
   const params = useParams();
+  const { data, isSuccess, error } = useCourseIntroQuery(params.courseId);
 
   const registCourseIntro = async () => {
     try {
@@ -26,15 +28,14 @@ const AdminCourseIntroducePage = () => {
     }
   };
   const getCourseIntro = async () => {
-    try {
-      const response = await getCourseInfo(params.courseId);
-      console.log(response);
-
-      setContent(response.data.introduction);
-      setSummary(response.data.summary);
-      setPreCourse(response.data.preCourses);
-    } catch (error) {
-      console.log(error);
+    console.log(error);
+    console.log(data);
+    if (isSuccess) {
+      setContent(data.data.introduction);
+      setSummary(data.data.summary);
+      setPreCourse(data.data.preCourses);
+    } else {
+      console.log(1);
     }
   };
   return (
