@@ -1,8 +1,9 @@
 import ReactQuill from "react-quill";
 import { useMemo, useRef } from "react";
 import { uploadImage } from "@apis/common/imageApi";
+import Button from "@components/common/button/Button";
 
-function CourseIntroEditor({ onChange, width, height }) {
+function CourseIntroEditor({ onChange, width, height, value }) {
   const quillRef = useRef(null);
 
   const imageHandler = async () => {
@@ -22,6 +23,7 @@ function CourseIntroEditor({ onChange, width, height }) {
         const editor = quillRef.current.getEditor();
         const range = editor.getSelection();
         editor.insertEmbed(range.index, "image", IMG_URL);
+        editor.setContents("aa");
       } catch (error) {
         console.log(error);
       }
@@ -41,12 +43,14 @@ function CourseIntroEditor({ onChange, width, height }) {
       },
     };
   }, []);
+
   return (
     <ReactQuill
       ref={quillRef}
       style={{ width: width, height: height }}
       image={true}
       modules={modules}
+      value={value}
       onChange={onChange}
     />
   );
