@@ -20,6 +20,10 @@ export const createCourse = async (data) => {
   });
 };
 
+export const updateCourseInfo = async (courseId, data) => {
+  return await adminInstance.patch(END_POINT.COURSE_INFO(courseId), data);
+};
+
 export const updateCourse = async (courseId, data) => {
   return await adminInstance.patch(END_POINT.COURSE_DETAIL(courseId), data);
 };

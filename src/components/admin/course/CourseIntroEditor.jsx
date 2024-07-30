@@ -2,7 +2,7 @@ import ReactQuill from "react-quill";
 import { useMemo, useRef } from "react";
 import { uploadImage } from "@apis/common/imageApi";
 
-function CourseIntroEditor({ onChange }) {
+function CourseIntroEditor({ onChange, width, height }) {
   const quillRef = useRef(null);
 
   const imageHandler = async () => {
@@ -44,7 +44,7 @@ function CourseIntroEditor({ onChange }) {
   return (
     <ReactQuill
       ref={quillRef}
-      style={{ width: "800px", height: "600px" }}
+      style={{ width: width, height: height }}
       image={true}
       modules={modules}
       onChange={onChange}
