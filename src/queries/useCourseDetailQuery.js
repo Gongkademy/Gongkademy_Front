@@ -33,27 +33,29 @@ export const registCourseNotice = () =>
     },
   });
 
-export const modifyCourseNotice = useMutation({
-  mutationFn: ({ courseId, data }) => updateCourseNotice(courseId, data),
-  onSuccess: () => {
-    queryClient.invalidateQueries(["courseNotice"]);
-  },
-  onError: (error) => {
-    console.log("onError", error);
-  },
-  onSettled: () => {
-    console.log("onSettled");
-  },
-});
-export const removeCourseNotice = useMutation({
-  mutationFn: (courseId) => deleteCourseNotice(courseId),
-  onSuccess: () => {
-    queryClient.invalidateQueries(["courseNotice"]);
-  },
-  onError: (error) => {
-    console.log("onError", error);
-  },
-  onSettled: () => {
-    console.log("onSettled");
-  },
-});
+export const modifyCourseNotice = () =>
+  useMutation({
+    mutationFn: ({ courseId, data }) => updateCourseNotice(courseId, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["courseNotice"]);
+    },
+    onError: (error) => {
+      console.log("onError", error);
+    },
+    onSettled: () => {
+      console.log("onSettled");
+    },
+  });
+export const removeCourseNotice = () =>
+  useMutation({
+    mutationFn: (courseId) => deleteCourseNotice(courseId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["courseNotice"]);
+    },
+    onError: (error) => {
+      console.log("onError", error);
+    },
+    onSettled: () => {
+      console.log("onSettled");
+    },
+  });

@@ -3,7 +3,7 @@ import { useMemo, useRef } from "react";
 import { uploadImage } from "@apis/common/imageApi";
 import Button from "@components/common/button/Button";
 
-function CourseIntroEditor({ onChange, width, height, value }) {
+function CourseEditor({ onChange, width, height, value }) {
   const quillRef = useRef(null);
 
   const imageHandler = async () => {
@@ -56,4 +56,4 @@ function CourseIntroEditor({ onChange, width, height, value }) {
   );
 }
 
-export default CourseIntroEditor;
+export default CourseEditor;

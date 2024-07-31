@@ -1,6 +1,5 @@
 import { updateCourseInfo } from "@apis/course/adminCourseApi";
-import { getCourseInfo } from "@apis/course/courseApi";
-import CourseIntroEditor from "@components/admin/course/CourseIntroEditor";
+import CourseEditor from "@components/admin/course/CourseEditor";
 import Button from "@components/common/button/Button";
 import { Flex } from "@components/common/flex/Flex";
 import { useCourseIntroQuery } from "@queries/useCourseDetailQuery";
@@ -51,7 +50,7 @@ const AdminCourseIntroducePage = () => {
 
       <Flex>
         <p>강의요약</p>
-        <CourseIntroEditor
+        <CourseEditor
           value={summary}
           onChange={setSummary}
           width={"800px"}
@@ -60,7 +59,7 @@ const AdminCourseIntroducePage = () => {
       </Flex>
       <Flex>
         <p>선수강 강의</p>
-        <CourseIntroEditor
+        <CourseEditor
           value={preCourse}
           onChange={setPreCourse}
           width={"800px"}
@@ -69,7 +68,7 @@ const AdminCourseIntroducePage = () => {
       </Flex>
       <Flex>
         <p>강의소개</p>
-        <CourseIntroEditor
+        <CourseEditor
           image={true}
           value={content}
           onChange={setContent}
