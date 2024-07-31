@@ -29,8 +29,10 @@ export const getCourseDetail = async (courseId) => {
   return await axiosInstance.get(END_POINT.COURSE_DETAIL(courseId));
 };
 
-export const getCourseNoticePerPage = async (courseId) => {
-  return await axiosInstance.get(END_POINT.COURSE_NOTICE_DETAIL(courseId));
+export const getCourseNoticePerPage = async (courseId, page) => {
+  return await axiosInstance.get(END_POINT.COURSE_NOTICE_DETAIL(courseId), {
+    params: { page: page },
+  });
 };
 
 export const getRegistCoursesNoComplete = async () => {

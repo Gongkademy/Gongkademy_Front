@@ -5,11 +5,11 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import Modal from "react-modal";
 import AppRouter from "./router/AppRouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@queries/queryClient";
 
 Modal.setAppElement("#root");
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
