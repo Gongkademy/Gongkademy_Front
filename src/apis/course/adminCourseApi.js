@@ -37,7 +37,8 @@ export const createCourseNotice = async (data) => {
 };
 
 export const updateCourseNotice = async (courseId, data) => {
-  return await adminInstance.post(
+  console.log(data);
+  return await adminInstance.patch(
     END_POINT.COURSE_NOTICE_DETAIL(courseId),
     data
   );
