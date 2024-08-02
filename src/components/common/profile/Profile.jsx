@@ -4,7 +4,7 @@ import {
   ProfileLabel,
 } from "@components/common/profile/Profile.style";
 
-const Profile = ({ width, height, onChange }) => {
+const Profile = ({ width, height, onChange, isUpload }) => {
   const [preview, setPreview] = useState();
 
   const handleImageInputChange = (e) => {
@@ -25,12 +25,22 @@ const Profile = ({ width, height, onChange }) => {
 
   return (
     <ProfileLabel width={width} height={height}>
-      {preview ? (
-        <Preview src={preview} width={width} height={height} />
+      {isUpload ? (
+        <>
+          {preview ? (
+            <Preview src={preview} width={width} height={height} />
+          ) : (
+            <img src="" alt="기본프로필" width={width} height={height} />
+          )}
+          <input
+            onChange={handleImageInputChange}
+            type="file"
+            accept="image/*"
+          />
+        </>
       ) : (
         <img src="" alt="기본프로필" width={width} height={height} />
       )}
-      <input onChange={handleImageInputChange} type="file" accept="image/*" />
     </ProfileLabel>
   );
 };

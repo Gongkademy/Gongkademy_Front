@@ -13,7 +13,6 @@ const CourseDetailTop = () => {
   const fetchCourseDetail = async () => {
     try {
       const response = await getCourseDetail(courseId);
-      console.log(response);
       setCourse(response.data);
     } catch (error) {
       console.log(error);
