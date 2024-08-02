@@ -35,7 +35,7 @@ export const registCourseNotice = () =>
 
 export const modifyCourseNotice = () =>
   useMutation({
-    mutationFn: ({ courseId, data }) => updateCourseNotice(courseId, data),
+    mutationFn: ({ noticeId, data }) => updateCourseNotice(noticeId, data),
     onSuccess: () => {
       queryClient.invalidateQueries(["courseNotice"]);
     },
@@ -48,7 +48,7 @@ export const modifyCourseNotice = () =>
   });
 export const removeCourseNotice = () =>
   useMutation({
-    mutationFn: (courseId) => deleteCourseNotice(courseId),
+    mutationFn: (noticeId) => deleteCourseNotice(noticeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["courseNotice"]);
     },

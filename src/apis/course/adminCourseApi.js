@@ -36,16 +36,16 @@ export const createCourseNotice = async (data) => {
   return await adminInstance.post(END_POINT.COURSE_NOTICE, data);
 };
 
-export const updateCourseNotice = async (courseId, data) => {
+export const updateCourseNotice = async (noticeId, data) => {
   console.log(data);
   return await adminInstance.patch(
-    END_POINT.COURSE_NOTICE_DETAIL(courseId),
+    END_POINT.COURSE_NOTICE_DETAIL(noticeId),
     data
   );
 };
 
-export const deleteCourseNotice = async (courseId) => {
-  return await adminInstance.delete(END_POINT.COURSE_NOTICE_DETAIL(courseId));
+export const deleteCourseNotice = async (noticeId) => {
+  return await adminInstance.delete(END_POINT.COURSE_NOTICE_DETAIL(noticeId));
 };
 
 export const createLecture = async (data) => {
