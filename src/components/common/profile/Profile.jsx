@@ -30,7 +30,7 @@ const Profile = ({ width, height, onChange, isUpload }) => {
           {preview ? (
             <Preview src={preview} width={width} height={height} />
           ) : (
-            <img src="" alt="기본프로필" width={width} height={height} />
+            <img src="" alt="" width={width} height={height} />
           )}
           <input
             onChange={handleImageInputChange}
@@ -39,7 +39,7 @@ const Profile = ({ width, height, onChange, isUpload }) => {
           />
         </>
       ) : (
-        <img src="" alt="기본프로필" width={width} height={height} />
+        <img src="" alt="" width={width} height={height} />
       )}
     </ProfileLabel>
   );

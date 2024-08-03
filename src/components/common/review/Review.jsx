@@ -1,6 +1,5 @@
 import {
   ContainerRow,
-  Profile,
   Content,
 } from "@pages/Service/CommunityDetail/CommunityDetail.style";
 import {
@@ -17,6 +16,7 @@ import Rating from "../rating/Rating";
 import { Flex } from "@components/common/flex/Flex";
 import Text from "@components/common/text/Text";
 import RegistReview from "../../community/Regist/RegistReview";
+import Profile from "@components/common/profile/Profile";
 
 const Review = ({ content }) => {
   const [isLikeActive, setIsLikeActive] = useState(false);
@@ -37,7 +37,7 @@ const Review = ({ content }) => {
     <>
       <ReviewContainer isReply={content.parentId !== undefined}>
         <ContainerRow type="center">
-          <Profile src={content.profile} />
+          <Profile width={"40px"} height={"40px"} src={content.profile} />
           <Content>{content.nickname}</Content>
           <Content>{content.createdTime}</Content>
         </ContainerRow>

@@ -27,7 +27,7 @@ export const END_POINT = {
   COURSE_REGIST: (courseId) => `/course/regist/${courseId}`,
 
   COURSE_COMMNET: "/course/comment",
-  COURSE_COMMNET_DETAIL: (courseId) => `/course/comment/${courseId}`,
+  COURSE_COMMNET_DETAIL: (commentId) => `/course/comment/${commentId}`,
   COURSE_COMMNET_CATEG_DETAIL: (category, courseId) =>
     `/course/comment/${category}/${courseId}`,
 
