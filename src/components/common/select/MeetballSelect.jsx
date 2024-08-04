@@ -7,14 +7,41 @@ import {
   StyledSelect,
 } from "./Select.style";
 import { Link } from "react-router-dom";
-const MeetballSelect = ({ path }) => {
+import { useState } from "react";
+import ConfirmModal from "../modal/confirmModal/ConfirmModal";
+const MeetballSelect = ({
+  path,
+  handleClickDelete,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Container>
+      <ConfirmModal
+        isOpen={isOpen}
+        title="게시글을 삭제하시겠습니까?"
+        cautions={[
+          "삭제된 글과 댓글은 복구할 수 없어요",
+        ]}
+        confirm={{
+          text: "확인",
+          onClick: handleClickDelete,
+        }}
+        close={{
+          text: "취소",
+          onClick: () => setIsOpen(false),
+        }}
+      />
       <Options active={true}>
         <Link to={path}>
           <Option>수정</Option>
         </Link>
-        <Option>삭제</Option>
+        <Option
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          삭제
+        </Option>
       </Options>
     </Container>
   );

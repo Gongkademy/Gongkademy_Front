@@ -1,4 +1,7 @@
-import { useLocation } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import {
   BookMarkIcon,
   LikeIcon,
@@ -48,11 +51,19 @@ const CommunityDetail = () => {
   const { board } = state;
   const [initialBoard, setInitialBoard] =
     useState(board);
-  const { likeNotice, scrapNotice } =
-    useNoticeStore();
-  const { likeConcern, scrapConcern } =
-    useConcernStore();
-  const { likeQna, scrapQna } = useQnaStore();
+  const navigate = useNavigate();
+  const {
+    likeNotice,
+    scrapNotice,
+    deleteNotice,
+  } = useNoticeStore();
+  const {
+    likeConcern,
+    scrapConcern,
+    deleteConcern,
+  } = useConcernStore();
+  const { likeQna, scrapQna, deleteQna } =
+    useQnaStore();
   const sanitizedHtml = DOMPurify.sanitize(
     initialBoard.content
   );
@@ -69,7 +80,7 @@ const CommunityDetail = () => {
     if (isLogin) {
       if (type === "notice") {
         likeNotice(initialBoard.articleId);
-      } else if (type === "qna") {
+      } else if (type === "Q&A") {
         likeQna(initialBoard.articleId);
       } else {
         likeConcern(initialBoard.articleId);
@@ -111,6 +122,20 @@ const CommunityDetail = () => {
     } else {
       window.location.href = GOOGLE_LOGIN_URL;
     }
+  };
+  const handleClickDelete = async (articleId) => {
+    if (type === "notice") {
+      deleteNotice(articleId);
+    } else if (type === "qna") {
+      deleteQna(articleId);
+    } else {
+      deleteConcern(articleId);
+    }
+    navigate(
+      PATH.COMMUNITY(
+        type === "Q&A" ? "Q&A" : "concern"
+      ) + `?keyword=&criteria=&pageNo=1`
+    );
   };
   const handleClickMeetball = () => {
     console.log(isMeetballClick);
@@ -188,8 +213,14 @@ const CommunityDetail = () => {
                 {isMeetballClick && (
                   <MeetballSelect
                     path={PATH.COMMUNITY_UPDATE(
-                      initialBoard.ariticleId
+                      type,
+                      initialBoard.articleId
                     )}
+                    handleClickDelete={() =>
+                      handleClickDelete(
+                        initialBoard.articleId
+                      )
+                    }
                   />
                 )}
               </ContainerCol>
