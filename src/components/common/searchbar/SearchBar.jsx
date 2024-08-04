@@ -30,51 +30,41 @@ const SearchBar = ({
     스크랩순: "scrapCount",
     좋아요순: "likeCount",
   };
-  const {
-    keyword,
-    setKeyword,
-    criteria,
-    setCriteria,
-  } = useCommonStore();
+  const { keyword, setKeyword, criteria } =
+    useCommonStore();
   const handleKeyDown = (e) => {
     if (
       e.key === "Enter" &&
-      e.nativeEvent.isComposing === false
+      !e.nativeEvent.isComposing
     ) {
-      setKeyword(e.target.value);
       setPendingNavigation(true);
       e.preventDefault();
-      ref.current.value = "";
+      search(keyword, criteria);
+      setPageNo(1);
     }
   };
   useEffect(() => {
     search(keyword, criteria);
     setPageNo(1);
-  }, [keyword, criteria]);
+  }, [criteria]);
   useEffect(() => {
     if (pendingNavigation) {
       navigate(link);
       setPendingNavigation(false);
     }
   }, [pendingNavigation, navigate, link]);
-  useEffect(() => {
-    return () => {
-      setKeyword("");
-      setCriteria("");
-    };
-  }, [setKeyword]);
-  useEffect(() => {
-    setKeyword("");
-    setCriteria("");
-    setSelected("최신순");
-  }, [type]);
+
   return (
     <SearchBarContainer>
       <StyledSearchBar
         placeholder="제목, 내용을 입력해주세요"
         onKeyDown={handleKeyDown}
         ref={ref}
-      ></StyledSearchBar>
+        value={keyword}
+        onChange={(e) =>
+          setKeyword(e.target.value)
+        }
+      />
       <Select
         options={Object.keys(searchOptions)}
         selectedValue={selected}

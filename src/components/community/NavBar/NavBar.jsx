@@ -1,12 +1,19 @@
 import { Navigate } from "./NavBar.style";
 import Button from "@components/common/button/Button";
 import { PATH } from "@router/Constants";
+import useCommonStore from "@stores/common/CommonStore";
 import {
   Link,
   useLocation,
 } from "react-router-dom";
 const NavBar = () => {
   const location = useLocation();
+  const { setKeyword, setCriteria } =
+    useCommonStore();
+  const handleClickType = () => {
+    setKeyword("");
+    setCriteria("");
+  };
   return (
     <Navigate>
       <Link
@@ -20,7 +27,10 @@ const NavBar = () => {
             🙋 Q&A
           </Button>
         ) : (
-          <Button text> 🙋 Q&A</Button>
+          <Button text onClick={handleClickType}>
+            {" "}
+            🙋 Q&A
+          </Button>
         )}
       </Link>
       <Link

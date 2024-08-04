@@ -35,7 +35,20 @@ const Select = ({
 
   const handleOptionClick = (option) => {
     setSelectedValue(option);
-    setCriteria(options[option]);
+    switch (option) {
+      case "최신순":
+        setCriteria("createTime");
+        break;
+      case "조회수순":
+        setCriteria("hit");
+        break;
+      case "스크랩순":
+        setCriteria("scrapCount");
+        break;
+      case "좋아요순":
+        setCriteria("likeCount");
+        break;
+    }
     setIsShowOptions(false);
     setPendingNavigation(true);
   };
