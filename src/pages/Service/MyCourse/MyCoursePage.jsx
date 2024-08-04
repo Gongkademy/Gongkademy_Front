@@ -1,11 +1,21 @@
 import MyCourseCard from "./MyCourseCard";
+import { MyCourseGrid } from "./MyCoursePage.style";
 
 const MyCoursePage = () => {
+  const courseArr = [
+    { title: "강의1" },
+    { title: "강의2" },
+    { title: "강의3" },
+    { title: "강의4" },
+    { title: "강의5" },
+  ];
+
   return (
-    <div>
-      나의 강좌 페이지
-      <MyCourseCard />
-    </div>
+    <MyCourseGrid>
+      {courseArr.map((course) => {
+        return <MyCourseCard courseName={course.title} />;
+      })}
+    </MyCourseGrid>
   );
 };
 

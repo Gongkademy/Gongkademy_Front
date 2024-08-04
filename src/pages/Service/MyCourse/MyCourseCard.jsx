@@ -9,11 +9,11 @@ import {
 } from "./MyCourseCard.style";
 import { color, typo } from "@styles/style";
 
-const MyCourseCard = () => {
+const MyCourseCard = ({ courseName }) => {
   return (
     <MyCourseContainer>
       <MyCourseCardImage />
-      <MyCourseName>name.lecture</MyCourseName>
+      <MyCourseName>{courseName}</MyCourseName>
       <MyCourseProcessContainer>
         <TotalCourseProcess>
           <MyCourseProcess />
