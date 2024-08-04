@@ -21,9 +21,11 @@ import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 import { useLoginStore } from "@stores/member/loginStore.js";
 import truncate from "html-truncate";
+import { formattedDate } from "./formatDate";
 const CommunityCard = ({ board, type }) => {
   const GOOGLE_LOGIN_URL = import.meta.env
     .VITE_GOOGLE_LOGIN_URL;
+
   const { isLogin } = useLoginStore();
   const navigate = useNavigate();
   const [initialBoard, setInitialBoard] =
@@ -126,7 +128,11 @@ const CommunityCard = ({ board, type }) => {
           <Content>
             {initialBoard.memberId}
           </Content>
-          <Content>3분전</Content>
+          <Content>
+            {formattedDate(
+              initialBoard.createTime
+            )}
+          </Content>
           {type === "QNA" && (
             <Content>
               {initialBoard.lectureTitle}
