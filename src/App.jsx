@@ -7,6 +7,7 @@ function App() {
   return (
     <LoginProvider>
       <Header />
+      <p>CI/CD Test</p>
       <PageLayout>
         <Outlet />
       </PageLayout>
