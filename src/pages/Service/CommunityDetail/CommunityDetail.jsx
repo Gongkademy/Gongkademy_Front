@@ -39,10 +39,13 @@ import useConcernStore from "@stores/Community/ConcernStore";
 import { useLoginStore } from "@stores/member/loginStore";
 import DOMPurify from "dompurify";
 import useReviewStore from "@stores/Community/ReviewStore";
+import { formattedDate } from "@components/community/Card/formatDate";
+import { useMemeberStore } from "@stores/member/memberStore";
 
 const CommunityDetail = () => {
   const GOOGLE_LOGIN_URL = import.meta.env
     .VITE_GOOGLE_LOGIN_URL;
+  const { member } = useMemeberStore();
   const { isLogin } = useLoginStore();
   const location = useLocation();
   const { state } = useLocation();
@@ -51,6 +54,7 @@ const CommunityDetail = () => {
   const { board } = state;
   const [initialBoard, setInitialBoard] =
     useState(board);
+  console.log(initialBoard);
   const navigate = useNavigate();
   const {
     likeNotice,
@@ -151,6 +155,8 @@ const CommunityDetail = () => {
       content: reviewContent,
       parentId: null,
     };
+    setReviewContent("");
+    setIsWriteReview(false);
     console.log(review);
     writeReview(review);
   };
@@ -200,30 +206,33 @@ const CommunityDetail = () => {
                   {initialBoard.likeCount}
                 </Content>
               </ContainerCol>
-              <ContainerCol
-                type="icon"
-                style={{ position: "relative" }}
-              >
-                <MeetballIcon
-                  width="16"
-                  height="16"
-                  onClick={handleClickMeetball}
-                />
-                <br />
-                {isMeetballClick && (
-                  <MeetballSelect
-                    path={PATH.COMMUNITY_UPDATE(
-                      type,
-                      initialBoard.articleId
-                    )}
-                    handleClickDelete={() =>
-                      handleClickDelete(
-                        initialBoard.articleId
-                      )
-                    }
+              {initialBoard.memberId ===
+                member.memberId && (
+                <ContainerCol
+                  type="icon"
+                  style={{ position: "relative" }}
+                >
+                  <MeetballIcon
+                    width="16"
+                    height="16"
+                    onClick={handleClickMeetball}
                   />
-                )}
-              </ContainerCol>
+                  <br />
+                  {isMeetballClick && (
+                    <MeetballSelect
+                      path={PATH.COMMUNITY_UPDATE(
+                        type,
+                        initialBoard.articleId
+                      )}
+                      handleClickDelete={() =>
+                        handleClickDelete(
+                          initialBoard.articleId
+                        )
+                      }
+                    />
+                  )}
+                </ContainerCol>
+              )}
             </ContainerRow>
           </TitleContainer>
           <ContainerRow type="center">
@@ -233,7 +242,10 @@ const CommunityDetail = () => {
             </Content>
           </ContainerRow>
           <Content>
-            {initialBoard.createTime} 작성
+            {formattedDate(
+              initialBoard.createTime
+            )}{" "}
+            작성
           </Content>
           <ContentContainer>
             <Content
@@ -294,7 +306,9 @@ const CommunityDetail = () => {
           )}
           {viewReview &&
             initialBoard.comments.map(
-              (review) => <Review />
+              (review) => (
+                <Review content={review} />
+              )
             )}
         </Container>
       )}
