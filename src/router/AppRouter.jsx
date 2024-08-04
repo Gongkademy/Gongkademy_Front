@@ -1,7 +1,10 @@
 import { PATH } from "@router/Constants";
 
 import App from "../App";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import HomePage from "@pages/Service/Home/HomePage";
 import NotFoundPage from "@pages/NotFound/NotFoundPage";
@@ -64,8 +67,18 @@ const AppRouter = () => {
           element: <CommunityPage />,
         },
         {
-          path: PATH.COMMUNITY_DETAIL(`:communityType`, `:id`),
+          path: PATH.COMMUNITY_DETAIL(
+            `:communityType`,
+            `:id`
+          ),
           element: <CommunityDetail />,
+        },
+        {
+          path: PATH.COMMUNITY_UPDATE(
+            `:communityType`,
+            `:id`
+          ),
+          element: <CommunityUpdatePage />,
         },
 
         // 강의 관련 Route
@@ -79,11 +92,15 @@ const AppRouter = () => {
           element: <CourseDetailPage />,
           children: [
             {
-              path: PATH.COURSE_INTRODUCTION(`:courseId`),
+              path: PATH.COURSE_INTRODUCTION(
+                `:courseId`
+              ),
               element: <CourseIntroduction />,
             },
             {
-              path: PATH.COURSE_CURRICULUM(`:courseId`),
+              path: PATH.COURSE_CURRICULUM(
+                `:courseId`
+              ),
               element: <CourseCurriculum />,
             },
             {
@@ -91,21 +108,29 @@ const AppRouter = () => {
               element: <CourseQnA />,
             },
             {
-              path: PATH.COURSE_REVIEW(`:courseId`),
+              path: PATH.COURSE_REVIEW(
+                `:courseId`
+              ),
               element: <CourseReview />,
             },
             {
-              path: PATH.COURSE_NOTICE(`:courseId`),
+              path: PATH.COURSE_NOTICE(
+                `:courseId`
+              ),
               element: <CourseNotice />,
             },
           ],
         },
         //PrivateRouter 적용
         {
-          element: <PrivateRouter memberRole={"USER"} />,
+          element: (
+            <PrivateRouter memberRole={"USER"} />
+          ),
           children: [
             {
-              path: PATH.COMMUNITY_REGIST(`:communityType`),
+              path: PATH.COMMUNITY_REGIST(
+                `:communityType`
+              ),
               element: <CommunityRegistPage />,
             },
             {
@@ -136,7 +161,9 @@ const AppRouter = () => {
 
             {
               path: PATH.MY_NOTIFICATION_SETTING,
-              element: <MyNotificationSettingPage />,
+              element: (
+                <MyNotificationSettingPage />
+              ),
             },
             {
               path: PATH.LECTURE,
@@ -146,7 +173,10 @@ const AppRouter = () => {
         },
       ],
     },
-    { path: PATH.GOOGLE_REDIRECT, element: <GoogleRedirectPage /> },
+    {
+      path: PATH.GOOGLE_REDIRECT,
+      element: <GoogleRedirectPage />,
+    },
 
     //header, footer없음
 
@@ -155,7 +185,9 @@ const AppRouter = () => {
       element: <AdminApp />,
       children: [
         {
-          element: <PrivateRouter memberRole={"ADMIN"} />,
+          element: (
+            <PrivateRouter memberRole={"ADMIN"} />
+          ),
           children: [
             {
               path: ADMIN_PATH.ROOT,
@@ -167,15 +199,21 @@ const AppRouter = () => {
               children: [
                 {
                   path: ADMIN_PATH.COMMUNITY_NOTEICE,
-                  element: <AdminCommunityNoticePage />,
+                  element: (
+                    <AdminCommunityNoticePage />
+                  ),
                 },
                 {
                   path: ADMIN_PATH.COMMUNITY_QNA,
-                  element: <AdminCommunityQnaPage />,
+                  element: (
+                    <AdminCommunityQnaPage />
+                  ),
                 },
                 {
                   path: ADMIN_PATH.COMMUNITY_CONCERN,
-                  element: <AdminCommunityConcernPage />,
+                  element: (
+                    <AdminCommunityConcernPage />
+                  ),
                 },
               ],
             },
@@ -192,24 +230,42 @@ const AppRouter = () => {
               element: <AdminCourseNavbar />,
               children: [
                 {
-                  path: ADMIN_PATH.COURSE_INTRODUCE(":courseId"),
-                  element: <AdminCourseIntroducePage />,
+                  path: ADMIN_PATH.COURSE_INTRODUCE(
+                    ":courseId"
+                  ),
+                  element: (
+                    <AdminCourseIntroducePage />
+                  ),
                 },
                 {
-                  path: ADMIN_PATH.COURSE_ORDER(":courseId"),
-                  element: <AdminCourseOrderPage />,
+                  path: ADMIN_PATH.COURSE_ORDER(
+                    ":courseId"
+                  ),
+                  element: (
+                    <AdminCourseOrderPage />
+                  ),
                 },
                 {
-                  path: ADMIN_PATH.COURSE_QNA(":courseId"),
+                  path: ADMIN_PATH.COURSE_QNA(
+                    ":courseId"
+                  ),
                   element: <AdminCourseQnaPage />,
                 },
                 {
-                  path: ADMIN_PATH.COURSE_REVIEW(":courseId"),
-                  element: <AdminCourseReviewPage />,
+                  path: ADMIN_PATH.COURSE_REVIEW(
+                    ":courseId"
+                  ),
+                  element: (
+                    <AdminCourseReviewPage />
+                  ),
                 },
                 {
-                  path: ADMIN_PATH.COURSE_NOTICE(":courseId"),
-                  element: <AdminCourseNoticePage />,
+                  path: ADMIN_PATH.COURSE_NOTICE(
+                    ":courseId"
+                  ),
+                  element: (
+                    <AdminCourseNoticePage />
+                  ),
                 },
               ],
             },
