@@ -20,7 +20,6 @@ import { color } from "@styles/style";
 import useQnaStore from "@stores/Community/QnaStore";
 import useConcernStore from "@stores/Community/ConcernStore";
 import { useLoginStore } from "@stores/member/loginStore.js";
-import DOMPurify from "dompurify";
 import truncate from "html-truncate";
 const CommunityCard = ({ board, type }) => {
   const GOOGLE_LOGIN_URL = import.meta.env
@@ -29,11 +28,15 @@ const CommunityCard = ({ board, type }) => {
   const navigate = useNavigate();
   const [initialBoard, setInitialBoard] =
     useState(board);
-  const sanitizedHtml = DOMPurify.sanitize(
-    initialBoard.content
-  );
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(
+      html,
+      "text/html"
+    );
+    return doc.body.textContent || "";
+  };
   const truncatedHtml = truncate(
-    sanitizedHtml,
+    stripHtmlTags(board.content),
     10
   );
   const handleClickConcernCard = () => {
