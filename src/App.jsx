@@ -8,6 +8,7 @@ function App() {
     <LoginProvider>
       <Header />
       <p>CI/CD Test</p>
+      <p>CI/CD Test</p>
       <PageLayout>
         <Outlet />
       </PageLayout>
