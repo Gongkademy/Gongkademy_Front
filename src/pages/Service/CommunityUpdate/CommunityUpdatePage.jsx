@@ -21,7 +21,7 @@ import Alarm from "@components/common/modal/Alarm/Alarm";
 import ConcernEditor from "@components/community/Regist/ConcernEditor";
 import Button from "@components/common/button/Button";
 import { Flex } from "@components/common/flex/Flex";
-
+import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
 const CommunityRegistPage = () => {
   const { communityType, id } = useParams();
   const editorRef = useRef(null);
@@ -33,10 +33,9 @@ const CommunityRegistPage = () => {
     fetchConcernDetail,
     updateConcern,
   } = useConcernStore();
-  const [isModalOpen, SetIsModalOpen] =
-    useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
-    SetIsModalOpen(false);
+    setIsOpen(false);
   };
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -71,7 +70,7 @@ const CommunityRegistPage = () => {
     setContent(
       editorRef.current.getEditor().root.innerHTML
     );
-    SetIsModalOpen(true);
+    setIsOpen(true);
   };
   const handleClickButton = () => {
     if (communityType === "Q&A") {
@@ -108,6 +107,21 @@ const CommunityRegistPage = () => {
   return (
     <>
       <Container>
+        <ConfirmModal
+          isOpen={isOpen}
+          title="게시글을 수정하시겠습니까?"
+          messages={[
+            "커뮤니티 페이지로 이동합니다.",
+          ]}
+          close={{
+            text: "취소",
+            onClick: () => SetIsOpen(false),
+          }}
+          confirm={{
+            text: "확인",
+            onClick: handleClickButton,
+          }}
+        />
         <Flex width="100%" justify="flex-end">
           <Button
             fill
@@ -149,34 +163,6 @@ const CommunityRegistPage = () => {
           />
         )}
       </Container>
-      <Modal
-        isOpen={isModalOpen}
-        ariaHideApp={false}
-        onRequestClose={closeModal}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            zIndex: 10,
-          },
-          content: {
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-          },
-        }}
-      >
-        <Alarm
-          title="글을 수정하시겠습니까?"
-          content={
-            "커뮤니티 페이지로 이동합니다."
-          }
-          onClickOk={handleClickButton}
-          onClickNo={closeModal}
-        />
-      </Modal>
     </>
   );
 };

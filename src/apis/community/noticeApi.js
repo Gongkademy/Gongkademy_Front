@@ -2,31 +2,31 @@ import { END_POINT } from "@apis/apiConstants";
 import { axiosInstance } from "@apis/axiosInstance";
 export const getNoticeList = async () => {
   return await axiosInstance.get(
-    END_POINT.COMMUNITY_NOTICE + "/top_latest"
+    END_POINT.COMMUNITY_NOTICE +
+      "/top_latest/login"
   );
 };
 export const getNoticeDetail = async (
   articleId
 ) => {
   return await axiosInstance.get(
-    END_POINT.COMMUNITY_NOTICE_ARTICLE(articleId)
+    END_POINT.COMMUNITY_NOTICE_ARTICLE(
+      articleId
+    ) + "/login"
   );
 };
 
 //비로그인 유저
 export const getNoticeListNonLogin = async () => {
   return await axiosInstance.get(
-    END_POINT.COMMUNITY_NOTICE +
-      "/top_latest/non-login"
+    END_POINT.COMMUNITY_NOTICE + "/top_latest"
   );
 };
 export const getNoticeDetailNonLogin = async (
   articleId
 ) => {
   return await axiosInstance.get(
-    END_POINT.COMMUNITY_NOTICE_ARTICLE(
-      articleId
-    ) + "/non-login"
+    END_POINT.COMMUNITY_NOTICE_ARTICLE(articleId)
   );
 };
 
