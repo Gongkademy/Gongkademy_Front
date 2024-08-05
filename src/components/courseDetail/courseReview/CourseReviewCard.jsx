@@ -4,6 +4,7 @@ import {
   ChatIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  MeetballIcon,
 } from "@assets/svg/icons";
 import Button from "@components/common/button/Button";
 import { useState } from "react";
@@ -14,6 +15,7 @@ import Profile from "@components/common/profile/Profile";
 import { ReviewContainer } from "@components/common/review/Review.style";
 import Rating from "@components/common/rating/Rating";
 import { ImageBox } from "@components/common/imageBox/ImageBox.style";
+import DropDownList from "@components/common/dropDownList/DropDownList";
 
 const CourseReviewCard = ({
   content,
@@ -41,23 +43,32 @@ const CourseReviewCard = ({
   return (
     <>
       <ReviewContainer isReply={replies?.length}>
-        <Flex justify="space-between">
-          <Flex gap="1rem">
-            <Profile width={"40px"} height={"40px"} src={profile} alt="사진" />
-            <Text typo={typo.bodyRg700}>{nickname}</Text>
-            <Text typo={typo.bodySm400} color={color.gray600}>
-              {createdTime}
-            </Text>
+        <Flex direction="column" gap="0.5rem">
+          <Flex justify="space-between">
+            <Flex gap="1rem">
+              <Profile
+                width={"40px"}
+                height={"40px"}
+                src={profile}
+                alt="사진"
+              />
+              <Text typo={typo.bodyRg700}>{nickname}</Text>
+              <Text typo={typo.bodySm400} color={color.gray600}>
+                {createdTime}
+              </Text>
+            </Flex>
+            <DropDownList
+              trigger={<MeetballIcon width="1.2rem" />}
+              items={["수정하기", "삭제하기"]}
+            />
           </Flex>
-
           {rating !== undefined && (
             <Flex align="center" gap="1rem">
-              <Rating width="1.5rem" count={5} value={rating} />
-              <Text typo="bodyLg700">({rating})</Text>
+              <Rating width="1rem" count={5} value={rating} />
+              <Text typo={typo.bodySm400}>({rating})</Text>
             </Flex>
           )}
         </Flex>
-
         <Text typo={typo.bodyRg400}>{content}</Text>
 
         <Flex gap="1rem" align="center" justify="start">

@@ -8,7 +8,7 @@ const Rating = ({ count, value, onChange, width }) => {
     () =>
       Array.from({ length: count }, (_, i) => (
         <div key={i} onClick={() => onChange(i + 1)}>
-          <ImageBox width="1.5rem" height="1.5rem">
+          <ImageBox width={width} height={width}>
             <StarIcon
               width={width}
               fill={i < value ? color.yellow : color.gray200}

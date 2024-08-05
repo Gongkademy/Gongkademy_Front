@@ -13,6 +13,7 @@ import {
 } from "@queries/useCourseReviewQuery";
 import { useParams } from "react-router-dom";
 import CourseReviewCard from "@components/courseDetail/courseReview/CourseReviewCard";
+import { typo } from "@styles/style";
 const CourseReview = () => {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
@@ -38,7 +39,7 @@ const CourseReview = () => {
             value={rating}
             onChange={setRating}
           />
-          <Text typo="bodyLg700">({rating})</Text>
+          <Text typo={typo.bodyLg700}>({rating})</Text>
         </Flex>
         <Button
           fill
