@@ -17,7 +17,13 @@ import Rating from "@components/common/rating/Rating";
 import { ImageBox } from "@components/common/imageBox/ImageBox.style";
 import DropDownList from "@components/common/dropDownList/DropDownList";
 import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
-import { useRemoveCourseReview } from "@queries/useCourseReviewQuery";
+import {
+  useModifyCourseReviewMutation,
+  useRemoveCourseReview,
+} from "@queries/useCourseReviewQuery";
+import ReviewModal from "@components/courseDetail/courseReview/ReviewModal";
+import TextArea from "@components/common/textarea/TextArea";
+import { useParams } from "react-router-dom";
 
 const CourseReviewCard = ({
   content,
@@ -35,7 +41,13 @@ const CourseReviewCard = ({
     setWriteReview(!writeReview);
   };
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const modifyCourseReview = useModifyCourseReviewMutation();
   const removeCourseReview = useRemoveCourseReview();
+
+  const [newRating, setNewRating] = useState();
+  const [newContent, setNewContent] = useState();
+  const { courseId } = useParams();
 
   const handleClickLike = () => {
     setIsLikeActive(!isLikeActive);
@@ -67,6 +79,50 @@ const CourseReviewCard = ({
         }}
         isOpen={isDeleteModalOpen}
       />
+
+      <ReviewModal
+        title={"수강평을 남겨주세요"}
+        confirm={{
+          text: "수정하기",
+          onClick: () => {
+            modifyCourseReview.mutate(
+              {
+                reviewId: reviewId,
+                data: {
+                  courseId: courseId,
+                  content: newContent,
+                  rating: newRating,
+                },
+              },
+              {
+                onSuccess: setIsUpdateModalOpen(false),
+              }
+            );
+          },
+        }}
+        close={{
+          text: "닫기",
+          onClick: () => {
+            setIsUpdateModalOpen(false);
+          },
+        }}
+        isOpen={isUpdateModalOpen}
+      >
+        <Flex direction="column" align="center" gap="1rem" width="100%">
+          <Rating
+            width={"1.5rem"}
+            count={5}
+            value={newRating}
+            onChange={setNewRating}
+          />
+          <TextArea
+            placeholder={"수강평을 작성해주세요"}
+            onChange={(e) => setNewContent(e.target.value)}
+            value={newContent}
+          />
+        </Flex>
+      </ReviewModal>
+
       <ReviewContainer isReply={replies?.length}>
         <Flex direction="column" gap="0.5rem">
           <Flex justify="space-between">
@@ -88,7 +144,9 @@ const CourseReviewCard = ({
                 {
                   text: "수정하기",
                   onClick: () => {
-                    console.log(1);
+                    setIsUpdateModalOpen(true);
+                    setNewContent(content);
+                    setNewRating(rating);
                   },
                 },
                 {

@@ -23,6 +23,7 @@ export const customModalStyles = {
   content: {
     border: "none",
     display: "flex",
+    minWidth: "22rem",
     flexDirection: "column",
     justifyContent: "center",
     height: "fit-content",
