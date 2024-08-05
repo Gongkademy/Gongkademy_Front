@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import AppRouter from "./router/AppRouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@queries/queryClient";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 Modal.setAppElement("#root");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,6 +17,7 @@ root.render(
       <ThemeProvider theme={theme}>
         <AppRouter />
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
