@@ -7,14 +7,26 @@ import Select from "@components/common/select/Select";
 import Review from "../../common/review/Review";
 import { review } from "../../../dummy/Review";
 import Button from "@components/common/button/Button";
-import { useRegistCourseReviewMutation } from "@queries/useCourseReviewQuery";
+import {
+  useCourseReviewQuery,
+  useRegistCourseReviewMutation,
+} from "@queries/useCourseReviewQuery";
 import { useParams } from "react-router-dom";
+import CourseReviewCard from "@components/courseDetail/courseReview/CourseReviewCard";
 const CourseReview = () => {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
   const [order, setOrder] = useState("최신순");
   const registCourseReview = useRegistCourseReviewMutation();
-  const params = useParams();
+  const { courseId } = useParams();
+
+  const { data, isLoading, isSuccess } = useCourseReviewQuery(courseId);
+
+  if (isSuccess) {
+    console.log(data);
+  }
+
+  if (isLoading) return <p>로딩중</p>;
 
   return (
     <Flex as="section" direction="column" gap="1rem">
@@ -34,7 +46,7 @@ const CourseReview = () => {
             registCourseReview.mutate({
               rating: rating,
               content: content,
-              courseId: params.courseId,
+              courseId: courseId,
             });
           }}
         >
@@ -54,7 +66,18 @@ const CourseReview = () => {
         width={"12rem"}
       />
 
-      <Review content={review[0]} />
+      {isSuccess &&
+        data.data.map((review) => (
+          <CourseReviewCard
+            nickname={review.nickname}
+            createdTime={review.createdTime}
+            likeCount={review.likeCount}
+            // profile={review.nickname}
+            rating={review.rating}
+            hasReply={false}
+            content={review.content}
+          />
+        ))}
     </Flex>
   );
 };
