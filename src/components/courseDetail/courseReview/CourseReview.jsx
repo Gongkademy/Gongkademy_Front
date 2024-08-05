@@ -77,6 +77,7 @@ const CourseReview = () => {
             rating={review.rating}
             hasReply={false}
             content={review.content}
+            reviewId={review.courseReviewId}
           />
         ))}
     </Flex>

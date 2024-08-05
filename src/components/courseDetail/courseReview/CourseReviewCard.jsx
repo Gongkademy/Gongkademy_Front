@@ -16,6 +16,8 @@ import { ReviewContainer } from "@components/common/review/Review.style";
 import Rating from "@components/common/rating/Rating";
 import { ImageBox } from "@components/common/imageBox/ImageBox.style";
 import DropDownList from "@components/common/dropDownList/DropDownList";
+import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
+import { useRemoveCourseReview } from "@queries/useCourseReviewQuery";
 
 const CourseReviewCard = ({
   content,
@@ -25,12 +27,16 @@ const CourseReviewCard = ({
   profile,
   rating,
   replies,
+  reviewId,
 }) => {
   const [isLikeActive, setIsLikeActive] = useState(false);
   const [writeReview, setWriteReview] = useState(false);
   const handleClickGoWriteReview = () => {
     setWriteReview(!writeReview);
   };
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const removeCourseReview = useRemoveCourseReview();
+
   const handleClickLike = () => {
     setIsLikeActive(!isLikeActive);
   };
@@ -42,6 +48,25 @@ const CourseReviewCard = ({
 
   return (
     <>
+      <ConfirmModal
+        title={"수강평을 삭제하시겠습니까?"}
+        cautions={["삭제한 수강평은 되돌릴수없습니다."]}
+        confirm={{
+          text: "삭제하기",
+          onClick: () => {
+            removeCourseReview.mutate(reviewId, {
+              onSuccess: setIsDeleteModalOpen(false),
+            });
+          },
+        }}
+        close={{
+          text: "닫기",
+          onClick: () => {
+            setIsDeleteModalOpen(false);
+          },
+        }}
+        isOpen={isDeleteModalOpen}
+      />
       <ReviewContainer isReply={replies?.length}>
         <Flex direction="column" gap="0.5rem">
           <Flex justify="space-between">
@@ -59,7 +84,20 @@ const CourseReviewCard = ({
             </Flex>
             <DropDownList
               trigger={<MeetballIcon width="1.2rem" />}
-              items={["수정하기", "삭제하기"]}
+              items={[
+                {
+                  text: "수정하기",
+                  onClick: () => {
+                    console.log(1);
+                  },
+                },
+                {
+                  text: "삭제하기",
+                  onClick: () => {
+                    setIsDeleteModalOpen(true);
+                  },
+                },
+              ]}
             />
           </Flex>
           {rating !== undefined && (

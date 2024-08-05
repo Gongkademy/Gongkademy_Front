@@ -1,15 +1,22 @@
 import { cloneElement, useState } from "react";
+
 const DropDownList = ({ label, items, trigger }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <label>
-      {label}
+    <div>
+      <label>{label}</label>
       {cloneElement(trigger, { onClick: () => setIsOpen((prev) => !prev) })}
-      <ul>
-        {isOpen && items.map((item, index) => <li key={item}>{item}</li>)}
-      </ul>
-    </label>
+      {isOpen && (
+        <ul>
+          {items.map((item, index) => (
+            <li key={index} onClick={item.onClick}>
+              {item.text}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
