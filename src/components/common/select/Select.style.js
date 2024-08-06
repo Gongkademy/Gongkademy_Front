@@ -20,7 +20,9 @@ export const SelectedValue = styled.div`
   overflow: hidden;
 `;
 
-export const Options = styled.ul`
+export const Options = styled.ul.withConfig({
+  shouldForwardProp: (prop) => prop !== "active",
+})`
   list-style-type: none;
   margin-top: 0.625rem;
   width: 100%;
