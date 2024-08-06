@@ -8,7 +8,7 @@ import { ConcernContianer } from "@components/concern/ConcernCard.style";
 import { TeacherIcon } from "@assets/svg/icons";
 import { useEffect, useState } from "react";
 import { getAllCourses } from "@apis/course/courseApi";
-import { useMemeberStore } from "@stores/member/memberStore";
+import { useMemberStore } from "@stores/member/memberStore";
 const CONCERNS = CONCERN_LIST;
 const HomePage = () => {
   const [courses, setCourses] = useState([]);

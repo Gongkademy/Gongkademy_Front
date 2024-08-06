@@ -16,11 +16,11 @@ import { useLoginStore } from "@stores/member/loginStore";
 import { getMemberInfo, save } from "@apis/members/membersApi";
 import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { PATH } from "@router/Constants";
-import { useMemeberStore } from "@stores/member/memberStore";
+import { useMemberStore } from "@stores/member/memberStore";
 
 const SignUpForm = () => {
   const setIsLogin = useLoginStore((state) => state.setIsLogin);
-  const setMember = useMemeberStore((state) => state.setMember);
+  const setMember = useMemberStore((state) => state.setMember);
   const join = async (data) => {
     try {
       const response = await save(data);

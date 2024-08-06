@@ -1,7 +1,4 @@
-import {
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   BookMarkIcon,
   LikeIcon,
@@ -40,43 +37,27 @@ import { useLoginStore } from "@stores/member/loginStore";
 import DOMPurify from "dompurify";
 import useReviewStore from "@stores/Community/ReviewStore";
 import { formattedDate } from "@components/community/Card/formatDate";
-import { useMemeberStore } from "@stores/member/memberStore";
+import { useMemebrStore } from "@stores/member/memberStore";
 
 const CommunityDetail = () => {
-  const GOOGLE_LOGIN_URL = import.meta.env
-    .VITE_GOOGLE_LOGIN_URL;
-  const { member } = useMemeberStore();
+  const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
+  const { member } = useMemberStore();
   const { isLogin } = useLoginStore();
   const location = useLocation();
   const { state } = useLocation();
   const splitPath = location.pathname.split("/");
   const type = splitPath[2];
   const { board } = state;
-  const [initialBoard, setInitialBoard] =
-    useState(board);
+  const [initialBoard, setInitialBoard] = useState(board);
   console.log(initialBoard);
   const navigate = useNavigate();
-  const {
-    likeNotice,
-    scrapNotice,
-    deleteNotice,
-  } = useNoticeStore();
-  const {
-    likeConcern,
-    scrapConcern,
-    deleteConcern,
-  } = useConcernStore();
-  const { likeQna, scrapQna, deleteQna } =
-    useQnaStore();
-  const sanitizedHtml = DOMPurify.sanitize(
-    initialBoard.content
-  );
-  const [viewReview, setViewReview] =
-    useState(false);
-  const [isWriteReview, setIsWriteReview] =
-    useState(false);
-  const [isMeetballClick, setIsMeetballClick] =
-    useState(false);
+  const { likeNotice, scrapNotice, deleteNotice } = useNoticeStore();
+  const { likeConcern, scrapConcern, deleteConcern } = useConcernStore();
+  const { likeQna, scrapQna, deleteQna } = useQnaStore();
+  const sanitizedHtml = DOMPurify.sanitize(initialBoard.content);
+  const [viewReview, setViewReview] = useState(false);
+  const [isWriteReview, setIsWriteReview] = useState(false);
+  const [isMeetballClick, setIsMeetballClick] = useState(false);
   const handleClickViewReview = () => {
     setViewReview(!viewReview);
   };
@@ -136,17 +117,15 @@ const CommunityDetail = () => {
       deleteConcern(articleId);
     }
     navigate(
-      PATH.COMMUNITY(
-        type === "Q&A" ? "Q&A" : "concern"
-      ) + `?keyword=&criteria=&pageNo=1`
+      PATH.COMMUNITY(type === "Q&A" ? "Q&A" : "concern") +
+        `?keyword=&criteria=&pageNo=1`
     );
   };
   const handleClickMeetball = () => {
     console.log(isMeetballClick);
     setIsMeetballClick(!isMeetballClick);
   };
-  const [reviewContent, setReviewContent] =
-    useState("");
+  const [reviewContent, setReviewContent] = useState("");
   const { writeReview } = useReviewStore();
   const registReview = () => {
     const review = {
@@ -182,9 +161,7 @@ const CommunityDetail = () => {
                     onClick={handleClickBookMark}
                   />
                 )}
-                <Content>
-                  {initialBoard.scrapCount}
-                </Content>
+                <Content>{initialBoard.scrapCount}</Content>
               </ContainerCol>
               <ContainerCol type="icon">
                 {initialBoard.isLiked ? (
@@ -196,22 +173,12 @@ const CommunityDetail = () => {
                     onClick={handleClickLike}
                   />
                 ) : (
-                  <LikeIcon
-                    width="16"
-                    height="16"
-                    onClick={handleClickLike}
-                  />
+                  <LikeIcon width="16" height="16" onClick={handleClickLike} />
                 )}
-                <Content>
-                  {initialBoard.likeCount}
-                </Content>
+                <Content>{initialBoard.likeCount}</Content>
               </ContainerCol>
-              {initialBoard.memberId ===
-                member.memberId && (
-                <ContainerCol
-                  type="icon"
-                  style={{ position: "relative" }}
-                >
+              {initialBoard.memberId === member.memberId && (
+                <ContainerCol type="icon" style={{ position: "relative" }}>
                   <MeetballIcon
                     width="16"
                     height="16"
@@ -220,14 +187,9 @@ const CommunityDetail = () => {
                   <br />
                   {isMeetballClick && (
                     <MeetballSelect
-                      path={PATH.COMMUNITY_UPDATE(
-                        type,
-                        initialBoard.articleId
-                      )}
+                      path={PATH.COMMUNITY_UPDATE(type, initialBoard.articleId)}
                       handleClickDelete={() =>
-                        handleClickDelete(
-                          initialBoard.articleId
-                        )
+                        handleClickDelete(initialBoard.articleId)
                       }
                     />
                   )}
@@ -237,16 +199,9 @@ const CommunityDetail = () => {
           </TitleContainer>
           <ContainerRow type="center">
             <Profile />
-            <Content>
-              {initialBoard.memberId}
-            </Content>
+            <Content>{initialBoard.memberId}</Content>
           </ContainerRow>
-          <Content>
-            {formattedDate(
-              initialBoard.createTime
-            )}{" "}
-            작성
-          </Content>
+          <Content>{formattedDate(initialBoard.createTime)} 작성</Content>
           <ContentContainer>
             <Content
               type="black"
@@ -258,43 +213,22 @@ const CommunityDetail = () => {
               <ContainerRow type="center">
                 <QnaImg />
                 <ContainerCol>
-                  <CourseName>
-                    {initialBoard.lectureTitle}
-                  </CourseName>
-                  <Content>
-                    {initialBoard.courseTitle}
-                  </Content>
+                  <CourseName>{initialBoard.lectureTitle}</CourseName>
+                  <Content>{initialBoard.courseTitle}</Content>
                 </ContainerCol>
               </ContainerRow>
             )}
             <ContainerRow>
-              <Button
-                text
-                onClick={handleClickViewReview}
-              >
+              <Button text onClick={handleClickViewReview}>
                 {!viewReview ? (
-                  <ChevronDownIcon
-                    width="16"
-                    height="16"
-                  />
+                  <ChevronDownIcon width="16" height="16" />
                 ) : (
-                  <ChevronUpIcon
-                    width="16"
-                    height="16"
-                  />
+                  <ChevronUpIcon width="16" height="16" />
                 )}{" "}
-                {initialBoard.commentCount}개 댓글
-                보기
+                {initialBoard.commentCount}개 댓글 보기
               </Button>
-              <Button
-                text
-                onClick={handleClickGoWriteReview}
-              >
-                <ChatIcon
-                  width="16"
-                  height="16"
-                />{" "}
-                댓글 작성하기
+              <Button text onClick={handleClickGoWriteReview}>
+                <ChatIcon width="16" height="16" /> 댓글 작성하기
               </Button>
             </ContainerRow>
           </ContentContainer>
@@ -305,11 +239,7 @@ const CommunityDetail = () => {
             />
           )}
           {viewReview &&
-            initialBoard.comments.map(
-              (review) => (
-                <Review content={review} />
-              )
-            )}
+            initialBoard.comments.map((review) => <Review content={review} />)}
         </Container>
       )}
     </DetailBlock>

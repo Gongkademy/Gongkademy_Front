@@ -1,7 +1,7 @@
 import { MEMBER_KEY } from "@stores/member/constant";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-export const useMemeberStore = create(
+export const useMemberStore = create(
   persist(
     (set) => ({
       member: { memberId: "" },
@@ -16,3 +16,5 @@ export const useMemeberStore = create(
     }
   )
 );
+
+export const useMemberIdStore = useMemberStore((state) => state.member);

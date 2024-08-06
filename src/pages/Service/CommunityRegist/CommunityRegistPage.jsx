@@ -1,16 +1,6 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-} from "react";
-import {
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import {
-  Container,
-  StyledInput,
-} from "./CommunityRegistPage.style";
+import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Container, StyledInput } from "./CommunityRegistPage.style";
 import RegistNav from "@components/community/Regist/RegistNav";
 import RegistCourse from "@components/community/Regist/RegistCourse";
 import QnaEditor from "@components/community/Regist/QnaEditor";
@@ -19,10 +9,10 @@ import useConcernStore from "@stores/Community/ConcernStore";
 import { PATH } from "@router/Constants";
 import ConcernEditor from "@components/community/Regist/ConcernEditor";
 import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
-import { useMemeberStore } from "@stores/member/memberStore";
+import { useMemberStore } from "@stores/member/memberStore";
 
 const CommunityRegistPage = () => {
-  const { member } = useMemeberStore();
+  const { member } = useMemberStore();
   const [isOpen, setIsOpen] = useState(false);
   const { writeConcern } = useConcernStore();
   const { writeQna } = useQnaStore();
@@ -34,13 +24,10 @@ const CommunityRegistPage = () => {
     "Q&A": "🙋Q&A",
     concern: "🤔고민",
   };
-  const [selected, setSelected] = useState(
-    typeMap[type]
-  );
+  const [selected, setSelected] = useState(typeMap[type]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [selectedCourse, setSelectedCourse] =
-    useState("강좌를 선택해주세요.");
+  const [selectedCourse, setSelectedCourse] = useState("강좌를 선택해주세요.");
   const [selectedLecture, setSelectedLecture] =
     useState("강의를 선택해주세요.");
   const editorRef = useRef(null);
@@ -49,9 +36,7 @@ const CommunityRegistPage = () => {
     setTitle("");
   }, [selected]);
   const handleClickRegistButton = () => {
-    setContent(
-      editorRef.current.getEditor().root.innerHTML
-    );
+    setContent(editorRef.current.getEditor().root.innerHTML);
     setIsOpen(true);
   };
   const handleClickButton = () => {
@@ -79,9 +64,8 @@ const CommunityRegistPage = () => {
     setSelectedCourse("강좌를 선택해주세요.");
     setSelectedLecture("강의를 선택해주세요.");
     navigate(
-      PATH.COMMUNITY(
-        selected === "🙋Q&A" ? "Q&A" : "concern"
-      ) + `?keyword=&criteria=&pageNo=1`
+      PATH.COMMUNITY(selected === "🙋Q&A" ? "Q&A" : "concern") +
+        `?keyword=&criteria=&pageNo=1`
     );
   };
   return (
@@ -90,9 +74,7 @@ const CommunityRegistPage = () => {
         <ConfirmModal
           isOpen={isOpen}
           title="게시글을 등록하시겠습니까?"
-          messages={[
-            "커뮤니티 페이지로 이동합니다.",
-          ]}
+          messages={["커뮤니티 페이지로 이동합니다."]}
           close={{
             text: "취소",
             onClick: () => SetIsOpen(false),
@@ -105,33 +87,23 @@ const CommunityRegistPage = () => {
         <RegistNav
           selected={selected}
           setSelected={setSelected}
-          handleClickButton={
-            handleClickRegistButton
-          }
+          handleClickButton={handleClickRegistButton}
         />
         <StyledInput
           placeholder="핵심 내용을 요약해주세요."
           value={title}
-          onChange={(e) =>
-            setTitle(e.target.value)
-          }
+          onChange={(e) => setTitle(e.target.value)}
         />
         {selected == "🙋Q&A" && (
           <RegistCourse
             selectedCourse={selectedCourse}
             setSelectedCourse={setSelectedCourse}
             selectedLecture={selectedLecture}
-            setSelectedLecture={
-              setSelectedLecture
-            }
+            setSelectedLecture={setSelectedLecture}
           />
         )}
         {selected == "🙋Q&A" ? (
-          <QnaEditor
-            content={content}
-            onChange={setContent}
-            ref={editorRef}
-          />
+          <QnaEditor content={content} onChange={setContent} ref={editorRef} />
         ) : (
           <ConcernEditor
             content={content}

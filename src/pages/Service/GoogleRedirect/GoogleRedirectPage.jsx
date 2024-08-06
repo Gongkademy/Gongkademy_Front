@@ -1,14 +1,14 @@
 import { getMemberInfo } from "@apis/members/membersApi";
 import { PATH } from "@router/Constants";
 import { useLoginStore } from "@stores/member/loginStore";
-import { useMemeberStore } from "@stores/member/memberStore";
+import { useMemberStore } from "@stores/member/memberStore";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const GoogleRedirectPage = () => {
   const navigate = useNavigate();
   const setIsLogin = useLoginStore((state) => state.setIsLogin);
-  const setMember = useMemeberStore((state) => state.setMember);
+  const setMember = useMemberStore((state) => state.setMember);
 
   useEffect(() => {
     setIsLogin(true);
