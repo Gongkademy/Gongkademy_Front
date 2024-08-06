@@ -4,11 +4,9 @@ import { useCourseNoticeQuery } from "@queries/useCourseDetailQuery";
 import { useParams } from "react-router-dom";
 
 const CourseNotice = () => {
-  const params = useParams();
-  const { data, isSuccess, isError, error } = useCourseNoticeQuery(
-    params.courseId,
-    0
-  );
+  const { courseId } = useParams();
+  const { data, isSuccess, isError, error } = useCourseNoticeQuery(courseId, 0);
+  console.log(data);
 
   return (
     <Flex direction="column" padding="1.875rem" width="100%" gap="2rem">

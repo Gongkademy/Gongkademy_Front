@@ -10,7 +10,7 @@ const CourseDetailPage = () => {
       <Flex direction="column" gap="3rem">
         <CourseDetailTop />
         <CourseMenu />
-        {/* <Outlet /> */}
+        <Outlet />
       </Flex>
     </PageLayout>
   );
