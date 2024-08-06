@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TextArea from "../../common/textarea/TextArea";
 import { Flex } from "@components/common/flex/Flex";
 import Rating from "../../common/rating/Rating";
 import Text from "@components/common/text/Text";
 import Select from "@components/common/select/Select";
-import Review from "../../common/review/Review";
-import { review } from "../../../dummy/Review";
 import Button from "@components/common/button/Button";
 import {
   useCourseReviewQuery,
@@ -14,12 +12,14 @@ import {
 import { useParams } from "react-router-dom";
 import CourseReviewCard from "@components/courseDetail/courseReview/CourseReviewCard";
 import { typo } from "@styles/style";
+import { useMemberStore } from "@stores/member/memberStore";
 const CourseReview = () => {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
   const [order, setOrder] = useState("최신순");
   const registCourseReview = useRegistCourseReviewMutation();
   const { courseId } = useParams();
+  const memberId = useMemberStore((state) => state.member).memberId;
 
   const { data, isLoading, isSuccess } = useCourseReviewQuery(courseId);
 
@@ -28,6 +28,8 @@ const CourseReview = () => {
   }
 
   if (isLoading) return <p>로딩중</p>;
+
+  console.log(memberId);
 
   return (
     <Flex as="section" direction="column" gap="1rem">
@@ -74,6 +76,7 @@ const CourseReview = () => {
             createdTime={review.createdTime}
             likeCount={review.likeCount}
             // profile={review.nickname}
+            isMine={review.memberId === memberId}
             rating={review.rating}
             hasReply={false}
             content={review.content}

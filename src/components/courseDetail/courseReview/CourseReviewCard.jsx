@@ -35,6 +35,7 @@ const CourseReviewCard = ({
   rating,
   replies,
   reviewId,
+  isMine,
 }) => {
   const [isLikeActive, setIsLikeActive] = useState(false);
   const [writeReview, setWriteReview] = useState(false);
@@ -144,25 +145,27 @@ const CourseReviewCard = ({
                 {createdTime}
               </Text>
             </Flex>
-            <DropDownList
-              trigger={<MeetballIcon width="1.2rem" />}
-              items={[
-                {
-                  text: "수정하기",
-                  onClick: () => {
-                    setIsUpdateModalOpen(true);
-                    setNewContent(content);
-                    setNewRating(rating);
+            {isMine && (
+              <DropDownList
+                trigger={<MeetballIcon width="1.2rem" />}
+                items={[
+                  {
+                    text: "수정하기",
+                    onClick: () => {
+                      setIsUpdateModalOpen(true);
+                      setNewContent(content);
+                      setNewRating(rating);
+                    },
                   },
-                },
-                {
-                  text: "삭제하기",
-                  onClick: () => {
-                    setIsDeleteModalOpen(true);
+                  {
+                    text: "삭제하기",
+                    onClick: () => {
+                      setIsDeleteModalOpen(true);
+                    },
                   },
-                },
-              ]}
-            />
+                ]}
+              />
+            )}
           </Flex>
           {rating !== undefined && (
             <Flex align="center" gap="1rem">

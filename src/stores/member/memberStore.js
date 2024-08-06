@@ -16,5 +16,3 @@ export const useMemberStore = create(
     }
   )
 );
-
-export const useMemberIdStore = useMemberStore((state) => state.member);

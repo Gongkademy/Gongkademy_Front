@@ -37,7 +37,7 @@ import { useLoginStore } from "@stores/member/loginStore";
 import DOMPurify from "dompurify";
 import useReviewStore from "@stores/Community/ReviewStore";
 import { formattedDate } from "@components/community/Card/formatDate";
-import { useMemebrStore } from "@stores/member/memberStore";
+import { useMemberStore } from "@stores/member/memberStore";
 
 const CommunityDetail = () => {
   const GOOGLE_LOGIN_URL = import.meta.env.VITE_GOOGLE_LOGIN_URL;
