@@ -1,3 +1,4 @@
+import { color } from "@styles/style";
 import { styled } from "styled-components";
 
 export const SearchBarContainer = styled.div`
@@ -13,7 +14,7 @@ export const StyledSearchBar = styled.input`
   height: 3rem;
   border: none;
   outline: none;
-  background-color: ${({ theme }) => theme.color.gray100};
+  background-color: ${color.gray100};
   padding: 12px 16px;
   border-radius: 8px;
 `;

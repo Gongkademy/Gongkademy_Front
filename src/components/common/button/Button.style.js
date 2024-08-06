@@ -1,7 +1,10 @@
 import styled, { css } from "styled-components";
-import { color } from "../../../styles/style";
+import { color, typo } from "../../../styles/style";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) =>
+    !["bold", "cta", "fill", "outline", "text"].includes(prop),
+})`
   width: ${(props) => props.width};
   height: 3rem;
   padding: 0.75rem 1rem;
@@ -12,31 +15,26 @@ export const StyledButton = styled.button`
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
-
-  ${({ theme }) => theme.typo.bodyRg400};
-
+  font: ${typo.bodyRg400};
   //Bold
-  ${(props) =>
-    props.bold &&
+  ${({ bold }) =>
+    !!bold &&
     css`
-      ${({ theme }) => theme.typo.bodyRg700};
+      font: ${typo.bodyRg700};
     `}
-
   //CTA
-  ${(props) =>
-    props.cta &&
+    ${({ cta }) =>
+    !!cta &&
     css`
       width: 100%;
       height: 3.625rem;
       padding: 1rem 0rem;
       border-radius: 0.5rem;
-      ${({ theme }) => theme.typo.bodyLg700};
+      font: ${typo.bodyLg700};
     `}
-  
-
-  //Filled
-  ${(props) =>
-    props.fill &&
+    //Filled
+    ${({ fill }) =>
+    !!fill &&
     css`
       color: ${color.white};
       background-color: ${color.black};
@@ -55,10 +53,9 @@ export const StyledButton = styled.button`
         background-color: ${color.gray200};
       }
     `}
-
-  //Outlined
-  ${(props) =>
-    props.outline &&
+    //Outlined
+    ${({ outline }) =>
+    !!outline &&
     css`
       color: ${color.black};
       background-color: ${color.white};
@@ -79,10 +76,9 @@ export const StyledButton = styled.button`
         border: 1px solid ${color.gray200};
       }
     `}
-
     //Text
-    ${(props) =>
-    props.text &&
+    ${({ text }) =>
+    !!text &&
     css`
       color: ${color.black};
       background-color: ${color.white};
@@ -99,5 +95,5 @@ export const StyledButton = styled.button`
       &:disabled {
         color: ${color.gray400};
       }
-    `}
+    `};
 `;

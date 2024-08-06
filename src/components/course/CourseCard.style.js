@@ -1,3 +1,4 @@
+import { color, typo } from "@styles/style";
 import styled from "styled-components";
 
 export const CourseContianer = styled.div`
@@ -31,9 +32,9 @@ export const SubjectContainer = styled.div`
 `;
 
 export const SubjectTitle = styled.p`
-  ${({ theme }) => theme.typo.bodyLg700}
+  font: ${typo.bodyLg700};
 `;
 export const SubjectDesc = styled.p`
-  ${({ theme }) => theme.typo.bodySm400};
-  color: ${({ theme }) => theme.color.gray700};
+  font: ${typo.bodySm400};
+  color: ${color.gray700};
 `;

@@ -1,3 +1,4 @@
+import { color } from "@styles/style";
 import { styled } from "styled-components";
 export const Container = styled.div`
   display: flex;
@@ -19,8 +20,7 @@ export const StyledInput = styled.input`
   height: 3rem;
   border: none;
   outline: none;
-  background-color: ${({ theme }) =>
-    theme.color.gray100};
+  background-color: ${color.gray100};
   padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid rgb(143, 143, 143);
@@ -33,6 +33,5 @@ export const ContainerRow = styled.div`
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  align-items: ${({ type }) =>
-    type === "center" ? "center" : "flex-start"};
+  align-items: ${({ type }) => (type === "center" ? "center" : "flex-start")};
 `;

@@ -1,3 +1,4 @@
+import { typo } from "@styles/style";
 import styled from "styled-components";
 
 export const HeaderBlock = styled.header`
@@ -10,10 +11,10 @@ export const HeaderBlock = styled.header`
 `;
 export const Body = styled.p`
   p {
-    ${({ theme }) => theme.typo.bodySm400};
+    font: ${typo.bodySm400};
   }
 `;
 
 export const LectureTitle = styled.p`
-  ${({ theme }) => theme.typo.bodyLg700};
+  font: ${typo.bodyLg700};
 `;

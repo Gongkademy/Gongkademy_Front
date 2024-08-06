@@ -1,3 +1,4 @@
+import { typo, color } from "@styles/style";
 import { styled } from "styled-components";
 
 export const NoticeContainer = styled.div`
@@ -9,15 +10,15 @@ export const NoticeContainer = styled.div`
   align-items: center;
 `;
 export const NoticeTitle = styled.div`
-  ${({ theme }) => theme.typo.bodyLg700};
+  font: ${typo.bodyLg700};
 `;
 export const ContentContainer = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
 export const Content = styled.div`
-  ${({ theme }) => theme.typo.bodySm400};
-  color: ${({ theme }) => theme.color.gray500};
+  font: ${typo.bodySm400};
+  color: ${color.gray500};
 `;
 export const Pointer = styled.div`
   cursor: pointer;

@@ -1,3 +1,4 @@
+import { color, typo } from "@styles/style";
 import { styled } from "styled-components";
 export const DetailBlock = styled.div`
   display: flex;
@@ -17,22 +18,20 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 export const Title = styled.div`
-  ${({ theme }) => theme.typo.bodyLg700};
+  font: ${typo.bodyLg700};
 `;
 export const ContainerRow = styled.div`
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  align-items: ${({ type }) =>
-    type === "center" ? "center" : "flex-start"};
+  align-items: ${({ type }) => (type === "center" ? "center" : "flex-start")};
 `;
 export const ContainerCol = styled.div`
   display: flex;
   flex-direction: column;
-  jistify-content: center;
+  justify-content: center;
   align-items: center;
-  cursor: ${({ type }) =>
-    type === "icon" ? "pointer" : "auto"};
+  cursor: ${({ type }) => (type === "icon" ? "pointer" : "auto")};
 `;
 export const Profile = styled.img`
   width: 2.5rem;
@@ -55,14 +54,8 @@ export const ContentContainer = styled.div`
   border-bottom: 1px solid black;
 `;
 export const Content = styled.div`
-  ${({ type, theme }) =>
-    type === "black"
-      ? theme.typo.bodyRg400
-      : theme.typo.bodySm400};
-  color: ${({ type, theme }) =>
-    type === "black"
-      ? "inherit"
-      : theme.color.gray600};
+  font: ${({ type }) => (type === "black" ? typo.bodyRg400 : typo.bodySm400)};
+  color: ${({ type }) => (type === "black" ? "inherit" : color.gray600)};
   white-space: pre-wrap;
   word-wrap: break-word;
 `;
@@ -72,5 +65,5 @@ export const QnaImg = styled.img`
   height: 4rem;
 `;
 export const CourseName = styled.p`
-  ${({ theme }) => theme.typo.bodyRg700};
+  font: ${typo.bodyRg700};
 `;

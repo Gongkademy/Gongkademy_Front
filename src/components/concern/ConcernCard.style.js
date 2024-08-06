@@ -1,3 +1,4 @@
+import { color, typo } from "@styles/style";
 import styled from "styled-components";
 
 export const ConcernContianer = styled.div`
@@ -25,14 +26,14 @@ export const ContentContainer = styled.div`
   gap: 8px;
 `;
 export const Title = styled.h2`
-  ${({ theme }) => theme.typo.bodyLg700};
+  font: ${typo.bodyLg700};
 `;
 export const ContentPreview = styled.p`
-  ${({ theme }) => theme.typo.bodyRg400};
-  color: ${({ theme }) => theme.color.gray700};
+  font: ${typo.bodyRg400};
+  color: ${color.gray700};
 `;
 
 export const Date = styled.p`
-  ${({ theme }) => theme.typo.bodySm400};
-  color: ${({ theme }) => theme.color.gray500};
+  font: ${typo.bodySm400};
+  color: ${color.gray500};
 `;
