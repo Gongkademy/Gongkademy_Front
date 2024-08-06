@@ -1,3 +1,4 @@
+import { postLikeCourse } from "@apis/course/courseApi";
 import {
   deleteCourseReview,
   getAllCourseReviews,
@@ -43,6 +44,20 @@ export const useModifyCourseReviewMutation = () =>
 export const useRemoveCourseReview = () =>
   useMutation({
     mutationFn: (reviewId) => deleteCourseReview(reviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["courseReview"]);
+    },
+    onError: (error) => {
+      console.log("onError", error);
+    },
+    onSettled: () => {
+      console.log("onSettled");
+    },
+  });
+
+export const useLikeCourseReviewMutation = () =>
+  useMutation({
+    mutationFn: (data) => postLikeCourse(data),
     onSuccess: () => {
       queryClient.invalidateQueries(["courseReview"]);
     },

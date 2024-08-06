@@ -43,7 +43,7 @@ export const getRegistCoursesComplete = async () => {
   return await axiosInstance.get(END_POINT.COURSE_COMPLETE);
 };
 
-export const likeCourse = async (data) => {
+export const postLikeCourse = async (data) => {
   return await axiosInstance.post(END_POINT.COURSE_LIKE, data);
 };
 

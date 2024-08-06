@@ -18,6 +18,7 @@ import { ImageBox } from "@components/common/imageBox/ImageBox.style";
 import DropDownList from "@components/common/dropDownList/DropDownList";
 import ConfirmModal from "@components/common/modal/confirmModal/ConfirmModal";
 import {
+  useLikeCourseReviewMutation,
   useModifyCourseReviewMutation,
   useRemoveCourseReview,
 } from "@queries/useCourseReviewQuery";
@@ -44,12 +45,17 @@ const CourseReviewCard = ({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const modifyCourseReview = useModifyCourseReviewMutation();
   const removeCourseReview = useRemoveCourseReview();
+  const likeCourseReview = useLikeCourseReviewMutation();
 
   const [newRating, setNewRating] = useState();
   const [newContent, setNewContent] = useState();
   const { courseId } = useParams();
 
   const handleClickLike = () => {
+    likeCourseReview.mutate({
+      likeCateg: "REVIEW",
+      courseReviewId: reviewId,
+    });
     setIsLikeActive(!isLikeActive);
   };
 
