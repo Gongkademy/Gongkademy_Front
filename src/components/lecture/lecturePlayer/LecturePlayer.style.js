@@ -3,13 +3,19 @@ import styled from "styled-components";
 export const LecturePlayerBlock = styled.div`
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625 or 56.25%) */
   overflow: hidden;
+  max-width: 68.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
   iframe {
     position: absolute;
+    aspect-ratio: 16 / 9;
     top: 0;
     left: 0;
     width: 100%;
+    max-width: 68.75rem;
     height: 100%;
   }
 `;

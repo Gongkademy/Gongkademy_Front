@@ -1,5 +1,3 @@
-import { Flex } from "../../common/flex/Flex";
-import Text from "../../common/text/Text";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { COURSE_ID, LECUTRE_ORDER } from "@pages/Service/Lecture/constants";
@@ -17,7 +15,6 @@ const LectureHeader = () => {
   return (
     <HeaderContainer>
       <Link to={PATH.LECTURE + createLectureUrl(-1)}>
-        {/* <Text typo="bodyRg400">이전 수업</Text> */}
         <Button outline>이전 강의</Button>
       </Link>
 

@@ -33,25 +33,23 @@ const LecturePlayer = ({ lecture, startPoint }) => {
   };
 
   return (
-    <Flex padding="3rem">
-      <LecturePlayerBlock>
-        <YouTube
-          videoId={lecture.link}
-          opts={{
-            width: "100%",
-            "aspect-ratio": 16 / 9,
-            playerVars: {
-              autoplay: 1,
-              rel: 0, //관련동영상 없애기
-              modestbranding: 1,
-              controls: 1,
-            },
-          }}
-          onPlay={handlePlayerPlay}
-          onReady={(event) => handleReadyState(event)}
-        />
-      </LecturePlayerBlock>
-    </Flex>
+    <LecturePlayerBlock>
+      <YouTube
+        videoId={lecture.link}
+        opts={{
+          width: "100%",
+          "aspect-ratio": 16 / 9,
+          playerVars: {
+            autoplay: 1,
+            rel: 0, //관련동영상 없애기
+            modestbranding: 1,
+            controls: 1,
+          },
+        }}
+        onPlay={handlePlayerPlay}
+        onReady={(event) => handleReadyState(event)}
+      />
+    </LecturePlayerBlock>
   );
 };
 

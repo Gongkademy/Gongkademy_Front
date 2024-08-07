@@ -12,6 +12,8 @@ import { getPlayerLatestLecture } from "@apis/course/playerApi";
 import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { getLecture } from "@apis/course/courseApi";
 import LectureHeader from "@components/lecture/lecturePlayer/LectureHeader";
+import Text from "@components/common/text/Text";
+import { typo } from "@styles/style";
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +21,6 @@ const LecturePage = () => {
   const [startPoint, setStartPoint] = useState(0);
   const fetchLecture = async () => {
     let lid = 0;
-    console.log(searchParams.get(LECUTRE_ORDER));
     try {
       const response = await getLecture({
         courseId: searchParams.get(COURSE_ID),
@@ -27,6 +28,7 @@ const LecturePage = () => {
       });
 
       setLecture(response.data);
+      console.log(response.data);
       lid = response.data.lectureId;
     } catch (error) {
       console.log(error);
@@ -50,14 +52,23 @@ const LecturePage = () => {
 
   return (
     <>
-      <PageBlock>
+      <Flex direction="column" justify="center">
         {/* <LectureSidebar lecture={lecture} /> */}
-        <Flex direction="column" width="100%">
+        <Flex
+          direction="column"
+          width="100%"
+          justify="center"
+          align="center"
+          gap="3rem"
+        >
           <LectureHeader lecture={lecture} />
-
           <LecturePlayer lecture={lecture} startPoint={startPoint} />
         </Flex>
-      </PageBlock>
+        <Flex width="100%" direction="column">
+          <Text typo={typo.titleSm700}>{lecture.title}</Text>
+          <Text typo={typo.bodyLg400}>{"질문 33개"}</Text>
+        </Flex>
+      </Flex>
     </>
   );
 };
