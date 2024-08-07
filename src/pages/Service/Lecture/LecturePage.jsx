@@ -1,6 +1,5 @@
-import LectureHeader from "@components/lecture/lectureHeader/LectureHeader";
 import LecturePlayer from "@components/lecture/lecturePlayer/LecturePlayer";
-import LectureFooter from "@components/lecture/lectureFooter/LectureFooter";
+import LectureFooter from "@components/lecture/lecturePlayer/LectureHeader";
 import { lectures } from "@dummy/lecture/lectures";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ import useLectureStore from "@stores/course/lectureStore";
 import { getPlayerLatestLecture } from "@apis/course/playerApi";
 import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { getLecture } from "@apis/course/courseApi";
+import LectureHeader from "@components/lecture/lecturePlayer/LectureHeader";
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -50,14 +50,14 @@ const LecturePage = () => {
 
   return (
     <>
-      {/* <PageBlock> */}
-      <Flex direction="column" width="100%">
-        <LectureHeader title={lecture.title} />
-        <LecturePlayer lecture={lecture} startPoint={startPoint} />
-        <LectureFooter lecture={lecture} />
-      </Flex>
-      {/* <LectureSidebar lecture={curLecture} /> */}
-      {/* </PageBlock> */}
+      <PageBlock>
+        {/* <LectureSidebar lecture={lecture} /> */}
+        <Flex direction="column" width="100%">
+          <LectureHeader lecture={lecture} />
+
+          <LecturePlayer lecture={lecture} startPoint={startPoint} />
+        </Flex>
+      </PageBlock>
     </>
   );
 };
