@@ -40,7 +40,7 @@ const HomePage = () => {
       </PageTitle>
       <ConcernContianer>
         {CONCERNS.map((concern) => (
-          <ConcernCard concern={concern} />
+          <ConcernCard concern={concern} key={concern.id} />
         ))}
       </ConcernContianer>
     </>

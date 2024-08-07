@@ -28,7 +28,6 @@ const LecturePage = () => {
 
       setLecture(response.data);
       lid = response.data.lectureId;
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -50,14 +49,16 @@ const LecturePage = () => {
   }, [searchParams.get(LECUTRE_ORDER)]);
 
   return (
-    <PageBlock>
+    <>
+      {/* <PageBlock> */}
       <Flex direction="column" width="100%">
         <LectureHeader title={lecture.title} />
         <LecturePlayer lecture={lecture} startPoint={startPoint} />
         <LectureFooter lecture={lecture} />
       </Flex>
       {/* <LectureSidebar lecture={curLecture} /> */}
-    </PageBlock>
+      {/* </PageBlock> */}
+    </>
   );
 };
 
