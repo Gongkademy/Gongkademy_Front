@@ -1,19 +1,16 @@
-import LecturePlayer from "@components/lecture/lecturePlayer/LecturePlayer";
-import LectureFooter from "@components/lecture/lecturePlayer/LectureHeader";
-import { lectures } from "@dummy/lecture/lectures";
-import { useParams, useSearchParams } from "react-router-dom";
+import LecturePlayer from "@components/lecture/LecturePlayer";
+import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { COURSE_ID, LECTURE_ID, LECUTRE_ORDER, LECUTRE_URL } from "./constants";
-import { Flex } from "../../../components/common/flex/Flex";
-import LectureSidebar from "../../../components/lecture/lectureSideBar/LectureSidebar";
-import { PageBlock } from "./LecturePage.style";
+import { Flex } from "@components/common/flex/Flex";
 import useLectureStore from "@stores/course/lectureStore";
 import { getPlayerLatestLecture } from "@apis/course/playerApi";
 import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { getLecture } from "@apis/course/courseApi";
-import LectureHeader from "@components/lecture/lecturePlayer/LectureHeader";
+import LectureHeader from "@components/lecture/LectureHeader";
 import Text from "@components/common/text/Text";
 import { typo } from "@styles/style";
+import LectureCommunityCard from "@components/lecture/LectureCommunityCard";
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -50,6 +47,7 @@ const LecturePage = () => {
     fetchLecture();
   }, [searchParams.get(LECUTRE_ORDER)]);
 
+  console.log(lecture);
   return (
     <>
       <Flex direction="column" justify="center">
@@ -63,10 +61,33 @@ const LecturePage = () => {
         >
           <LectureHeader lecture={lecture} />
           <LecturePlayer lecture={lecture} startPoint={startPoint} />
-        </Flex>
-        <Flex width="100%" direction="column">
-          <Text typo={typo.titleSm700}>{lecture.title}</Text>
-          <Text typo={typo.bodyLg400}>{"질문 33개"}</Text>
+          <Flex
+            width="100%"
+            direction="column"
+            align="start"
+            maxWidth="1100px"
+            gap="1rem"
+          >
+            <Text typo={typo.titleSm700}>
+              {searchParams.get(LECUTRE_ORDER)} . {lecture.title}
+            </Text>
+            <Text typo={typo.bodyLg400}>{"질문 33개"}</Text>
+            <LectureCommunityCard
+              title={"제목"}
+              content={"미리보기"}
+              commentCnt={33}
+            />
+            <LectureCommunityCard
+              title={"제목"}
+              content={"미리보기"}
+              commentCnt={33}
+            />
+            <LectureCommunityCard
+              title={"제목"}
+              content={"미리보기"}
+              commentCnt={33}
+            />
+          </Flex>
         </Flex>
       </Flex>
     </>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { COURSE_ID, LECUTRE_ORDER } from "@pages/Service/Lecture/constants";
 import { PATH } from "@router/Constants";
 import Button from "@components/common/button/Button";
-import { HeaderContainer } from "@components/lecture/lecturePlayer/LectureHeader.style";
+import { HeaderContainer } from "@components/lecture/LectureHeader.style";
 
 const LectureHeader = () => {
   const [searchParams, setSearchParams] = useSearchParams();
