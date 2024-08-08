@@ -21,7 +21,7 @@ import {
   useLikeCourseReviewMutation,
   useModifyCourseReviewMutation,
   useRemoveCourseReview,
-} from "@queries/useCourseReviewQuery";
+} from "@apis/queries/useCourseReviewQuery";
 import ReviewModal from "@components/courseDetail/courseReview/ReviewModal";
 import TextArea from "@components/common/textarea/TextArea";
 import { useParams } from "react-router-dom";

@@ -11,6 +11,7 @@ import LectureHeader from "@components/lecture/LectureHeader";
 import Text from "@components/common/text/Text";
 import { typo } from "@styles/style";
 import LectureCommunityCard from "@components/lecture/LectureCommunityCard";
+import LectureSidebar from "@components/lecture/LectureSidebar";
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +26,6 @@ const LecturePage = () => {
       });
 
       setLecture(response.data);
-      console.log(response.data);
       lid = response.data.lectureId;
     } catch (error) {
       console.log(error);
@@ -50,8 +50,8 @@ const LecturePage = () => {
   console.log(lecture);
   return (
     <>
-      <Flex direction="column" justify="center">
-        {/* <LectureSidebar lecture={lecture} /> */}
+      <Flex>
+        <LectureSidebar />
         <Flex
           direction="column"
           width="100%"

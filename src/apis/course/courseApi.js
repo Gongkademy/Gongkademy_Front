@@ -1,3 +1,4 @@
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { END_POINT } from "../apiConstants";
 import { axiosInstance } from "../axiosInstance";
 
@@ -8,6 +9,12 @@ export const getAllCourses = async () => {
 export const getAllCourseContents = async (courseId) => {
   return await axiosInstance.get(END_POINT.COURSE_LIST(courseId));
 };
+
+export const useLectureListQuery = (courseId) =>
+  useQuery({
+    queryKey: ["lectureList", courseId],
+    queryFn: () => axiosInstance.get(END_POINT.COURSE_LIST(courseId)),
+  });
 
 export const registCourse = async (courseId) => {
   return await axiosInstance.post(END_POINT.COURSE_REGIST(courseId));

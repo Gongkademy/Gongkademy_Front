@@ -9,7 +9,7 @@ import {
   registCourseNotice,
   removeCourseNotice,
   useCourseNoticeQuery,
-} from "@queries/useCourseDetailQuery";
+} from "@apis/queries/useCourseDetailQuery";
 import { typo } from "@styles/style";
 import DOMPurify from "dompurify";
 import { useState, useRef, useEffect } from "react";

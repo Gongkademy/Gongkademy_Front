@@ -9,7 +9,7 @@ import TextArea from "@components/common/textarea/TextArea";
 import { CardContainer } from "@components/courseDetail/courseNotice/CourseNoticeCard.style";
 import CourseNoticeReview from "@components/courseDetail/courseNotice/CourseNoticeReview";
 import CourseReview from "@components/courseDetail/courseReview/CourseReview";
-import { useLikeCourseReviewMutation } from "@queries/useCourseReviewQuery";
+import { useLikeCourseReviewMutation } from "@apis/queries/useCourseReviewQuery";
 import { color, typo } from "@styles/style";
 import DOMPurify from "dompurify";
 import { useState } from "react";

@@ -3,7 +3,7 @@ import { Flex } from "@components/common/flex/Flex";
 import Input from "@components/common/input/Input";
 import { PageTitle } from "@components/common/page/PageTitle";
 import Profile from "@components/common/profile/Profile";
-import { useMemberInfoQuery } from "@queries/useMemberQuery";
+import { useMemberInfoQuery } from "@apis/queries/useMemberQuery";
 import { useState, useEffect } from "react";
 import Button from "@components/common/button/Button";
 import { patchMemberInfo } from "@apis/members/membersApi";

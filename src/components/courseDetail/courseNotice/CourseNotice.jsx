@@ -1,6 +1,6 @@
 import { Flex } from "@components/common/flex/Flex";
 import CourseNoticeCard from "@components/courseDetail/courseNotice/CourseNoticeCard";
-import { useCourseNoticeQuery } from "@queries/useCourseDetailQuery";
+import { useCourseNoticeQuery } from "@apis/queries/useCourseDetailQuery";
 import { useParams } from "react-router-dom";
 
 const CourseNotice = () => {

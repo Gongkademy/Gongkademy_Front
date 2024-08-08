@@ -4,7 +4,7 @@ import "./index.css";
 import Modal from "react-modal";
 import AppRouter from "./router/AppRouter";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@queries/queryClient";
+import { queryClient } from "@apis/queries/queryClient";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 Modal.setAppElement("#root");

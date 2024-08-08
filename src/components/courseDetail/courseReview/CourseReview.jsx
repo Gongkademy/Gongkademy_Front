@@ -8,7 +8,7 @@ import Button from "@components/common/button/Button";
 import {
   useCourseReviewQuery,
   useRegistCourseReviewMutation,
-} from "@queries/useCourseReviewQuery";
+} from "@apis/queries/useCourseReviewQuery";
 import { useParams } from "react-router-dom";
 import CourseReviewCard from "@components/courseDetail/courseReview/CourseReviewCard";
 import { typo } from "@styles/style";

@@ -5,7 +5,7 @@ import {
   patchCourseReview,
   postCourseReview,
 } from "@apis/course/courseReviewApi";
-import { queryClient } from "@queries/queryClient";
+import { queryClient } from "@apis/queries/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useCourseReviewQuery = (courseId) =>

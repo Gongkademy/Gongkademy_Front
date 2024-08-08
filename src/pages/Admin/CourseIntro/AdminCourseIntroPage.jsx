@@ -2,7 +2,7 @@ import { updateCourseInfo } from "@apis/course/adminCourseApi";
 import CourseEditor from "@components/admin/course/CourseEditor";
 import Button from "@components/common/button/Button";
 import { Flex } from "@components/common/flex/Flex";
-import { useCourseIntroQuery } from "@queries/useCourseDetailQuery";
+import { useCourseIntroQuery } from "@apis/queries/useCourseDetailQuery";
 import { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 

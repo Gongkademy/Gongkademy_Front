@@ -1,7 +1,7 @@
 import { Flex } from "@components/common/flex/Flex";
 import TextArea from "@components/common/textarea/TextArea";
 import Textbox from "@components/common/textbox/TextBox";
-import { useCourseIntroQuery } from "@queries/useCourseDetailQuery";
+import { useCourseIntroQuery } from "@apis/queries/useCourseDetailQuery";
 import DOMPurify from "dompurify";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";

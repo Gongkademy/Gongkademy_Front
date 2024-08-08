@@ -4,7 +4,7 @@ import {
   updateCourseNotice,
 } from "@apis/course/adminCourseApi";
 import { getCourseInfo, getCourseNoticePerPage } from "@apis/course/courseApi";
-import { queryClient } from "@queries/queryClient";
+import { queryClient } from "@apis/queries/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useCourseIntroQuery = (courseId) =>
