@@ -18,16 +18,13 @@ import { useState } from "react";
 import { updateLecture } from "@apis/course/adminCourseApi";
 import useLectureStore from "@stores/course/lectureStore";
 
-const CurriculumItem = ({ lecture, type }) => {
-  // const setCurlecture = useLectureStore((state) => state.setCurLecture);
-  // const curLecture = useLectureStore((state) => state.curLecture);
-  console.log(lecture);
-  const params = useParams();
-  const lectureQueryString = `?${COURSE_ID}=${params.courseId}&${LECUTRE_ORDER}=${lecture.lectureOrder}`;
-  const [title, setTitle] = useState(lecture.title);
-  const [time, setTime] = useState(lecture.time);
-  const [url, setUrl] = useState(lecture.time);
-  const [order, setOrder] = useState(lecture.lectureOrderD);
+const CurriculumItem = ({ order, title, time, type, id, url }) => {
+  const { courseId } = useParams();
+  const lectureQueryString = `?${COURSE_ID}=${courseId}&${LECUTRE_ORDER}=${order}`;
+  const [newTitle, setNewTitle] = useState(title);
+  const [newTime, setNewTime] = useState(time);
+  const [newUrl, setNewUrl] = useState(url);
+  const [newOrder, setNewOrder] = useState(order);
   const [isEdit, setIsEdit] = useState(false);
 
   //
@@ -36,7 +33,7 @@ const CurriculumItem = ({ lecture, type }) => {
     const isConfirm = confirm("목차를 삭제하시겠습니까?");
     if (isConfirm) {
       try {
-        const response = await deleteLecture(lecture.lectureId);
+        const response = await deleteLecture(id);
         if (response.status === HTTP_STATUS_CODE.NO_CONTENT) {
           alert("삭제를 완료했습니다.");
           location.reload();
@@ -53,7 +50,7 @@ const CurriculumItem = ({ lecture, type }) => {
 
   const handleUpdateLecture = async () => {
     try {
-      const response = await updateLecture(lecture.lectureId, {
+      const response = await updateLecture(id, {
         lectureOrder: order,
         time: time,
         link: url,
@@ -79,7 +76,7 @@ const CurriculumItem = ({ lecture, type }) => {
           />
         )} */}
         <Text typo="bodyRg700">
-          {lecture.lectureOrder} .&nbsp; {lecture.title}
+          {order} .&nbsp; {title}
         </Text>
       </Flex>
 
@@ -95,7 +92,7 @@ const CurriculumItem = ({ lecture, type }) => {
           </>
         )}
         <Text type="captionRg400" color={color.gray400}>
-          {Math.floor(lecture.time / 60) + "분"}
+          {Math.floor(time / 60) + "분"}
         </Text>
       </Flex>
       {isEdit && (
@@ -105,32 +102,32 @@ const CurriculumItem = ({ lecture, type }) => {
             제목:
             <input
               placeholder="제목"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
             />
           </label>
           <label>
             강의시간:
             <input
               placeholder="강의시간"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
+              value={newTime}
+              onChange={(e) => setNewTime(e.target.value)}
             />
           </label>
           <label>
             url:
             <input
               placeholder="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              value={newUrl}
+              onChange={(e) => setNewUrl(e.target.value)}
             />
           </label>
           <label>
             강의순서:
             <input
               placeholder="강의순서"
-              value={order}
-              onChange={(e) => setOrder(e.target.value)}
+              value={newOrder}
+              onChange={(e) => setNewOrder(e.target.value)}
             />
           </label>
           <button onClick={handleUpdateLecture}>수정완료</button>
