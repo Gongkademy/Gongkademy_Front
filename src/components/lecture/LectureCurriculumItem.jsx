@@ -11,7 +11,7 @@ import {
 import { LectureCurriculumItemContainer } from "@components/lecture/LectureCurriculumItem.style";
 import { Flex } from "@components/common/flex/Flex";
 
-const LectureCurriculumItem = ({ order, title, time, isCompleted }) => {
+const LectureCurriculumItem = ({ order, title, time, isCompleted, id }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isPlay = searchParams.get(LECUTRE_ORDER) * 1 === order;
 

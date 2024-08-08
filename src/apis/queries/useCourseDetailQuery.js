@@ -3,9 +3,19 @@ import {
   deleteCourseNotice,
   updateCourseNotice,
 } from "@apis/course/adminCourseApi";
-import { getCourseInfo, getCourseNoticePerPage } from "@apis/course/courseApi";
+import {
+  getCourseDetail,
+  getCourseInfo,
+  getCourseNoticePerPage,
+} from "@apis/course/courseApi";
 import { queryClient } from "@apis/queries/queryClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
+
+export const useCourseDetailQuery = (courseId) =>
+  useQuery({
+    queryKey: ["courseDetail", courseId],
+    queryFn: () => getCourseDetail(courseId),
+  });
 
 export const useCourseIntroQuery = (courseId) =>
   useQuery({

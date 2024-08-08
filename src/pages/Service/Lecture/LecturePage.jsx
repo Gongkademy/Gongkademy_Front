@@ -12,11 +12,20 @@ import Text from "@components/common/text/Text";
 import { typo } from "@styles/style";
 import LectureCommunityCard from "@components/lecture/LectureCommunityCard";
 import LectureSidebar from "@components/lecture/LectureSidebar";
+import { LectureMainContainer } from "@pages/Service/Lecture/LecturePage.style";
+import { useCourseDetailQuery } from "@apis/queries/useCourseDetailQuery";
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [lecture, setLecture] = useState("");
   const [startPoint, setStartPoint] = useState(0);
+  const { data: courseDetail, isSuccess } = useCourseDetailQuery(
+    searchParams.get(COURSE_ID)
+  );
+
+  if (isSuccess) {
+    console.log(courseDetail);
+  }
   const fetchLecture = async () => {
     let lid = 0;
     try {
@@ -51,43 +60,42 @@ const LecturePage = () => {
   return (
     <>
       <Flex minHeight="100%" width="100%">
-        <LectureSidebar />
-        <Flex
-          direction="column"
-          width="100%"
-          justify="center"
-          align="center"
-          gap="3rem"
-        >
-          <LectureHeader lecture={lecture} />
-          <LecturePlayer lecture={lecture} startPoint={startPoint} />
-          <Flex
-            width="100%"
-            direction="column"
-            align="start"
-            maxWidth="1100px"
-            gap="1rem"
-          >
-            <Text typo={typo.titleSm700}>
-              {searchParams.get(LECUTRE_ORDER)} . {lecture.title}
-            </Text>
-            <Text typo={typo.bodyLg400}>{"질문 33개"}</Text>
-            <LectureCommunityCard
-              title={"제목"}
-              content={"미리보기"}
-              commentCnt={33}
-            />
-            <LectureCommunityCard
-              title={"제목"}
-              content={"미리보기"}
-              commentCnt={33}
-            />
-            <LectureCommunityCard
-              title={"제목"}
-              content={"미리보기"}
-              commentCnt={33}
-            />
-          </Flex>
+        <LectureHeader lecture={lecture} />
+        <Flex paddingTop="3rem" width="100%">
+          {isSuccess && (
+            <LectureSidebar courseTitle={courseDetail.data.title} />
+          )}
+
+          <LectureMainContainer>
+            <LecturePlayer lecture={lecture} startPoint={startPoint} />
+            <Flex
+              width="100%"
+              direction="column"
+              align="start"
+              maxWidth="1100px"
+              gap="1rem"
+            >
+              <Text typo={typo.titleSm700}>
+                {searchParams.get(LECUTRE_ORDER)} . {lecture.title}
+              </Text>
+              <Text typo={typo.bodyLg400}>{"질문 33개"}</Text>
+              <LectureCommunityCard
+                title={"제목"}
+                content={"미리보기"}
+                commentCnt={33}
+              />
+              <LectureCommunityCard
+                title={"제목"}
+                content={"미리보기"}
+                commentCnt={33}
+              />
+              <LectureCommunityCard
+                title={"제목"}
+                content={"미리보기"}
+                commentCnt={33}
+              />
+            </Flex>
+          </LectureMainContainer>
         </Flex>
       </Flex>
     </>

@@ -2,7 +2,7 @@ import { color } from "@styles/style";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
 
   display: flex;

@@ -9,6 +9,7 @@ export const LecturePlayerBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   aspect-ratio: 16 / 9;
+  overflow-y: auto;
   iframe {
     position: absolute;
     aspect-ratio: 16 / 9;
