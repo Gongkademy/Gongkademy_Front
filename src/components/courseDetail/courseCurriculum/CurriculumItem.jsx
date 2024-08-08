@@ -1,13 +1,7 @@
-// import { CheckIcon } from "@assets/svg/icons";
 import Text from "@components/common/text/Text";
 import { Flex } from "../../common/flex/Flex";
 import { PATH } from "@router/Constants";
-import {
-  COURSE_ID,
-  LECTURE_ID,
-  LECUTRE_ORDER,
-  LECUTRE_URL,
-} from "@pages/Service/Lecture/constants";
+import { COURSE_ID, LECUTRE_ORDER } from "@pages/Service/Lecture/constants";
 import { CurriculumItemBlock } from "./CurriculumItem.style";
 import { color } from "@styles/style";
 import Button from "../../common/button/Button";
@@ -16,9 +10,9 @@ import { HTTP_STATUS_CODE } from "@apis/apiConstants";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { updateLecture } from "@apis/course/adminCourseApi";
-import useLectureStore from "@stores/course/lectureStore";
+import { CheckIcon, CheckboxIcon } from "@assets/svg/icons";
 
-const CurriculumItem = ({ order, title, time, type, id, url }) => {
+const CurriculumItem = ({ order, title, time, type, id, url, isCompleted }) => {
   const { courseId } = useParams();
   const lectureQueryString = `?${COURSE_ID}=${courseId}&${LECUTRE_ORDER}=${order}`;
   const [newTitle, setNewTitle] = useState(title);
@@ -63,18 +57,19 @@ const CurriculumItem = ({ order, title, time, type, id, url }) => {
       console.log(error);
     }
   };
+
   return (
     <CurriculumItemBlock
       as={type === "admin" && "div"}
       to={PATH.LECTURE + lectureQueryString}
     >
       <Flex gap="0.75rem" align="center">
-        {/* {type === "user" && (
+        {type === "user" && (
           <CheckIcon
             width="1rem"
-            stroke={lecture.isCompleted ? color.green : color.gray400}
+            stroke={isCompleted ? color.green : color.gray400}
           />
-        )} */}
+        )}
         <Text typo="bodyRg700">
           {order} .&nbsp; {title}
         </Text>

@@ -3,7 +3,7 @@ import { LectureSidebarBlock } from "./LectureSidebar.style";
 import { useEffect } from "react";
 import { useLectureListQuery } from "@apis/course/courseApi";
 import { COURSE_ID } from "@pages/Service/Lecture/constants";
-import CurriculumItem from "@components/courseDetail/courseCurriculum/CurriculumItem";
+import LectureCurriculumItem from "@components/lecture/LectureCurriculumItem";
 
 const LectureSidebar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,13 +19,11 @@ const LectureSidebar = () => {
 
       {isSuccess &&
         lectureList.data.map((lecture) => (
-          <CurriculumItem
+          <LectureCurriculumItem
             order={lecture.lectureOrder}
             title={lecture.title}
             time={lecture.time}
-            type={"user"}
             id={lecture.lectureId}
-            url={lecture.link}
           />
         ))}
     </LectureSidebarBlock>

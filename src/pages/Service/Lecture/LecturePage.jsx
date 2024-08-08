@@ -50,7 +50,7 @@ const LecturePage = () => {
   console.log(lecture);
   return (
     <>
-      <Flex>
+      <Flex minHeight="100%" width="100%">
         <LectureSidebar />
         <Flex
           direction="column"
